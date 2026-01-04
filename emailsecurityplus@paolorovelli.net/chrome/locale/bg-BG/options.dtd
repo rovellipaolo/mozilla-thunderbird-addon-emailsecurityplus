@@ -36,10 +36,5 @@
 <!ENTITY help.title "Помощ">
 <!ENTITY help.caption "Помощ">
 <!ENTITY faq.caption "FAQ">
-<!ENTITY faq.email "spam@paolorovelli.net">
-<!ENTITY faq.question1 "Какво да направя, ако имейл не е бил  идентифициран правилно?">
-<!ENTITY faq.answer1-1 "Можете да изпратите този имейл на адрес:">
-<!ENTITY faq.answer1-2 "След това трябва да го маркирате ръчно като 'нежелана' поща (или 'Не е нежелана').">
-<!ENTITY faq.question2 "Има ли грешки при превода?">
-<!ENTITY faq.answer2-1 "Моля, докладвайте ги на:">
-<!ENTITY faq.legend "*Помощта за подобряването на Email Security Plus е във ваш собствен интерес.">
+<!ENTITY faq.question1 "Има ли грешки при превода?">
+<!ENTITY faq.answer1-1 "Моля, докладвайте ги на:">

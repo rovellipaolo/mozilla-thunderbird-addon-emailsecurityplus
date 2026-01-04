@@ -210,6 +210,7 @@ emailsecurityplus.PreferencesListener = new emailsecurityplus.MozPrefListener("e
 							case "scan":  // extensions.emailsecurityplus.scan was changed!
 									if( emailsecurityplus.Preferences.isScanActive() ) {  // automatically scans incoming emails
 										//Launch the window listener:
+										//addEventListener("load", function() { emailsecurityplus.NewEmailListener.load(); }, true);
 										addEventListener("load", emailsecurityplus.NewEmailListener.load, true);
 									}
 									
@@ -245,6 +246,7 @@ emailsecurityplus.PreferencesListener = new emailsecurityplus.MozPrefListener("e
 							case "whitelist.active":  // extensions.emailsecurityplus.scan.selectivereceive was changed!
 									if( !emailsecurityplus.Preferences.isScanActive() && emailsecurityplus.Preferences.isWhitelistActive() ) {  // not automatically scans incoming emails
 										//Launch the window listener:
+										//addEventListener("load", function() { emailsecurityplus.NewEmailListener.load(); }, true);
 										addEventListener("load", emailsecurityplus.NewEmailListener.load, true);
 										
 										//TODO: when the 'whitelist.active' preference has changed, it is needed to reboot Thunderbird!
@@ -254,6 +256,7 @@ emailsecurityplus.PreferencesListener = new emailsecurityplus.MozPrefListener("e
 							case "blacklist.active":  // extensions.emailsecurityplus.blacklist.active was changed!
 									if( !emailsecurityplus.Preferences.isScanActive() && !emailsecurityplus.Preferences.isWhitelistActive() && emailsecurityplus.Preferences.isBlacklistActive() ) {  // not automatically scans incoming emails
 										//Launch the window listener:
+										//addEventListener("load", function() { emailsecurityplus.NewEmailListener.load(); }, true);
 										addEventListener("load", emailsecurityplus.NewEmailListener.load, true);
 									}
 									
@@ -266,21 +269,3 @@ emailsecurityplus.PreferencesListener = new emailsecurityplus.MozPrefListener("e
 
 emailsecurityplus.PreferencesListener.register(true);
 //emailsecurityplus.PreferencesListener.unregister();
-
-
-var columnHandler = {
-	getCellText: function(row, col) {
-		//get the message's header so that we can extract the reply to field
-		var hdr = gDBView.getMsgHdrAt(row);
-		return hdr.getStringProperty("replyTo");
-	},
-	getSortStringForRow: function(hdr) {return hdr.getStringProperty("replyTo");},
-	isString:            function() {return true;},
-
-	getCellProperties:   function(row, col, props){},
-	getRowProperties:    function(row, props){},
-	getImageSrc:         function(row, col) {return null;},
-	getSortLongForRow:   function(hdr) {return 0;}
-}
-
-gDBView.addColumnHandler("emailsecurityplus-SpamLevelCol", columnHandler);

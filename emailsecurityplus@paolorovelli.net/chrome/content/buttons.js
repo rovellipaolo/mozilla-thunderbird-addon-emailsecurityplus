@@ -82,7 +82,8 @@ emailsecurityplus.Buttons = function() {
 			emailsecurityplus.Scan.progressCounter = 0;
 			
 			emailsecurityplus.Scan.scanWindow = window.open('chrome://emailsecurityplus/content/scan.xul','','chrome=yes,resizable=yes,centerscreen');
-			
+			//emailsecurityplus.Scan.scanWindow.onclose = this.closeScanWindow;
+			emailsecurityplus.Scan.scanWindow.onunload = this.closeScanWindow;
 			
 			//Selected folders in the "folders tree":
 			var selectedFolders = gFolderTreeView.getSelectedFolders();
@@ -125,6 +126,19 @@ emailsecurityplus.Buttons = function() {
 			
 			//Add the event in the Activity Manager:
 			emailsecurityplus.Overlay.addActivityManagerEvent("indexMail", "Email Security Plus scan completed", "Spam: " + emailsecurityplus.Scan.spamCounter + "/" + emailsecurityplus.Scan.emailCounter);
+		},
+		
+		
+		/** 
+		 * Defines the action when the scan window is closed.
+		 */
+		closeScanWindow: function() {
+			if( emailsecurityplus.Scan.scanWindow != null ) {
+				if( emailsecurityplus.Scan.scanWindow.closed ) {
+					//emailsecurityplus.Scan.scanWindow.close();
+					emailsecurityplus.Scan.scanWindow = null;
+				}
+			}
 		},
 		
 		

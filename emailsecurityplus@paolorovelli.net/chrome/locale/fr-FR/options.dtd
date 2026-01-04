@@ -36,10 +36,5 @@
 <!ENTITY help.title "Aider">
 <!ENTITY help.caption "Aider">
 <!ENTITY faq.caption "FAQ">
-<!ENTITY faq.email "spam@paolorovelli.net">
-<!ENTITY faq.question1 "Que faire si un e-mail n'a pas été correctement identifié?">
-<!ENTITY faq.answer1-1 "Vous pouvez envoyer ce e-mail à l'adresse:">
-<!ENTITY faq.answer1-2 "Ensuite, vous devez le marquer manuellement comme 'Indésirable' (ou 'Acceptable').">
-<!ENTITY faq.question2 "Y a-t-il des erreurs de traduction?">
-<!ENTITY faq.answer2-1 "S'il vous plaît, signalez-les à:">
-<!ENTITY faq.legend "*Aider à améliorer Email Security Plus est également dans votre propre intérêt.">
+<!ENTITY faq.question1 "Y a-t-il des erreurs de traduction?">
+<!ENTITY faq.answer1-1 "S'il vous plaît, signalez-les à:">

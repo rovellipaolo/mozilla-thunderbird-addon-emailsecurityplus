@@ -36,10 +36,5 @@
 <!ENTITY help.title "Hjälp">
 <!ENTITY help.caption "Hjälp">
 <!ENTITY faq.caption "FAQ">
-<!ENTITY faq.email "spam@paolorovelli.net">
-<!ENTITY faq.question1 "Vad gör jag om en e-post inte har identifierats korrekt?">
-<!ENTITY faq.answer1-1 "Du kan skicka e-postmeddelandet till:">
-<!ENTITY faq.answer1-2 "Sedan bör du markera det  som 'Skräppost' manuellt (eller 'Icke Skräppost').">
-<!ENTITY faq.question2 "Finns det översättningsfel?">
-<!ENTITY faq.answer2-1 "Vänligen, rapportera dem till:">
-<!ENTITY faq.legend "*Att bidra till att förbättra Email Security Plus ligger också i ditt eget intresse.">
+<!ENTITY faq.question1 "Finns det översättningsfel?">
+<!ENTITY faq.answer1-1 "Vänligen, rapportera dem till:">

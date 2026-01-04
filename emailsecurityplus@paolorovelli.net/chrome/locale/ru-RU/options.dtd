@@ -36,10 +36,5 @@
 <!ENTITY help.title "Помогите">
 <!ENTITY help.caption "Помогите">
 <!ENTITY faq.caption "FAQ">
-<!ENTITY faq.email "spam@paolorovelli.net">
-<!ENTITY faq.question1 "Что делать, если письмо не было должным образом определено?">
-<!ENTITY faq.answer1-1 "Вы можете отправить это письмо по адресу:">
-<!ENTITY faq.answer1-2 "Затем, вы должны отметить его вручную, как 'хлам' (или 'Не хлам').">
-<!ENTITY faq.question2 "Есть ли ошибки перевода?">
-<!ENTITY faq.answer2-1 "Пожалуйста, сообщите о них:">
-<!ENTITY faq.legend "*Помогите улучшить Email Security Plus также в собственных интересах.">
+<!ENTITY faq.question1 "Есть ли ошибки перевода?">
+<!ENTITY faq.answer1-1 "Пожалуйста, сообщите о них:">

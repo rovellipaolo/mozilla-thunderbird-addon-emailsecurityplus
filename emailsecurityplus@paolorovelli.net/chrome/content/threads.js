@@ -169,6 +169,7 @@ emailsecurityplus.TreeCol = {
 	load: function() {
 		let mozObserverService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
 		mozObserverService.addObserver(emailsecurityplus.TreeCol.CreateDbObserver, "MsgCreateDBView", false);
+		//window.document.getElementById('folderTree').addEventListener("select", addCustomColumnHandler, false);
 	},
 	
 	
@@ -200,8 +201,63 @@ emailsecurityplus.TreeCol = {
 	}
 };
 
-emailsecurityplus.MozPrefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
-emailsecurityplus.MozPrefs.setCharPref("mailnews.customHeaders", "x-spam-status");
-emailsecurityplus.MozPrefs.setCharPref("mailnews.customDBHeaders", "x-spam-status");
 
-window.addEventListener("load", emailsecurityplus.TreeCol.load, false);
+
+/**
+ * Defines the Email Security Plus custom headers class.
+ * 
+ * @author Paolo Rovelli
+ */
+emailsecurityplus.CustomHeaders = function() {
+	let mozPrefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
+	var xHeader = "x-spam-status";
+	
+	//customHeaders:
+	let customHeaders = mozPrefs.getCharPref("mailnews.customHeaders");
+	customHeaders = customHeaders.replace(/\s+/g, '');
+	
+	var customHeadersArray = new Array();
+	if( customHeaders != "" ) {
+		customHeadersArray = customHeaders.split(":");
+	}
+	
+	var ctrl = false;
+	for(var i=0; i < customHeadersArray.length; i++) {
+		if( customHeadersArray[i] == xHeader ) {
+			ctrl = true;
+		}
+	}
+	
+	if( !ctrl ) {
+		customHeadersArray.push( xHeader );
+		var newCustomHeaders = customHeadersArray.join(": ");
+		
+		mozPrefs.setCharPref("mailnews.customHeaders", newCustomHeaders);
+	}
+	
+	
+	//customDBHeaders:
+	let customDBHeaders = mozPrefs.getCharPref("mailnews.customDBHeaders");
+    customDBHeaders = customDBHeaders.replace(/\s+/g, ' ');
+	
+	var customDBHeadersArray = new Array();
+	if( customDBHeaders != "" ) {
+		customDBHeadersArray = customDBHeaders.split(" ");
+	}
+	
+	ctrl = false;
+	for(var i=0; i < customDBHeadersArray.length; i++) {
+		if( customDBHeadersArray[i] == xHeader ) {
+			ctrl = true;
+		}
+	}
+	
+	if( !ctrl ) {
+		customDBHeadersArray.push( xHeader );
+		var newCustomDBHeaders = customDBHeadersArray.join(" ");
+		
+		mozPrefs.setCharPref("mailnews.customDBHeaders", newCustomDBHeaders);
+	}
+}();
+
+window.addEventListener("load", function() { emailsecurityplus.TreeCol.load(); }, false);

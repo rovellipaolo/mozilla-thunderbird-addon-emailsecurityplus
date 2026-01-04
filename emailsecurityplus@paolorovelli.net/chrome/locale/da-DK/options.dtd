@@ -36,10 +36,5 @@
 <!ENTITY help.title "Hjælp">
 <!ENTITY help.caption "Hjælp">
 <!ENTITY faq.caption "FAQ">
-<!ENTITY faq.email "spam@paolorovelli.net">
-<!ENTITY faq.question1 "Hvad skal der gøres, hvis en e-mail ikke er blevet korrekt identificeret?">
-<!ENTITY faq.answer1-1 "Du kan sende denne e-mail til:">
-<!ENTITY faq.answer1-2 "Derefter skal du manuelt markere det som 'Uønsket' (eller 'Ikke Uønsket').">
-<!ENTITY faq.question2 "Er der oversættelsesfejl?">
-<!ENTITY faq.answer2-1 "Vær venlig at indberette dem til:">
-<!ENTITY faq.legend "*Hjælp os med at forbedre Email Security Plus - det er også i din egen interesse.">
+<!ENTITY faq.question1 "Er der oversættelsesfejl?">
+<!ENTITY faq.answer1-1 "Vær venlig at indberette dem til:">

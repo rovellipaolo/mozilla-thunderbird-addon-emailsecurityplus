@@ -36,10 +36,5 @@
 <!ENTITY help.title "Help">
 <!ENTITY help.caption "Help">
 <!ENTITY faq.caption "FAQ">
-<!ENTITY faq.email "spam@paolorovelli.net">
-<!ENTITY faq.question1 "What to do if an email has not been properly identified?">
-<!ENTITY faq.answer1-1 "You can send that email at:">
-<!ENTITY faq.answer1-2 "Then, you should mark it manually as 'Junk' (or 'Not Junk').">
-<!ENTITY faq.question2 "Are there translation errors?">
-<!ENTITY faq.answer2-1 "Please, report them to:">
-<!ENTITY faq.legend "*Help to improve Email Security Plus is also in your own interest.">
+<!ENTITY faq.question1 "Are there translation errors?">
+<!ENTITY faq.answer1-1 "Please, report them to:">

@@ -78,12 +78,7 @@
 			<caption label="&faq.caption;" />
 			<vbox>
 				<label class="bold indBT0">&faq.question1;</label>
-				<label class="italic indTP0 indBT0">&faq.answer1-1; <label class="italic">&faq.email;</label></label>
-				<label class="italic indTP0">&faq.answer1-2;</label>
-				<label class="legend">&faq.legend;</label>
-				<separator />
-				<label class="bold indBT0">&faq.question2;</label>
-				<label class="italic indTP0">&faq.answer2-1; <label class="italic">&emailsecurity.email;</label></label>
+				<label class="italic indTP0">&faq.answer1-1; <label class="italic">&emailsecurity.email;</label></label>
 			</vbox>
 		</groupbox>
 		

@@ -36,10 +36,5 @@
 <!ENTITY help.title "Допоможіть">
 <!ENTITY help.caption "Допоможіть">
 <!ENTITY faq.caption "FAQ">
-<!ENTITY faq.email "spam@paolorovelli.net">
-<!ENTITY faq.question1 "Що робити, якщо лист не був належним чином визначений?">
-<!ENTITY faq.answer1-1 "Ви можете відправити цей лист за адресою:">
-<!ENTITY faq.answer1-2 "Потім, ви повинні відзначити його вручну, як 'небажаний' (або 'Чи не небажаний').">
-<!ENTITY faq.question2 "Чи є помилки перекладу?">
-<!ENTITY faq.answer2-1 "Будь ласка, повідомте про них:">
-<!ENTITY faq.legend "*Допоможіть покращити Email Security Plus також у власних інтересах.">
+<!ENTITY faq.question1 "Чи є помилки перекладу?">
+<!ENTITY faq.answer1-1 "Будь ласка, повідомте про них:">
