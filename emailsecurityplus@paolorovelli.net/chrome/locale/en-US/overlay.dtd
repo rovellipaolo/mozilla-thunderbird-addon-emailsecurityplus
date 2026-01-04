@@ -1,0 +1,13 @@
+<!ENTITY statusbar.label "ES+">
+<!ENTITY scan.button.label "Scan...">
+<!ENTITY scan.button.tooltip "Scan...">
+<!ENTITY scan.item.label "Scan Message">
+<!ENTITY scan.item.tooltip "Scan Message">
+<!ENTITY source.button.label "Source">
+<!ENTITY source.button.tooltip "View Message Source">
+<!ENTITY options.item.label "Email Security Plus">
+<!ENTITY options.item.tooltip "Email Security Plus">
+<!ENTITY blacklist.email.item.label "Block the sender's email address">
+<!ENTITY blacklist.email.item.tooltip "Add the senders's email address to the Blacklist">
+<!ENTITY blacklist.domain.item.label "Block the sender's domain">
+<!ENTITY blacklist.domain.item.tooltip "Add the senders's domain to the Blacklist">

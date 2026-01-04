@@ -1,0 +1,13 @@
+<!ENTITY statusbar.label "ES+">
+<!ENTITY scan.button.label "Skanning...">
+<!ENTITY scan.button.tooltip "Skanning...">
+<!ENTITY scan.item.label "Skanna Meddelande">
+<!ENTITY scan.item.tooltip "Skanna Meddelande">
+<!ENTITY source.button.label "Källa">
+<!ENTITY source.button.tooltip "Visa Meddelandets Källa">
+<!ENTITY options.item.label "Email Security Plus">
+<!ENTITY options.item.tooltip "Email Security Plus">
+<!ENTITY blacklist.email.item.label "Blockera avsändarens e-postadress">
+<!ENTITY blacklist.email.item.tooltip "Lägg till avsändarens e-postadress till Blacklist">
+<!ENTITY blacklist.domain.item.label "Blockera avsändarens domän">
+<!ENTITY blacklist.domain.item.tooltip "Lägg till avsändarens domän till Blacklist">

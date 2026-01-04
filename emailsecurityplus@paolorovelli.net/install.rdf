@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+	<Description about="urn:mozilla:install-manifest">
+		<em:id>emailsecurityplus@paolorovelli.net</em:id>
+		<em:type>2</em:type>
+		<em:version>1.0.0</em:version>
+		<em:optionsURL>chrome://emailsecurityplus/content/options.xul</em:optionsURL>
+		
+		<em:targetApplication>
+			<Description>
+				<!-- Thunderbird -->
+				<em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
+				<em:minVersion>3.0</em:minVersion>
+				<em:maxVersion>15.0a1</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+		
+		<!-- Visible meta-data -->
+		<em:name>Email Security Plus</em:name>
+		<em:iconURL>chrome://emailsecurityplus/skin/emailSecurityPlus.png</em:iconURL>
+		<em:description>An Email Security add-on for Mozilla Thunderbird. Simple, fast and effective.</em:description>
+		<em:creator>Paolo Rovelli</em:creator>
+		<em:homepageURL>http://www.paolorovelli.net/project/emailsecurityplus</em:homepageURL>
+		<em:translator>bg-BG: Evgeniya Dimitrova Nedelcheva</em:translator>
+		<em:translator>da-DK: Manuela Passaro</em:translator>
+		<em:translator>es-ES: Andrea Valdi</em:translator>
+		<em:translator>fr-FR: Andrea Valdi, Laetitia Thomas</em:translator>
+		<em:translator>ru-RU: Elvira Nikolayenko</em:translator>
+		<em:translator>sv-SE: Gabriele Henin</em:translator>
+		<em:translator>uk-UA: Elvira Nikolayenko</em:translator>
+	</Description>
+</RDF>

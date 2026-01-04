@@ -1,0 +1,11 @@
+<!ENTITY window.title "Email Security Plus">
+<!ENTITY scan.title "Scansione">
+<!ENTITY scan.status "Stato:">
+<!ENTITY scan.status.scanning "Scansione email">
+<!ENTITY scan.time.start "Inizio:">
+<!ENTITY scan.time.end "Fine:">
+<!ENTITY progress.caption "Avanzamento della scansione">
+<!ENTITY results.caption "Riepilogo scansione">
+<!ENTITY results.folders "Cartelle scansionate:">
+<!ENTITY results.emails "Email scansionate:">
+<!ENTITY results.spam "Spam trovato:">

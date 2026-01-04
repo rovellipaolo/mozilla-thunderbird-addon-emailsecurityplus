@@ -1,0 +1,55 @@
+<!ENTITY window.title "Email Security Plus Inställningar">
+<!ENTITY emailsecurity.email "emailsecurity@paolorovelli.net">
+<!ENTITY emailsecurity.url "www.paolorovelli.net/project/emailsecurityplus">
+<!ENTITY antispam.title "AntiSpam">
+<!ENTITY scan.caption "Skanna">
+<!ENTITY scan.label "Skanna automatiskt inkommande meddelanden (rekommenderas, omstart krävs)">
+<!ENTITY scan.accesskey "a">
+<!ENTITY scan.delete.label "Radera automatiskt meddelanden markerade som Spam">
+<!ENTITY scan.delete.accesskey "R">
+<!ENTITY scan.friendslist.label "Skanna INTE automatiskt e-post från avsändare som finns i min Adressbok">
+<!ENTITY scan.friendslist.accesskey "I">
+<!ENTITY scan.friendslist.legend "*OBS: Hoax e-post kommer i allmänhet från kända e-postadresser!">
+<!ENTITY scan.aggressiveness.label "Aggressivitet:">
+<!ENTITY scan.aggressiveness.high.label "Hög">
+<!ENTITY scan.aggressiveness.high.accesskey "H">
+<!ENTITY scan.aggressiveness.normal.label "Normal (standard)">
+<!ENTITY scan.aggressiveness.normal.accesskey "N">
+<!ENTITY scan.aggressiveness.low.label "Låg">
+<!ENTITY scan.aggressiveness.low.accesskey "L">
+<!ENTITY scan.aggressiveness.legend "*Ett högre aggressivitetsvärde kan leda till felaktig identifikation av legitim e-post som Spam (falska positiva).">
+<!ENTITY languages.caption "Språk">
+<!ENTITY languages.label "Välj språket för Spamorden:">
+<!ENTITY languages.english.label "English">
+<!ENTITY languages.bulgarian.label "български">
+<!ENTITY languages.chinese.label "中文">
+<!ENTITY languages.german.label "Deutsch">
+<!ENTITY languages.spanish.label "Español">
+<!ENTITY languages.french.label "Français">
+<!ENTITY languages.hindi.label "हिंदी">
+<!ENTITY languages.icelandic.label "Íslenska">
+<!ENTITY languages.italian.label "Italiano">
+<!ENTITY languages.japanese.label "日本語">
+<!ENTITY languages.portuguese.label "Português">
+<!ENTITY languages.russian.label "Pусский">
+<!ENTITY languages.legend "*Välj bara de språk som du brukar få e-post på.">
+<!ENTITY blacklist.title "Blacklist">
+<!ENTITY blacklist.caption "Blockerade Avsändare">
+<!ENTITY blacklist.active.label "Jag vill inte ta emot e-post från avsändare som finns i Blacklist">
+<!ENTITY blacklist.active.accesskey "B">
+<!ENTITY blacklist.active.legend "*All inkommande e-post från blockerade avsändare flyttas automatiskt till papperskorgen.">
+<!ENTITY blacklist.label "Blockerade e-postadresser:">
+<!ENTITY blacklist.legend "*VIKTIGT: Sätt endast in en e-postadress (e.g. user@domain.se) eller domän (e.g. @domain.se) på varje rad.">
+<!ENTITY whitelist.active.label "Jag vill bara ta emot meddelanden från avsändare som finns i min Adressbok">
+<!ENTITY whitelist.active.accesskey "A">
+<!ENTITY whitelist.active.legend "*All annan inkommande e-post flyttas automatiskt till papperskorgen.">
+<!ENTITY help.title "Hjälp">
+<!ENTITY help.caption "Hjälp">
+<!ENTITY faq.caption "FAQ">
+<!ENTITY faq.email "spam@paolorovelli.net">
+<!ENTITY faq.question1 "Vad gör jag om en e-post inte har identifierats korrekt?">
+<!ENTITY faq.answer1-1 "Du kan skicka e-postmeddelandet till:">
+<!ENTITY faq.answer1-2 "Sedan bör du markera det  som 'Skräppost' manuellt (eller 'Icke Skräppost').">
+<!ENTITY faq.question2 "Finns det översättningsfel?">
+<!ENTITY faq.answer2-1 "Vänligen, rapportera dem till:">
+<!ENTITY faq.legend "*Att bidra till att förbättra Email Security Plus ligger också i ditt eget intresse.">

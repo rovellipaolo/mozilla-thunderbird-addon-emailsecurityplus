@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet type="text/css" href="chrome://emailsecurityplus/skin/overlay.css"?>
+
+<!DOCTYPE dialog SYSTEM "chrome://emailsecurityplus/locale/scan.dtd">
+
+<!--
+@update 2012/03/28 17:28
+@author Paolo Rovelli
+-->
+<dialog id="emailSecurityPlus-ScanWindow" title="&window.title;" orient="vertical" autostretch="always" onload="sizeToContent(); initScanVals();" buttons="accept" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script><![CDATA[
+		function initScanVals() {
+			var date = new Date();
+			
+			window.document.getElementById('espScanTimeStart').setAttribute("value", date.toLocaleString());
+			//window.document.getElementById('espScanProgress').setAttribute("value", "0");
+			//window.document.getElementById('espScanFolderCounter').setAttribute("value", "0");
+			//window.document.getElementById('espScanEmailCounter').setAttribute("value", "0");
+			//window.document.getElementById('espScanSpamCounter').setAttribute("value", "0");
+		}
+	]]></script>
+	
+	<groupbox align="left" orient="horizontal" minwidth="600">
+		<vbox>
+			<image src="chrome://emailsecurityplus/skin/scan.png" />
+		</vbox>
+		<vbox>
+			<label id="title">&scan.title;</label>
+			<label class="darkgrey">&scan.status; <label id="espScanStatus" class="black" value="&scan.status.scanning;" /></label>
+		</vbox>
+	</groupbox>
+	
+	<groupbox align="left" orient="horizontal" minwidth="600">
+		<vbox>
+			<label class="darkgrey">&scan.time.start; <label id="espScanTimeStart" class="black" value="---" /></label>
+			<label class="darkgrey">&scan.time.end; <label id="espScanTimeEnd" class="black bold" value="" /></label>
+		</vbox>
+	</groupbox>
+	
+	<separator />
+	
+	<groupbox align="center" orient="horizontal" class="center">
+		<caption label="&progress.caption;" />
+		<vbox>
+			<progressmeter id="espScanProgress" mode="determined" max="100" value="0" />
+			<label id="espScanEmail" value="" />
+		</vbox>
+	</groupbox>
+	
+	<separator />
+	
+	<groupbox align="left" orient="horizontal">
+		<caption label="&results.caption;" />
+		<vbox>
+			<label class="darkgrey">&results.folders; <label id="espScanFolderCounter" class="black bold" value="0" /></label>
+			<label class="darkgrey">&results.emails; <label id="espScanEmailCounter" class="black bold" value="0" /></label>
+			<label class="darkgrey">&results.spam; <label id="espScanSpamCounter" class="red bold" value="0" /></label>
+		</vbox>
+	</groupbox>
+</dialog>

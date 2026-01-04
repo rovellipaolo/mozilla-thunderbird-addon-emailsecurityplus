@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="chrome://emailsecurityplus/skin/overlay.css"?>
+
+<!DOCTYPE prefwindow SYSTEM "chrome://emailsecurityplus/locale/overlay.dtd">
+
+<!--
+@update 2011/09/04 20:04
+@author Paolo Rovelli
+-->
+<overlay id="espOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/x-javascript" src="chrome://emailsecurityplus/content/esp.js" />
+	<script type="application/x-javascript" src="chrome://emailsecurityplus/content/email.js" />
+	<script type="application/x-javascript" src="chrome://emailsecurityplus/content/scan.js" />
+	<script type="application/x-javascript" src="chrome://emailsecurityplus/content/listeners.js" />
+	<script type="application/x-javascript" src="chrome://emailsecurityplus/content/overlay.js" />
+	
+	<!-- Top/Menu Toolbar -->
+	<menupopup id="messageMenuPopup">
+		<menuitem id="emailSecurityPlus-ScanCommand" label="&scan.button.label;" tooltiptext="&scan.button.tooltip;" image="chrome://emailsecurityplus/skin/scanButton_small.png" oncommand="scanButton.scan();" insertbefore="openMessageWindowMenuitem" />
+	</menupopup>
+	<menupopup id="taskPopup">
+		<menuitem id="emailSecurityPlus-OptionsCommand" label="&options.item.label;" tooltiptext="&options.item.tooltip;" image="chrome://emailsecurityplus/skin/emailSecurityPlus_small.png" oncommand="openWindow('chrome://emailsecurityplus/content/options.xul');" insertbefore="filtersCmd" />
+	</menupopup>
+	
+	<!-- Toolbar Button -->
+	<toolbarpalette id="MailToolbarPalette">
+		<toolbarbutton id="emailSecurityPlus-ScanButton" label="&scan.button.label;" tooltiptext="&scan.button.tooltip;" oncommand="scanButton.scan();" class="toolbarbutton-1 chromeclass-toolbar-additional" />
+		<toolbarbutton id="emailSecurityPlus-SourceButton" label="&source.button.label;" tooltiptext="&source.button.tooltip;" oncommand="scanButton.source();" class="toolbarbutton-1 chromeclass-toolbar-additional" />
+	</toolbarpalette>
+	
+	<!-- Mail/Thread Pane Context Menu -->
+	<popup id="mailContext">
+		<menuitem id="emailSecurityPlus-ScanItem" label="&scan.item.label;" tooltiptext="&scan.item.tooltip;" image="chrome://emailsecurityplus/skin/scanButton_small.png" oncommand="scanButton.scan();" insertbefore="mailContext-openNewWindow" />
+		<menuitem id="emailSecurityPlus-AddEmailToBlacklist" label="&blacklist.email.item.label;" tooltiptext="&blacklist.email.item.tooltip;" image="chrome://emailsecurityplus/skin/blacklist_small.png" oncommand="addToBlacklist();" insertafter="mailContext-mark" />
+		<menuitem id="emailSecurityPlus-AddDomainToBlacklist" label="&blacklist.domain.item.label;" tooltiptext="&blacklist.domain.item.tooltip;" image="chrome://emailsecurityplus/skin/blacklist_small.png" oncommand="addToBlacklist(true);" insertafter="emailSecurityPlus-AddEmailToBlacklist" />
+	</popup>
+	
+	<!-- Folder Pane Context Menu -->
+	<popup id="folderPaneContext">
+		<menuitem id="emailSecurityPlus-ScanItem" label="&scan.button.label;" tooltiptext="&scan.button.tooltip;" image="chrome://emailsecurityplus/skin/scanButton_small.png" oncommand="scanButton.scan();" insertbefore="folderPaneContext-openNewWindow" />
+	</popup>
+	
+	<!-- Statusbar -->
+	<statusbar id="status-bar">
+		<statusbarpanel id="emailSecurityPlus-Statusbar" label="&statusbar.label;" />
+	</statusbar>
+</overlay>

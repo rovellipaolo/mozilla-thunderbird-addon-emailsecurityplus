@@ -1,0 +1,13 @@
+<!ENTITY statusbar.label "ES+">
+<!ENTITY scan.button.label "Cканирование...">
+<!ENTITY scan.button.tooltip "Cканирование...">
+<!ENTITY scan.item.label "Проверять Cообщение">
+<!ENTITY scan.item.tooltip "Проверять Cообщение">
+<!ENTITY source.button.label "Источник">
+<!ENTITY source.button.tooltip "Посмотреть Cообщение Источника">
+<!ENTITY options.item.label "Email Security Plus">
+<!ENTITY options.item.tooltip "Email Security Plus">
+<!ENTITY blacklist.email.item.label "Блок е-мейл почты отправителя">
+<!ENTITY blacklist.email.item.tooltip "Добавить е-мейл почты отправителя, чтобы в Черный список">
+<!ENTITY blacklist.domain.item.label "Блок домена отправителя">
+<!ENTITY blacklist.domain.item.tooltip "Добавить домен отправителя в Черный список">
