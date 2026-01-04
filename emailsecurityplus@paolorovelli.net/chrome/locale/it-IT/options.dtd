@@ -33,6 +33,12 @@
 <!ENTITY whitelist.active.label "Voglio ricevere solamente email provenienti da mittenti che sono nella mia Rubrica (richiede il riavvio)">
 <!ENTITY whitelist.active.accesskey "R">
 <!ENTITY whitelist.active.legend "*Tutte le altre email in arrivo vengono automaticamente spostate nel Cestino.">
+<!ENTITY securityinfo.title "Security Info">
+<!ENTITY securityinfo.caption "Security Info">
+<!ENTITY securityinfo.xspamstatus.label "Mostra l'header X-Spam-Status nella extended header view.">
+<!ENTITY securityinfo.xspamstatus.accesskey "X">
+<!ENTITY securityinfo.received.label "Mostra l'header Received nella extended header view.">
+<!ENTITY securityinfo.received.accesskey "R">
 <!ENTITY help.title "Aiuto">
 <!ENTITY help.caption "Aiuto">
 <!ENTITY faq.caption "FAQ">

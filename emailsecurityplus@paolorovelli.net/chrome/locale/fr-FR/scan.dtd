@@ -5,14 +5,12 @@
 <!ENTITY scan.time.start "Début:">
 <!ENTITY scan.time.end "Fin:">
 <!ENTITY progress.caption "Progression du scan">
+<!ENTITY securityinfo.caption "Security info:">
+<!ENTITY securityinfo.sender "Expéditeur:">
+<!ENTITY securityinfo.spamrate "Taux de Spam:">
+<!ENTITY securityinfo.received "Received:">
+<!ENTITY securityinfo.xspamstatus "X-Spam-Status:">
 <!ENTITY results.caption "Résumé du scan">
 <!ENTITY results.folders "Dossiers scannés:">
 <!ENTITY results.emails "E-mails scannés:">
 <!ENTITY results.spam "Spam trouvé:">
-<!ENTITY securityinfo.caption "Security info:">
-<!ENTITY securityinfo.sender "Expéditeur:">
-<!ENTITY securityinfo.blacklisted "Blacklisted:">
-<!ENTITY securityinfo.spamrate "Taux de Spam:">
-<!ENTITY xspamstatus.caption "X-Spam-Status:">
-<!ENTITY xspamstatus.score "Score:">
-<!ENTITY xspamstatus.rate "Rate:">

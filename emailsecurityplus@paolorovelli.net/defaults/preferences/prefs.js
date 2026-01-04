@@ -1,6 +1,6 @@
 /**
  * @file prefs.js
- * @update 2012/05/24 18:52
+ * @update 2012/06/18 19:08
  * @author Paolo Rovelli
  */
 
@@ -18,5 +18,8 @@ pref("extensions.emailsecurityplus.whitelist.active", false);
 
 pref("extensions.emailsecurityplus.blacklist", "");
 pref("extensions.emailsecurityplus.blacklist.active", true);
+
+pref("extensions.emailsecurityplus.header.received", false);
+pref("extensions.emailsecurityplus.header.xspamstatus", true);
 
 pref("extensions.emailsecurityplus@paolorovelli.net.description", "chrome://emailsecurityplus/locale/overlay.properties");

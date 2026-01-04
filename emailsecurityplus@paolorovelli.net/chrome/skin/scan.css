@@ -1,6 +1,6 @@
 /**
  * @file scan.css
- * @update 2012/06/05 20:13
+ * @update 2012/06/18 23:48
  * @author Paolo Rovelli
  */
 
@@ -48,19 +48,48 @@ caption {
 
 /* Scan window */
 
-#emailsecurityplus-ScanWindow #emailsecurityplus-ScanProgress {
-	width: 600px;
+.title {
+	font-weight: bold;
+	font-size: large;
 }
 
-#emailsecurityplus-ScanWindow #emailsecurityplus-ScanSummary {
-	width: 300px;
+.image {
+	width: 48px;
+	height: 48px;
 }
 
-#emailsecurityplus-ScanWindow #emailsecurityplus-SecurityInfo {
-	width: 150px;
+.text {
+	min-width: 352px;
 }
 
-#emailsecurityplus-ScanWindow #emailsecurityplus-XSpamStatus {
-	width: 150px;
+#emailsecurityplus-ScanHead {
+	min-width: 800px;
 }
 
+#emailsecurityplus-ScanBox {
+	margin-top: 8px;
+	min-width: 400px;
+}
+
+#emailsecurityplus-TimeBox {
+	text-align: right;
+	min-width: 400px;
+}
+
+#emailsecurityplus-SenderBox {
+	min-width: 600px;
+}
+
+#emailsecurityplus-SpamBox {
+	text-align: right;
+	min-width: 200px;
+}
+
+#emailsecurityplus-ScanProgress {
+	width: 800px;
+}
+
+#emailsecurityplus-SecurityInfo {
+	text-align: left;
+	min-width: 800px;
+}

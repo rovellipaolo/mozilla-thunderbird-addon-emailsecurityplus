@@ -5,14 +5,12 @@
 <!ENTITY scan.time.start "Начален час:">
 <!ENTITY scan.time.end "Край:">
 <!ENTITY progress.caption "Сканиране на прогрес">
+<!ENTITY securityinfo.caption "Security info:">
+<!ENTITY securityinfo.sender "подателя:">
+<!ENTITY securityinfo.spamrate "Spam Rate:">
+<!ENTITY securityinfo.received "Received:">
+<!ENTITY securityinfo.xspamstatus "X-Spam-Status:">
 <!ENTITY results.caption "Сканиране на обобщение">
 <!ENTITY results.folders "Сканирани папки:">
 <!ENTITY results.emails "Сканирани имейли:">
 <!ENTITY results.spam "Спам:">
-<!ENTITY securityinfo.caption "Security info:">
-<!ENTITY securityinfo.sender "подателя:">
-<!ENTITY securityinfo.blacklisted "Blacklisted:">
-<!ENTITY securityinfo.spamrate "Spam Rate:">
-<!ENTITY xspamstatus.caption "X-Spam-Status:">
-<!ENTITY xspamstatus.score "Score:">
-<!ENTITY xspamstatus.rate "Rate:">

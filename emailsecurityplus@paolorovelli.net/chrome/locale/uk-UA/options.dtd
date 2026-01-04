@@ -33,6 +33,12 @@
 <!ENTITY whitelist.active.label "Я хочу отримувати лише повідомлення від відправників, які знаходяться в моїй адресній книзі (потрібно перезапуск)">
 <!ENTITY whitelist.active.accesskey "к">
 <!ENTITY whitelist.active.legend "*Всі інші вхідні повідомлення автоматично переміщуються в папку Корзина.">
+<!ENTITY securityinfo.title "Security Info">
+<!ENTITY securityinfo.caption "Security Info">
+<!ENTITY securityinfo.xspamstatus.label "Shows the X-Spam-Status header in the extended header view.">
+<!ENTITY securityinfo.xspamstatus.accesskey "X">
+<!ENTITY securityinfo.received.label "Shows the Received header in the extended header view.">
+<!ENTITY securityinfo.received.accesskey "R">
 <!ENTITY help.title "Допоможіть">
 <!ENTITY help.caption "Допоможіть">
 <!ENTITY faq.caption "FAQ">

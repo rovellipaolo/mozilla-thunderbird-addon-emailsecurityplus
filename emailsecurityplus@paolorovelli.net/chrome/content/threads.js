@@ -49,10 +49,10 @@ emailsecurityplus.columnHandler = {
 	 * @return  the image path of the cell.
 	 */
 	getImageSrc: function(row, col) {
-		//Get the messages header:
-		let hdr = gDBView.db.GetMsgHdrForKey( gDBView.getKeyAt(row) );
+		//Get the message header:
+		let emailHeader = gDBView.db.GetMsgHdrForKey( gDBView.getKeyAt(row) );
 		
-		var spamStatus = hdr.getStringProperty("x-spam-status");
+		var spamStatus = emailHeader.getStringProperty("x-spam-status");
 		
 		if( spamStatus != null && spamStatus != "" ) {
 			var scorePos = spamStatus.indexOf("score=");
@@ -259,5 +259,7 @@ emailsecurityplus.CustomHeaders = function() {
 		mozPrefs.setCharPref("mailnews.customDBHeaders", newCustomDBHeaders);
 	}
 }();
+
+
 
 window.addEventListener("load", function() { emailsecurityplus.TreeCol.load(); }, false);

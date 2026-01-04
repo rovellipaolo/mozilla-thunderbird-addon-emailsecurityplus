@@ -1,8 +1,8 @@
 /**
  * @file listener.js
- * @update 2012/05/29 15:34
+ * @update 2012/06/13 10:03
  * @author Paolo Rovelli
- * @version 1.5
+ * @version 1.6
  */
 
 
@@ -14,10 +14,10 @@ if( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
 
 
 //Import code modules:
-Components.utils.import("resource://emailsecurityplus/preferences.js");  // , emailsecurityplus
-Components.utils.import("resource://emailsecurityplus/email.js");  // , emailsecurityplus
-Components.utils.import("resource://emailsecurityplus/scan.js");  // , emailsecurityplus
-Components.utils.import("resource://emailsecurityplus/overlay.js");  // , emailsecurityplus
+Components.utils.import("resource://emailsecurityplus/preferences.js");
+Components.utils.import("resource://emailsecurityplus/email.js");
+Components.utils.import("resource://emailsecurityplus/scan.js");
+Components.utils.import("resource://emailsecurityplus/overlay.js");
 
 
 
@@ -44,7 +44,7 @@ emailsecurityplus.NewEmailListener = {
 			var email = new emailsecurityplus.Email(emailURI, emailHeader);
 			
 			if( emailsecurityplus.Preferences.isBlacklistActive() && !(emailsecurityplus.Preferences.getBlacklist().length == 1 && emailsecurityplus.Preferences.getBlacklist()[0] == "") ) {  // automatically delete emails from blocked senders
-				if( emailsecurityplus.Scan.isInBlacklist(email.author, email.authorDomain) ) {  // the sender's email address or its domain is inside the Blacklist
+				if( emailsecurityplus.Scan.isInBlacklist(email.author) || emailsecurityplus.Scan.isInBlacklist(email.authorDomain) ) {  // the sender's email address or its domain is inside the Blacklist
 					let trashFolder = email.folder.rootFolder.getFolderWithFlags(Components.interfaces.nsMsgFolderFlags.Trash);
 					let unwantedEmail = Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
 					unwantedEmail.appendElement(email.header, false /*weak*/);
@@ -120,10 +120,11 @@ emailsecurityplus.NewEmailListener = {
 		document.getElementById("emailsecurityplus-SpamCounterStat").setAttribute('label', spamCounterLabel);
 		
 		//Avoid duplicate initialization:
-		removeEventListener("load", emailsecurityplus.NewEmailListener.load, true);
+		removeEventListener("load", function() { emailsecurityplus.NewEmailListener.load(); }, true);
 		
 		this.notificationService = Components.classes["@mozilla.org/messenger/msgnotificationservice;1"].getService(Components.interfaces.nsIMsgFolderNotificationService);
-		this.notificationService.addListener(emailsecurityplus.NewEmailListener, notificationService.msgAdded);
+		this.notificationService.addListener(this, this.notificationService.msgAdded);
+		//this.notificationService.addListener(emailsecurityplus.NewEmailListener, this.notificationService.msgAdded);
 	},
 	
 	
@@ -133,7 +134,7 @@ emailsecurityplus.NewEmailListener = {
 	 * @param emailHeader  the new email header.
 	 */
 	unload: function() {
-		removeEventListener("load", emailsecurityplus.NewEmailListener.load, true);
+		removeEventListener("load", function() { emailsecurityplus.NewEmailListener.load(); }, true);
 		this.notificationService.removeListener(this);
 	}
 };
@@ -210,8 +211,7 @@ emailsecurityplus.PreferencesListener = new emailsecurityplus.MozPrefListener("e
 							case "scan":  // extensions.emailsecurityplus.scan was changed!
 									if( emailsecurityplus.Preferences.isScanActive() ) {  // automatically scans incoming emails
 										//Launch the window listener:
-										//addEventListener("load", function() { emailsecurityplus.NewEmailListener.load(); }, true);
-										addEventListener("load", emailsecurityplus.NewEmailListener.load, true);
+										addEventListener("load", function() { emailsecurityplus.NewEmailListener.load(); }, true);
 									}
 									
 									//TODO: when the 'scan' preference has changed, it is needed to reboot Thunderbird!
@@ -246,8 +246,7 @@ emailsecurityplus.PreferencesListener = new emailsecurityplus.MozPrefListener("e
 							case "whitelist.active":  // extensions.emailsecurityplus.scan.selectivereceive was changed!
 									if( !emailsecurityplus.Preferences.isScanActive() && emailsecurityplus.Preferences.isWhitelistActive() ) {  // not automatically scans incoming emails
 										//Launch the window listener:
-										//addEventListener("load", function() { emailsecurityplus.NewEmailListener.load(); }, true);
-										addEventListener("load", emailsecurityplus.NewEmailListener.load, true);
+										addEventListener("load", function() { emailsecurityplus.NewEmailListener.load(); }, true);
 										
 										//TODO: when the 'whitelist.active' preference has changed, it is needed to reboot Thunderbird!
 									}
@@ -256,8 +255,7 @@ emailsecurityplus.PreferencesListener = new emailsecurityplus.MozPrefListener("e
 							case "blacklist.active":  // extensions.emailsecurityplus.blacklist.active was changed!
 									if( !emailsecurityplus.Preferences.isScanActive() && !emailsecurityplus.Preferences.isWhitelistActive() && emailsecurityplus.Preferences.isBlacklistActive() ) {  // not automatically scans incoming emails
 										//Launch the window listener:
-										//addEventListener("load", function() { emailsecurityplus.NewEmailListener.load(); }, true);
-										addEventListener("load", emailsecurityplus.NewEmailListener.load, true);
+										addEventListener("load", function() { emailsecurityplus.NewEmailListener.load(); }, true);
 									}
 									
 									//TODO: when the 'blacklist.active' preference has changed, it is needed to reboot Thunderbird!

@@ -33,6 +33,12 @@
 <!ENTITY whitelist.active.label "Jag vill bara ta emot meddelanden från avsändare som finns i min Adressbok (omstart krävs)">
 <!ENTITY whitelist.active.accesskey "A">
 <!ENTITY whitelist.active.legend "*All annan inkommande e-post flyttas automatiskt till papperskorgen.">
+<!ENTITY securityinfo.title "Security Info">
+<!ENTITY securityinfo.caption "Security Info">
+<!ENTITY securityinfo.xspamstatus.label "Shows the X-Spam-Status header in the extended header view.">
+<!ENTITY securityinfo.xspamstatus.accesskey "X">
+<!ENTITY securityinfo.received.label "Shows the Received header in the extended header view.">
+<!ENTITY securityinfo.received.accesskey "R">
 <!ENTITY help.title "Hjälp">
 <!ENTITY help.caption "Hjälp">
 <!ENTITY faq.caption "FAQ">

@@ -157,6 +157,26 @@ emailsecurityplus.Preferences = {
 	
 	
 	/** 
+	 * Gets if the X-Spam-Status header preference is active or not.
+	 * 
+	 * @return  true if the X-Spam-Status header preference is active, false otherwise.
+	 */
+	isXSpamStatusHeaderActive: function() {
+		return this.mozPrefBranch.getBoolPref("header.xspamstatus");
+	},
+	
+	
+	/** 
+	 * Gets if the received header preference is active or not.
+	 * 
+	 * @return  true if the received header preference is active, false otherwise.
+	 */
+	isReceivedHeaderActive: function() {
+		return this.mozPrefBranch.getBoolPref("header.received");
+	},
+	
+	
+	/** 
 	 * Gets the blacklist.
 	 * 
 	 * @return  the blacklist.
@@ -187,17 +207,17 @@ emailsecurityplus.Preferences = {
 	
 	
 	/** 
-	 * Add an email address or domain to the blacklist preference array.
+	 * Add an email address or domain to the blacklist preference string.
 	 * 
 	 * @param itemToAdd  the email address or domain to be added to the blacklist preference array.
 	 */  
 	addToBlacklist: function(itemToAdd) {
-		let blacklist = this.getBlacklist();
+		let blacklist = this.mozPrefBranch.getCharPref("blacklist");
 		
-		if( blacklist.length == 1 && blacklist[0] == "" ) {
+		if( blacklist == "" ) {
 			blacklist = itemToAdd;
 		}
-		else {  // !(blacklist.length == 1 && blacklist[0] == "")
+		else {  // blacklist.length != 1 || blacklist[0] != ""
 			blacklist += "\n" + itemToAdd;
 		}
 		

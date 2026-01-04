@@ -5,7 +5,7 @@
 <!DOCTYPE dialog SYSTEM "chrome://emailsecurityplus/locale/scan.dtd">
 
 <!--
-@update 2012/05/23 17:28
+@update 2012/06/18 23:48
 @author Paolo Rovelli
 -->
 <dialog id="emailsecurityplus-ScanWindow" title="&window.title;" orient="vertical" autostretch="always" onload="sizeToContent(); initScanVals();" buttons="accept" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
@@ -13,71 +13,73 @@
 		function initScanVals() {
 			var date = new Date();
 			
-			window.document.getElementById('emailsecurityplus-ScanTimeStart').setAttribute("value", date.toLocaleString());
-			//window.document.getElementById('emailsecurityplus-ScanProgress').setAttribute("value", "0");
-			//window.document.getElementById('emailsecurityplus-ScanFolderCounter').setAttribute("value", "0");
-			//window.document.getElementById('emailsecurityplus-ScanEmailCounter').setAttribute("value", "0");
-			//window.document.getElementById('emailsecurityplus-ScanSpamCounter').setAttribute("value", "0");
-			//window.document.getElementById("emailsecurityplus-ScanSpamScore").setAttribute("value", "---");
-			//window.document.getElementById("emailsecurityplus-ScanSpamRequired").setAttribute("value", "---");
-			//window.document.getElementById("emailsecurityplus-ScanSpamRate").setAttribute("value", "---");
+			window.document.getElementById("emailsecurityplus-ScanTimeStart").setAttribute("value", date.toLocaleString());
+			//window.document.getElementById("emailsecurityplus-ScanProgress").setAttribute("value", "0");
+			//window.document.getElementById("emailsecurityplus-ScanFolderCounter").setAttribute("value", "0");
+			//window.document.getElementById("emailsecurityplus-ScanEmailCounter").setAttribute("value", "0");
+			//window.document.getElementById("emailsecurityplus-ScanSpamCounter").setAttribute("value", "0");
+			//window.document.getElementById("emailsecurityplus-EmailSender").setAttribute("value", "---");
+			//window.document.getElementById("emailsecurityplus-SpamRate").setAttribute("value", "---");
+			//window.document.getElementById("emailsecurityplus-ReceivedHeader").setAttribute("value", "---");
+			//window.document.getElementById("emailsecurityplus-XSpamStatus").setAttribute("value", "---");
 		}
 	]]></script>
 	
-	<groupbox align="left" orient="horizontal" minwidth="600">
-		<vbox>
-			<image src="chrome://emailsecurityplus/skin/scan.png" />
-		</vbox>
-		<vbox>
-			<label id="title">&scan.title;</label>
-			<label class="darkgrey">&scan.status; <label id="emailsecurityplus-ScanStatus" class="black" value="&scan.status.scanning;" /></label>
-		</vbox>
-	</groupbox>
-	
-	<groupbox align="left" orient="horizontal" minwidth="600">
-		<vbox>
-			<label class="darkgrey">&scan.time.start; <label id="emailsecurityplus-ScanTimeStart" class="black" value="---" /></label>
-			<label class="darkgrey">&scan.time.end; <label id="emailsecurityplus-ScanTimeEnd" class="black bold" value="" /></label>
-		</vbox>
+	<groupbox id="emailsecurityplus-ScanHead" align="left" orient="horizontal">
+		<hbox id="emailsecurityplus-ScanBox">
+			<vbox class="image">
+				<image src="chrome://emailsecurityplus/skin/scan.png" />
+			</vbox>
+			<vbox class="text">
+				<label class="title">&scan.title;</label>
+				<label class="darkgrey">&scan.status; <label id="emailsecurityplus-ScanStatus" class="black" value="&scan.status.scanning;" /></label>
+			</vbox>
+		</hbox>
+		<hbox id="emailsecurityplus-TimeBox">
+			<vbox class="image">
+				<image src="chrome://emailsecurityplus/skin/time.png" />
+			</vbox>
+			<vbox class="text">
+				<label class="darkgrey">&scan.time.start; <label id="emailsecurityplus-ScanTimeStart" class="black" value="---" /></label>
+				<label id="emailsecurityplus-ScanTimeEndLabel" class="darkgrey">&scan.time.end; <label id="emailsecurityplus-ScanTimeEnd" class="black bold" value="" /></label>
+			</vbox>
+		</hbox>
 	</groupbox>
 	
 	<separator />
 	
-	<groupbox align="center" orient="horizontal" class="center">
+	<groupbox id="emailsecurityplus-Scanning" align="center" orient="horizontal" class="center">
 		<caption label="&progress.caption;" />
 		<vbox>
 			<progressmeter id="emailsecurityplus-ScanProgress" mode="determined" max="100" value="0" />
 			<label id="emailsecurityplus-ScanEmail" value="" />
 		</vbox>
 	</groupbox>
+		
+	<separator />
+	
+	<groupbox id="emailsecurityplus-SecurityInfo" align="center" orient="horizontal" class="center">
+		<caption label="&securityinfo.caption;" />
+		<hbox>
+			<vbox id="emailsecurityplus-SenderBox">
+				<label class="darkgrey">&securityinfo.sender; <label id="emailsecurityplus-EmailSender" class="black" value="---" /></label>
+				<label class="darkgrey">&securityinfo.received; <label id="emailsecurityplus-ReceivedHeader" class="black" value="---" /></label>
+			</vbox>
+			<vbox id="emailsecurityplus-SpamBox">
+				<label class="darkgrey">&securityinfo.spamrate; <label id="emailsecurityplus-SpamRate" class="scarlet bold" value="---" /></label>
+				<label class="darkgrey">&securityinfo.xspamstatus; <label id="emailsecurityplus-XSpamStatus" class="black" value="---" /></label>
+			</vbox>
+		</hbox>
+	</groupbox>
 	
 	<separator />
 	
-	<hbox>
-		<groupbox id="emailsecurityplus-ScanSummary" align="left" orient="horizontal">
-			<caption label="&results.caption;" />
-				<vbox>
-					<label class="darkgrey">&results.folders; <label id="emailsecurityplus-ScanFolderCounter" class="black bold" value="0" /></label>
-					<label class="darkgrey">&results.emails; <label id="emailsecurityplus-ScanEmailCounter" class="black bold" value="0" /></label>
-					<label class="darkgrey">&results.spam; <label id="emailsecurityplus-ScanSpamCounter" class="red bold" value="0" /></label>
-				</vbox>
-		</groupbox>
-		
-		<groupbox id="emailsecurityplus-SecurityInfo" align="right" orient="horizontal">
-			<caption label="&securityinfo.caption;" />
+	<groupbox id="emailsecurityplus-ScanSummary" align="left" orient="horizontal">
+		<caption label="&results.caption;" />
 			<vbox>
-				<label class="darkgrey">&securityinfo.sender; <label id="emailsecurityplus-EmailSender" class="black" value="---" /></label>
-				<label class="darkgrey">&securityinfo.blacklisted; <label id="emailsecurityplus-BlacklistedStatus" class="scarlet" value="---" /></label>
-				<label class="darkgrey">&securityinfo.spamrate; <label id="emailsecurityplus-SpamRate" class="scarlet" value="---" /></label>
+				<label class="darkgrey">&results.folders; <label id="emailsecurityplus-ScanFolderCounter" class="black bold" value="0" /></label>
+				<label class="darkgrey">&results.emails; <label id="emailsecurityplus-ScanEmailCounter" class="black bold" value="0" /></label>
+				<label class="darkgrey">&results.spam; <label id="emailsecurityplus-ScanSpamCounter" class="red bold" value="0" /></label>
 			</vbox>
-		</groupbox>
-		
-		<groupbox id="emailsecurityplus-XSpamStatus" align="right" orient="horizontal">
-			<caption label="&xspamstatus.caption;" />
-			<vbox>
-				<label class="darkgrey">&xspamstatus.score; <label id="emailsecurityplus-XSpamScore" class="black" value="---" /></label>
-				<label class="darkgrey">&xspamstatus.rate; <label id="emailsecurityplus-XSpamRate" class="scarlet" value="---" /></label>
-			</vbox>
-		</groupbox>
-	</hbox>
+	</groupbox>
 </dialog>

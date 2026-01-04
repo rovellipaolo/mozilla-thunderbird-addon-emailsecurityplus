@@ -1,0 +1,49 @@
+/**
+ * @file msgHdrViewOverlay.css
+ * @update 2012/06/15 14:45
+ * @author Paolo Rovelli
+ */
+
+
+
+.indLT0 {
+	margin-left: 0px;
+}
+.indRG0 {
+	margin-right: 0px;
+}
+.indLT3 {
+	margin-left: 3px;
+}
+
+
+
+/* Font style */
+
+.bold {
+	font-weight: bold;
+}
+
+.italic {
+	font-style: italic;
+}
+
+
+
+/* Font color */
+
+.black {
+	color: #000000;
+}
+
+.darkgrey {
+	color: #4F4F4F;
+}
+
+.red {
+	color: red;
+}
+
+.scarlet {
+	color: #800000;
+}

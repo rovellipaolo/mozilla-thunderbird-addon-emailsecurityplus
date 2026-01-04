@@ -5,13 +5,13 @@
 <!DOCTYPE prefwindow SYSTEM "chrome://emailsecurityplus/locale/options.dtd">
 
 <!--
-@update 2012/05/23 19:03
+@update 2012/06/18 19:36
 @author Paolo Rovelli
 -->
 <prefwindow id="emailsecurityplus-Preferences" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&window.title;">
 	<script type="application/x-javascript" src="chrome://emailsecurityplus/content/options.js" />
 	
-	<prefpane id="emailsecurityplus-AntiSpam" label="&antispam.title;" image="chrome://emailsecurityplus/skin/antiSpam.png" title="&antispam.title;">
+	<prefpane id="emailsecurityplus-AntiSpam" label="&antispam.title;" image="chrome://emailsecurityplus/skin/shield.png" title="&antispam.title;">
 		<preferences>
 			<preference id="scan" name="extensions.emailsecurityplus.scan" type="bool" />
 			<preference id="scan.friendslist" name="extensions.emailsecurityplus.scan.friendslist" type="bool" />
@@ -73,12 +73,25 @@
 		</groupbox>
 	</prefpane>
 	
+	<prefpane id="emailsecurityplus-SecurityInfo" label="&securityinfo.title;" image="chrome://emailsecurityplus/skin/wax.png" title="&securityinfo.title;">
+		<preferences>
+			<preference id="header.received" name="extensions.emailsecurityplus.header.received" type="bool" />
+			<preference id="header.xspamstatus" name="extensions.emailsecurityplus.header.xspamstatus" type="bool" />
+		</preferences>
+		
+		<groupbox flex="1" id="securityinfo">
+			<caption label="&securityinfo.caption;" />
+			<checkbox class="indBT0" preference="header.xspamstatus" label="&securityinfo.xspamstatus.label;" accesskey="&securityinfo.xspamstatus.accesskey;" />
+			<checkbox class="indBT0" preference="header.received" label="&securityinfo.received.label;" accesskey="&securityinfo.received.accesskey;" />
+		</groupbox>
+	</prefpane>
+	
 	<prefpane id="emailsecurityplus-Help" label="&help.title;" image="chrome://emailsecurityplus/skin/help.png" title="&help.title;">
 		<groupbox flex="1" id="faq">
 			<caption label="&faq.caption;" />
 			<vbox>
 				<label class="bold indBT0">&faq.question1;</label>
-				<label class="italic indTP0">&faq.answer1-1; <label class="italic">&emailsecurity.email;</label></label>
+				<label class="italic indTP0">&faq.answer1-1; <label class="text-link" value="&emailsecurity.email;" onclick="emailsecurityplus.Options.loadWebsite(event);" /></label>
 			</vbox>
 		</groupbox>
 		
@@ -87,8 +100,8 @@
 		<groupbox flex="1" id="help">
 			<caption label="&help.caption;" />
 			<vbox>
-				<label class="italic">&emailsecurity.email;</label>
-				<label class="italic">&emailsecurity.url;</label>
+				<label class="text-link" value="&emailsecurity.email;" onclick="emailsecurityplus.Options.loadWebsite(event);" />
+				<label class="text-link" value="&emailsecurity.url;" onclick="emailsecurityplus.Options.loadWebsite(event);" />
 			</vbox>
 		</groupbox>
 	</prefpane>

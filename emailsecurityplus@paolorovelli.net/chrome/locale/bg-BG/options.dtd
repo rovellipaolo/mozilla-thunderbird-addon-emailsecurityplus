@@ -33,6 +33,12 @@
 <!ENTITY whitelist.active.label "Искам да получавам само имейли от подателите, които са в моята Aдресна книга (изисква рестартиране)">
 <!ENTITY whitelist.active.accesskey "к">
 <!ENTITY whitelist.active.legend "*Всички останали входящи имейли автоматично се преместват в кошчето.">
+<!ENTITY securityinfo.title "Security Info">
+<!ENTITY securityinfo.caption "Security Info">
+<!ENTITY securityinfo.xspamstatus.label "Shows the X-Spam-Status header in the extended header view.">
+<!ENTITY securityinfo.xspamstatus.accesskey "X">
+<!ENTITY securityinfo.received.label "Shows the Received header in the extended header view.">
+<!ENTITY securityinfo.received.accesskey "R">
 <!ENTITY help.title "Помощ">
 <!ENTITY help.caption "Помощ">
 <!ENTITY faq.caption "FAQ">

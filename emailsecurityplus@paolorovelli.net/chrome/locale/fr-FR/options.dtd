@@ -33,6 +33,12 @@
 <!ENTITY whitelist.active.label "Je veux recevoir seulement les e-mails provenant d'expéditeurs étant dans mon Carnet d'Adresses (nécessite un redémarrage)">
 <!ENTITY whitelist.active.accesskey "C">
 <!ENTITY whitelist.active.legend "*Tous les autres e-mails entrants sont automatiquement déplacés vers le dossier Corbeille.">
+<!ENTITY securityinfo.title "Security Info">
+<!ENTITY securityinfo.caption "Security Info">
+<!ENTITY securityinfo.xspamstatus.label "Shows the X-Spam-Status header in the extended header view.">
+<!ENTITY securityinfo.xspamstatus.accesskey "X">
+<!ENTITY securityinfo.received.label "Shows the Received header in the extended header view.">
+<!ENTITY securityinfo.received.accesskey "R">
 <!ENTITY help.title "Aider">
 <!ENTITY help.caption "Aider">
 <!ENTITY faq.caption "FAQ">

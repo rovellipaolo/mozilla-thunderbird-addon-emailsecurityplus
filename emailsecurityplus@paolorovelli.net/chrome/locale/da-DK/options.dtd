@@ -33,6 +33,12 @@
 <!ENTITY whitelist.active.label "Jeg vil kun modtage e-mails fra afsendere, der er i min Adressebog (genstart kræver)">
 <!ENTITY whitelist.active.accesskey "A">
 <!ENTITY whitelist.active.legend "*Alle andre indkommende mails flyttes automatisk til mappen Papirkurv.">
+<!ENTITY securityinfo.title "Security Info">
+<!ENTITY securityinfo.caption "Security Info">
+<!ENTITY securityinfo.xspamstatus.label "Shows the X-Spam-Status header in the extended header view.">
+<!ENTITY securityinfo.xspamstatus.accesskey "X">
+<!ENTITY securityinfo.received.label "Shows the Received header in the extended header view.">
+<!ENTITY securityinfo.received.accesskey "R">
 <!ENTITY help.title "Hjælp">
 <!ENTITY help.caption "Hjælp">
 <!ENTITY faq.caption "FAQ">

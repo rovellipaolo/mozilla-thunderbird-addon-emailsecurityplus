@@ -33,6 +33,12 @@
 <!ENTITY whitelist.active.label "I want to receive only emails from senders that are in my Address Book (requires restart)">
 <!ENTITY whitelist.active.accesskey "A">
 <!ENTITY whitelist.active.legend "*All the other incoming emails are automatically moved into the Trash folder.">
+<!ENTITY securityinfo.title "Security Info">
+<!ENTITY securityinfo.caption "Security Info">
+<!ENTITY securityinfo.xspamstatus.label "Shows the X-Spam-Status header in the extended header view.">
+<!ENTITY securityinfo.xspamstatus.accesskey "X">
+<!ENTITY securityinfo.received.label "Shows the Received header in the extended header view.">
+<!ENTITY securityinfo.received.accesskey "R">
 <!ENTITY help.title "Help">
 <!ENTITY help.caption "Help">
 <!ENTITY faq.caption "FAQ">

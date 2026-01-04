@@ -1,8 +1,7 @@
 /**
  * @file buttons.js
- * @update 2012/05/29 16:18
+ * @update 2012/06/18 23:52
  * @author Paolo Rovelli
- * @version 1.0
  */
 
 
@@ -17,6 +16,12 @@ if( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
 Components.utils.import("resource://emailsecurityplus/preferences.js");
 Components.utils.import("resource://emailsecurityplus/scan.js");
 Components.utils.import("resource://emailsecurityplus/overlay.js");
+
+
+/** 
+ * Defines the Email Security Plus scan window.
+ */
+emailsecurityplus.ScanWindow = null;
 
 
 /** 
@@ -47,25 +52,25 @@ emailsecurityplus.Buttons = function() {
 			var date = new Date();
 			
 			//Update the scan window:
-			emailsecurityplus.Scan.scanWindow.document.getElementById("emailsecurityplus-ScanStatus").setAttribute("value", "---");
-			emailsecurityplus.Scan.scanWindow.document.getElementById("emailsecurityplus-ScanTimeEnd").setAttribute("value", date.toLocaleString());
-			emailsecurityplus.Scan.scanWindow.document.getElementById("emailsecurityplus-ScanProgress").setAttribute("value", "100");
-			emailsecurityplus.Scan.scanWindow.document.getElementById("emailsecurityplus-ScanFolderCounter").setAttribute("value", emailsecurityplus.Scan.folderCounter);
-			//emailsecurityplus.Scan.scanWindow.document.getElementById("emailsecurityplus-ScanEmailCounter").setAttribute("value", emailsecurityplus.Scan.emailCounter);
-			//emailsecurityplus.Scan.scanWindow.document.getElementById("emailsecurityplus-ScanSpamCounter").setAttribute("value", emailsecurityplus.Scan.spamCounter);
+			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanStatus").setAttribute("value", "---");
+			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanTimeEnd").setAttribute("value", date.toLocaleString());
+			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanTimeEndLabel").setAttribute("style", "visibility: visible;");
+			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanProgress").setAttribute("value", "100");
+			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanFolderCounter").setAttribute("value", emailsecurityplus.Scan.folderCounter);
+			//emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanEmailCounter").setAttribute("value", emailsecurityplus.Scan.emailCounter);
+			//emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanSpamCounter").setAttribute("value", emailsecurityplus.Scan.spamCounter);
 			
 			if( !singleEmail ) {
-				emailsecurityplus.Scan.scanWindow.document.getElementById("emailsecurityplus-ScanEmail").setAttribute("value", "");
+				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanEmail").setAttribute("value", "");
 				
-				//emailsecurityplus.Scan.scanWindow.document.getElementById("emailsecurityplus-EmailSender").setAttribute("value", "---");
-				//emailsecurityplus.Scan.scanWindow.document.getElementById("emailsecurityplus-BlacklistedStatus").setAttribute("value", "---");
-				//emailsecurityplus.Scan.scanWindow.document.getElementById("emailsecurityplus-SpamRate").setAttribute("value", "---");
-				emailsecurityplus.Scan.scanWindow.document.getElementById("emailsecurityplus-SecurityInfo").setAttribute("style", "visibility: hidden;");
-				
-				//Resets the Spam information from the "X-Spam-Status" message's header:
-				//emailsecurityplus.Scan.scanWindow.document.getElementById("emailsecurityplus-XSpamScore").setAttribute("value", "---");
-				//emailsecurityplus.Scan.scanWindow.document.getElementById("emailsecurityplus-XSpamRate").setAttribute("value", "---");
-				emailsecurityplus.Scan.scanWindow.document.getElementById("emailsecurityplus-XSpamStatus").setAttribute("style", "visibility: hidden;");
+				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-EmailSender").setAttribute("value", "---");
+				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-SpamRate").setAttribute("value", "---");
+				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ReceivedHeader").setAttribute("value", "---");
+				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-XSpamStatus").setAttribute("value", "---");
+				//emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-SecurityInfo").collapsed = true;
+			}
+			else {  // singleEmail
+				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanSummary").collapsed = true;
 			}
 		},
 		
@@ -81,9 +86,9 @@ emailsecurityplus.Buttons = function() {
 			emailsecurityplus.Scan.folderCounter = 1;
 			emailsecurityplus.Scan.progressCounter = 0;
 			
-			emailsecurityplus.Scan.scanWindow = window.open('chrome://emailsecurityplus/content/scan.xul','','chrome=yes,resizable=yes,centerscreen');
-			//emailsecurityplus.Scan.scanWindow.onclose = this.closeScanWindow;
-			emailsecurityplus.Scan.scanWindow.onunload = this.closeScanWindow;
+			emailsecurityplus.ScanWindow = window.open('chrome://emailsecurityplus/content/scan.xul','','chrome=yes,resizable=yes,centerscreen');
+			//emailsecurityplus.ScanWindow.onclose = this.closeScanWindow;
+			emailsecurityplus.ScanWindow.onunload = this.closeScanWindow;
 			
 			//Selected folders in the "folders tree":
 			var selectedFolders = gFolderTreeView.getSelectedFolders();
@@ -133,10 +138,10 @@ emailsecurityplus.Buttons = function() {
 		 * Defines the action when the scan window is closed.
 		 */
 		closeScanWindow: function() {
-			if( emailsecurityplus.Scan.scanWindow != null ) {
-				if( emailsecurityplus.Scan.scanWindow.closed ) {
-					//emailsecurityplus.Scan.scanWindow.close();
-					emailsecurityplus.Scan.scanWindow = null;
+			if( emailsecurityplus.ScanWindow != null ) {
+				if( emailsecurityplus.ScanWindow.closed ) {
+					//emailsecurityplus.ScanWindow.close();
+					emailsecurityplus.ScanWindow = null;
 				}
 			}
 		},
@@ -153,6 +158,39 @@ emailsecurityplus.Buttons = function() {
 				//View message source:
 				goDoCommand("cmd_viewPageSource");
 			}  // selectedEmailURIs != null
+		},
+		
+		
+		/** 
+		 * Adds the senders's email address or domain to the Blacklist.
+		 * 
+		 * @param dom  true if it is an email domain, otherwise it is an email address.
+		 */
+		addToBlacklist: function(dom) {
+			if( typeof dom == 'undefined' ) {
+				dom = false;
+			}
+			
+			let messenger = Components.classes["@mozilla.org/messenger;1"].createInstance(Components.interfaces.nsIMessenger);
+			
+			//URI of the displayed/selected emails:
+			var selectedEmailURIs = gFolderDisplay.selectedMessageUris;
+			
+			for each (let emailURI in selectedEmailURIs) {
+				let emailHeader = messenger.messageServiceFromURI(emailURI).messageURIToMsgHdr(emailURI);  // email header from the email URI
+				var email = new emailsecurityplus.Email(emailURI, emailHeader);
+				
+				if( dom ) {
+					if( !emailsecurityplus.Scan.isInBlacklist(email.authorDomain) ) {  // the sender's email domain is inside the Blacklist
+						emailsecurityplus.Preferences.addToBlacklist( email.authorDomain );
+					}
+				}
+				else {  // dom != true
+					if( !emailsecurityplus.Scan.isInBlacklist(email.author) ) {  // the sender's email address is inside the Blacklist
+						emailsecurityplus.Preferences.addToBlacklist( email.author );
+					}
+				}
+			}
 		},
 		
 		

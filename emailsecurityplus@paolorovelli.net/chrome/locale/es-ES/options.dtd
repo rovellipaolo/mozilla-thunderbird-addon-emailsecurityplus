@@ -33,6 +33,12 @@
 <!ENTITY whitelist.active.label "Deseo recibir emails sólo de los remitentes que están en mi Libreta de direcciones (es necesario reiniciar)">
 <!ENTITY whitelist.active.accesskey "L">
 <!ENTITY whitelist.active.legend "*Todas las otras email entrantes son movidas automáticamente a la carpeta Papelera.">
+<!ENTITY securityinfo.title "Security Info">
+<!ENTITY securityinfo.caption "Security Info">
+<!ENTITY securityinfo.xspamstatus.label "Shows the X-Spam-Status header in the extended header view.">
+<!ENTITY securityinfo.xspamstatus.accesskey "X">
+<!ENTITY securityinfo.received.label "Shows the Received header in the extended header view.">
+<!ENTITY securityinfo.received.accesskey "R">
 <!ENTITY help.title "Ayuda">
 <!ENTITY help.caption "Ayuda">
 <!ENTITY faq.caption "FAQ">
