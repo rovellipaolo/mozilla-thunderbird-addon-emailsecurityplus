@@ -1,0 +1,4 @@
+<!ENTITY securityinfo.received "Destinataire:">
+<!ENTITY securityinfo.received.from "de">
+<!ENTITY securityinfo.received.by "par">
+<!ENTITY securityinfo.xspamstatus "X-Spam-Status:">

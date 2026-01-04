@@ -1,46 +1,76 @@
 <!ENTITY window.title "Email Security Plus Preferencias">
 <!ENTITY emailsecurity.email "emailsecurity@paolorovelli.net">
-<!ENTITY emailsecurity.url "www.paolorovelli.net/project/emailsecurityplus">
+<!ENTITY emailsecurity.url "www.paolorovelli.net/software/emailsecurityplus">
+<!ENTITY settings.general.title "General">
+<!ENTITY settings.general.caption "General">
 <!ENTITY antispam.title "AntiSpam">
-<!ENTITY scan.caption "Escanear">
-<!ENTITY scan.label "Escanea automáticamente los correos electrónicos entrantes (recomendado, es necesario reiniciar)">
-<!ENTITY scan.accesskey "a">
-<!ENTITY scan.delete.label "Elimina automáticamente los correos electrónicos marcados como correo basura">
-<!ENTITY scan.delete.accesskey "E">
-<!ENTITY scan.friendslist.label "NO escanees automáticamente correos electrónicos de remitentes que están en mi Libreta de direcciones">
-<!ENTITY scan.friendslist.accesskey "L">
-<!ENTITY scan.friendslist.legend "*ATENCIÓN: los mensajes de Hoax generalmente provienen de direcciones email conocidos!">
-<!ENTITY scan.aggressiveness.label "Agresividad:">
-<!ENTITY scan.aggressiveness.high.label "Alta">
-<!ENTITY scan.aggressiveness.high.accesskey "t">
-<!ENTITY scan.aggressiveness.normal.label "Normal (predeterminado)">
-<!ENTITY scan.aggressiveness.normal.accesskey "N">
-<!ENTITY scan.aggressiveness.low.label "Baja">
-<!ENTITY scan.aggressiveness.low.accesskey "B">
-<!ENTITY scan.aggressiveness.legend "*Un valor demasiado alto de agresividad puede llevar a identificar erróneamente unos correos legítimos como Spam (falsos positivos).">
-<!ENTITY languages.caption "Idiomas">
-<!ENTITY languages.label "Elige los idiomas de las palabras de Spam:">
-<!ENTITY languages.english.label "English">
-<!ENTITY languages.italian.label "Italiano">
-<!ENTITY languages.legend "*Elige sólo los idiomas en los que sueles recibir mensajes de correo electrónico.">
+<!ENTITY antispam.caption "Correo Basura">
+<!ENTITY antispam.active.label "AntiSpam activado (recomendado, es necesario reiniciar)">
+<!ENTITY antispam.active.accesskey "S">
+<!ENTITY antispam.active.legend "*Escanea automáticamente los e-mails entrantes de remitentes desconocidos.">
+<!ENTITY antispam.delete.label "Elimina automáticamente los e-mails entrantes marcados como Spam">
+<!ENTITY antispam.delete.accesskey "d">
+<!ENTITY antispam.threshold.label "Spam score threshold:">
+<!ENTITY antispam.threshold.legend "*The Spam score threshold is the minimum score at which an email is marked as Spam.">
+<!ENTITY antispam.rules.caption "Reglas de Spam">
+<!ENTITY antispam.rules.noto.label "Si no hay destinatario añadir:">
+<!ENTITY antispam.rules.multipleto.label "Si hay multiples destinatarios añadir:">
+<!ENTITY antispam.rules.multipleto.label2 "cada">
+<!ENTITY antispam.rules.multipleto.label3 "(destinatarios)">
+<!ENTITY antispam.words.caption "Palabras de Spam">
+<!ENTITY antispam.words.label "Cada vez que un e-mail de remitente desconocido es escaneado, las siguientes palabras de Spam son escaneadas.">
+<!ENTITY antispam.words.label2 "Cuando una o más palabras son encontradas, el valor relativo es añadido a la puntuación (Spam) del e-mail.">
+<!ENTITY antispam.words.high.label "Valor de las seguientes palabras de Spam:">
+<!ENTITY antispam.words.low.label "Valor de las seguientes palabras de Spam:">
+<!ENTITY antispam.words.legend "*IMPORTANTE: pon sólo una palabra (por ejempio 'Spam') o frase (por ejempio 'Este es un mensaje Spam') por línea.">
+<!ENTITY antihoax.title "AntiHoax">
+<!ENTITY antihoax.caption "Hoax E-mails">
+<!ENTITY antihoax.active.label "AntiHoax activado (recomendado, es necesario reiniciar)">
+<!ENTITY antihoax.active.accesskey "H">
+<!ENTITY antihoax.active.legend "*Escanea automáticamente los e-mails entrantes de remitentes conocidos (los que aparecer en la libreta de direcciones).">
+<!ENTITY antihoax.delete.label "Elimina automáticamente los e-mails entrantes marcados como Hoax">
+<!ENTITY antihoax.delete.accesskey "d">
+<!ENTITY antihoax.threshold.label "Hoax score threshold:">
+<!ENTITY antihoax.threshold.legend "*The Hoax score threshold is the minimum score at which an email is marked as Hoax.">
+<!ENTITY antihoax.rules.caption "Reglas de Hoax">
+<!ENTITY antihoax.rules.noto.label "Si no hay destinatario añadir:">
+<!ENTITY antihoax.rules.multipleto.label "Si hay multiples destinatarios añadir:">
+<!ENTITY antihoax.rules.multipleto.label2 "cada">
+<!ENTITY antihoax.rules.multipleto.label3 "(destinatarios)">
+<!ENTITY antihoax.words.caption "Palabras de Hoax">
+<!ENTITY antihoax.words.label "Cada vez que un e-mail de remitente desconocido es escaneado, las siguientes palabras de Hoax son escaneadas.">
+<!ENTITY antihoax.words.label2 "Cuando una o más palabras son encontradas, el valor relativo es añadido a la puntuación (Hoax) del e-mail.">
+<!ENTITY antihoax.words.high.label "Valor de las seguientes palabras de Hoax:">
+<!ENTITY antihoax.words.low.label "Valor de las seguientes palabras de Hoax:">
+<!ENTITY antihoax.words.legend "*IMPORTANTE: pon sólo una palabra (por ejempio 'Hoax') o frase (por ejempio 'Este es un mensaje Hoax') por línea.">
 <!ENTITY blacklist.title "Blacklist">
 <!ENTITY blacklist.caption "Remitentes Bloqueados">
-<!ENTITY blacklist.active.label "NO quiero recibir correos electrónicos de remitentes que están en la Blacklist (es necesario reiniciar)">
+<!ENTITY blacklist.active.label "Blacklist activado (es necesario reiniciar)">
 <!ENTITY blacklist.active.accesskey "B">
-<!ENTITY blacklist.active.legend "*Todas las email entrantes de remitentes bloqueados se colocan automáticamente en la carpeta Papelera.">
+<!ENTITY blacklist.active.legend "*Todos los e-mails entrantes de remitentes bloqueados se marcan automáticamente como correo no deseado.">
+<!ENTITY blacklist.delete.label "Eliminar automáticamente los e-mails entrantes de remitentes bloqueados">
+<!ENTITY blacklist.delete.accesskey "d">
 <!ENTITY blacklist.label "Direcciones email bloqueadas:">
-<!ENTITY blacklist.legend "*IMPORTANTE: pon sólo una dirección de correo electrónico (e.g. usuario@dominio.es) o dominio (e.g. @dominio.es) por línea.">
-<!ENTITY whitelist.active.label "Deseo recibir emails sólo de los remitentes que están en mi Libreta de direcciones (es necesario reiniciar)">
-<!ENTITY whitelist.active.accesskey "L">
-<!ENTITY whitelist.active.legend "*Todas las otras email entrantes son movidas automáticamente a la carpeta Papelera.">
-<!ENTITY securityinfo.title "Security Info">
-<!ENTITY securityinfo.caption "Security Info">
-<!ENTITY securityinfo.xspamstatus.label "Shows the X-Spam-Status header in the extended header view.">
+<!ENTITY blacklist.legend "*IMPORTANTE: pon sólo una dirección de correo electrónico (por ejempio usuario@dominio.es) o dominio (por ejempio @dominio.es) por línea.">
+<!ENTITY whitelist.title "Whitelist">
+<!ENTITY whitelist.caption "Remitentes de Confianza">
+<!ENTITY whitelist.active.label "Whitelist activado (es necesario reiniciar)">
+<!ENTITY whitelist.active.legend "*NINGÚN e-mail entrante de remitentes de confianza es escaneado.">
+<!ENTITY whitelist.active.accesskey "W">
+<!ENTITY whitelist.label "Direcciones de e-mail de confianza:">
+<!ENTITY whitelist.legend "*IMPORTANTE: pon sólo una dirección de correo electrónico (por ejempio usuario@dominio.es) o dominio (por ejempio @dominio.es) por línea.">
+<!ENTITY securityinfo.title "Información de Seguridad">
+<!ENTITY securityinfo.caption "Información de Seguridad">
+<!ENTITY securityinfo.xspamstatus.label "Show the X-Spam-Status header in the extended header view">
 <!ENTITY securityinfo.xspamstatus.accesskey "X">
-<!ENTITY securityinfo.received.label "Shows the Received header in the extended header view.">
+<!ENTITY securityinfo.received.label "Show the Received header in the extended header view">
 <!ENTITY securityinfo.received.accesskey "R">
 <!ENTITY help.title "Ayuda">
 <!ENTITY help.caption "Ayuda">
-<!ENTITY faq.caption "FAQ">
+<!ENTITY help.email "E-mail:">
+<!ENTITY help.website "Sitio Web:">
+<!ENTITY faq.caption "FAQ (Preguntas Más Frequentes)">
+<!ENTITY faq.url "Por favor, visite la página web:">
 <!ENTITY faq.question1 "¿Hay errores de traducción?">
-<!ENTITY faq.answer1-1 "Por favor, informe a:">
+<!ENTITY faq.answer1 "Por favor, informe a:">
+<!ENTITY faq.legend "*Ayudar a mejorar Email Security Plus es también en vuestro propio interés.">

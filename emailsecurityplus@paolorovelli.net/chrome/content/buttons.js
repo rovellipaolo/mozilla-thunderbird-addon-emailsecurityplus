@@ -9,7 +9,7 @@
 /** 
  * Defines the Email Security Plus NameSpace.
  */
-if( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
+if ( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
 
 
 //Import code modules:
@@ -55,17 +55,18 @@ emailsecurityplus.Buttons = function() {
 			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanStatus").setAttribute("value", "---");
 			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanTimeEnd").setAttribute("value", date.toLocaleString());
 			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanTimeEndLabel").setAttribute("style", "visibility: visible;");
-			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanProgress").setAttribute("value", "100");
+			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ProgressBox").setAttribute("value", "100");
 			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanFolderCounter").setAttribute("value", emailsecurityplus.Scan.folderCounter);
 			//emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanEmailCounter").setAttribute("value", emailsecurityplus.Scan.emailCounter);
 			//emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanSpamCounter").setAttribute("value", emailsecurityplus.Scan.spamCounter);
 			
-			if( !singleEmail ) {
+			if ( !singleEmail ) {
 				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanEmail").setAttribute("value", "");
 				
 				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-EmailSender").setAttribute("value", "---");
 				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-SpamRate").setAttribute("value", "---");
-				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ReceivedHeader").setAttribute("value", "---");
+				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ReceivedHeaderFrom").setAttribute("value", "---");
+				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ReceivedHeaderBy").setAttribute("value", "---");
 				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-XSpamStatus").setAttribute("value", "---");
 				//emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-SecurityInfo").collapsed = true;
 			}
@@ -97,15 +98,18 @@ emailsecurityplus.Buttons = function() {
 			//URI of the displayed/selected emails:
 			var selectedEmailURIs = gFolderDisplay.selectedMessageUris;
 			
-			if( selectedEmailURIs == null ) {  // No one email is selected...
+			if ( selectedEmailURIs == null ) {  // No one email is selected...
 				//var spamList = Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
 				var spamList = emailsecurityplus.Scan.scanFolders(selectedFolders, true);
 				emailsecurityplus.Scan.folderCounter = selectedFolders.length;
 				
-				if( emailsecurityplus.Preferences.isDeleteSpamActive() && spamList != null ) {
+				/*
+				//Delete Spam/Hoax messages:
+				if ( (emailsecurityplus.Preferences.isDeleteSpamActive() || emailsecurityplus.Preferences.isDeleteHoaxActive()) && spamList != null ) {
 					let trashFolder = selectedFolders[0].rootFolder.getFolderWithFlags(Components.interfaces.nsMsgFolderFlags.Trash);
-					Components.classes["@mozilla.org/messenger/messagecopyservice;1"].getService(Components.interfaces.nsIMsgCopyService).CopyMessages(selectedFolders[0], spamList, trashFolder, true /*isMove*/, null, msgWindow, true /*allowUndo*/);  // Move emails flagged as Spam in the Trash folder
+					Components.classes["@mozilla.org/messenger/messagecopyservice;1"].getService(Components.interfaces.nsIMsgCopyService).CopyMessages(selectedFolders[0], spamList, trashFolder, true, null, msgWindow, true);  // Move emails flagged as Spam in the Trash folder
 				}
+				*/
 				
 				//spamList.clear();
 				spamList = null;
@@ -113,11 +117,14 @@ emailsecurityplus.Buttons = function() {
 			else {  // selectedEmailURIs != null  // At least one email is selected...
 				var isSpamFound = emailsecurityplus.Scan.scanEmails(selectedEmailURIs, true);
 				
-				if( emailsecurityplus.Preferences.isDeleteSpamActive() && isSpamFound ) {
+				/*
+				//Delete Spam/Hoax messages:
+				if ( (emailsecurityplus.Preferences.isDeleteSpamActive() || emailsecurityplus.Preferences.isDeleteHoaxActive()) && isSpamFound ) {
 					deleteJunkInFolder();  // Move junk emails in the Trash folder
 				}
+				*/
 				
-				if( selectedEmailURIs.length == 1 ) {
+				if ( selectedEmailURIs.length == 1 ) {
 					singleEmail = true;
 				}
 			}
@@ -138,8 +145,8 @@ emailsecurityplus.Buttons = function() {
 		 * Defines the action when the scan window is closed.
 		 */
 		closeScanWindow: function() {
-			if( emailsecurityplus.ScanWindow != null ) {
-				if( emailsecurityplus.ScanWindow.closed ) {
+			if ( emailsecurityplus.ScanWindow != null ) {
+				if ( emailsecurityplus.ScanWindow.closed ) {
 					//emailsecurityplus.ScanWindow.close();
 					emailsecurityplus.ScanWindow = null;
 				}
@@ -154,7 +161,7 @@ emailsecurityplus.Buttons = function() {
 			// URI of the displayed/selected emails:
 			var selectedEmailURIs = gFolderDisplay.selectedMessageUris;
 			
-			if( selectedEmailURIs != null ) {  // At least one email is selected...
+			if ( selectedEmailURIs != null ) {  // At least one email is selected...
 				//View message source:
 				goDoCommand("cmd_viewPageSource");
 			}  // selectedEmailURIs != null
@@ -167,7 +174,7 @@ emailsecurityplus.Buttons = function() {
 		 * @param dom  true if it is an email domain, otherwise it is an email address.
 		 */
 		addToBlacklist: function(dom) {
-			if( typeof dom == 'undefined' ) {
+			if ( typeof dom == 'undefined' ) {
 				dom = false;
 			}
 			
@@ -180,14 +187,47 @@ emailsecurityplus.Buttons = function() {
 				let emailHeader = messenger.messageServiceFromURI(emailURI).messageURIToMsgHdr(emailURI);  // email header from the email URI
 				var email = new emailsecurityplus.Email(emailURI, emailHeader);
 				
-				if( dom ) {
+				if ( dom ) {
 					if( !emailsecurityplus.Scan.isInBlacklist(email.authorDomain) ) {  // the sender's email domain is inside the Blacklist
 						emailsecurityplus.Preferences.addToBlacklist( email.authorDomain );
 					}
 				}
 				else {  // dom != true
-					if( !emailsecurityplus.Scan.isInBlacklist(email.author) ) {  // the sender's email address is inside the Blacklist
+					if ( !emailsecurityplus.Scan.isInBlacklist(email.author) ) {  // the sender's email address is inside the Blacklist
 						emailsecurityplus.Preferences.addToBlacklist( email.author );
+					}
+				}
+			}
+		},
+		
+		
+		/** 
+		 * Adds the senders's email address or domain to the White.
+		 * 
+		 * @param dom  true if it is an email domain, otherwise it is an email address.
+		 */
+		addToWhitelist: function(dom) {
+			if ( typeof dom == 'undefined' ) {
+				dom = false;
+			}
+			
+			let messenger = Components.classes["@mozilla.org/messenger;1"].createInstance(Components.interfaces.nsIMessenger);
+			
+			//URI of the displayed/selected emails:
+			var selectedEmailURIs = gFolderDisplay.selectedMessageUris;
+			
+			for each (let emailURI in selectedEmailURIs) {
+				let emailHeader = messenger.messageServiceFromURI(emailURI).messageURIToMsgHdr(emailURI);  // email header from the email URI
+				var email = new emailsecurityplus.Email(emailURI, emailHeader);
+				
+				if ( dom ) {
+					if( !emailsecurityplus.Scan.isInWhitelist(email.authorDomain) ) {  // the sender's email domain is inside the Blacklist
+						emailsecurityplus.Preferences.addToWhitelist( email.authorDomain );
+					}
+				}
+				else {  // dom != true
+					if ( !emailsecurityplus.Scan.isInWhitelist(email.author) ) {  // the sender's email address is inside the Blacklist
+						emailsecurityplus.Preferences.addToWhitelist( email.author );
 					}
 				}
 			}
@@ -203,17 +243,17 @@ emailsecurityplus.Buttons = function() {
 			var alreadyOpen = false;
 			let windowMediatorEnumerator = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator).getEnumerator(null);
 			
-			while( windowMediatorEnumerator.hasMoreElements() ) {
+			while ( windowMediatorEnumerator.hasMoreElements() ) {
 				var openedWindow = windowMediatorEnumerator.getNext();
 				try {
 					if( openedWindow.location == url ) {
 						alreadyOpen = true;
 					}
-				} catch(e) {}
+				} catch (e) {}
 			}
 			
 			//Check if the dialog is already open:
-			if( !alreadyOpen ) {
+			if ( !alreadyOpen ) {
 				window.openDialog(url,'','');
 			}
 		}

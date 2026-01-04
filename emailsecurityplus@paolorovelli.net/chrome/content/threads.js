@@ -9,7 +9,7 @@
 /** 
  * Defines the Email Security Plus NameSpace.
  */
-if( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
+if ( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
 
 
 /**
@@ -54,15 +54,15 @@ emailsecurityplus.columnHandler = {
 		
 		var spamStatus = emailHeader.getStringProperty("x-spam-status");
 		
-		if( spamStatus != null && spamStatus != "" ) {
+		if ( spamStatus != null && spamStatus != "" ) {
 			var scorePos = spamStatus.indexOf("score=");
 			var requiredPos = spamStatus.indexOf("required=");
 			
-			if( scorePos < 0 ) {
+			if ( scorePos < 0 ) {
 				scorePos = spamStatus.indexOf(" hits=");
 			}
 			
-			if( scorePos >= 0 && requiredPos >= 0 ) {
+			if ( scorePos >= 0 && requiredPos >= 0 ) {
 				var xSpamScore = spamStatus.slice(scorePos + 6).slice(0,  spamStatus.indexOf(" "));
 				var xSpamRequired = spamStatus.slice(requiredPos + 9).slice(0,  spamStatus.indexOf(" "));
 				var xSpamRate = null;
@@ -70,16 +70,16 @@ emailsecurityplus.columnHandler = {
 				//Debug messages:
 				//dump("> X-Spam-Score: " + xSpamScore + " (" + xSpamRequired + ")\n");
 				
-				if( xSpamScore < 0 )
+				if ( xSpamScore < 0 )
 					xSpamScore = 0;
 				
 				xSpamRate = Math.round( (xSpamScore * 100) / xSpamRequired );  // round a number to the nearest integer
 				
-				if( xSpamRate >= 75 ) {
+				if ( xSpamRate >= 75 ) {
 					return "chrome://emailsecurityplus/skin/spamLevelHigh.png";
 				}
 				else  // xSpamRate < 75
-					if( xSpamRate >= 50 ) {
+					if ( xSpamRate >= 50 ) {
 						return "chrome://emailsecurityplus/skin/spamLevelMed.png";
 					}
 					else  // xSpamRate < 50
@@ -121,22 +121,22 @@ emailsecurityplus.columnHandler = {
 	getSortLongForRow: function(hdr) {
 		var spamStatus = hdr.getStringProperty("x-spam-status");
 		
-		if( spamStatus != null && spamStatus != "" ) {
+		if ( spamStatus != null && spamStatus != "" ) {
 			var scorePos = spamStatus.indexOf("score=");
 			var requiredPos = spamStatus.indexOf("required=");
 			
-			if( scorePos < 0 ) {
+			if ( scorePos < 0 ) {
 				scorePos = spamStatus.indexOf(" hits=");
 			}
 			
-			if( scorePos >= 0 && requiredPos >= 0 ) {
+			if ( scorePos >= 0 && requiredPos >= 0 ) {
 				var xSpamScore = spamStatus.slice(scorePos + 6).slice(0,  spamStatus.indexOf(" "));
 				var xSpamRequired = spamStatus.slice(requiredPos + 9).slice(0,  spamStatus.indexOf(" "));
 				
 				//Debug messages:
 				//dump("> X-Spam-Score: " + xSpamScore + " (" + xSpamRequired + ")\n");
 				
-				if( xSpamScore < 0 )
+				if ( xSpamScore < 0 )
 					xSpamScore = 0;
 				
 				return Math.round( (xSpamScore * 100) / xSpamRequired );  // round a number to the nearest integer
@@ -217,18 +217,18 @@ emailsecurityplus.CustomHeaders = function() {
 	customHeaders = customHeaders.replace(/\s+/g, '');
 	
 	var customHeadersArray = new Array();
-	if( customHeaders != "" ) {
+	if ( customHeaders != "" ) {
 		customHeadersArray = customHeaders.split(":");
 	}
 	
 	var ctrl = false;
-	for(var i=0; i < customHeadersArray.length; i++) {
+	for (var i=0; i < customHeadersArray.length; i++) {
 		if( customHeadersArray[i] == xHeader ) {
 			ctrl = true;
 		}
 	}
 	
-	if( !ctrl ) {
+	if ( !ctrl ) {
 		customHeadersArray.push( xHeader );
 		var newCustomHeaders = customHeadersArray.join(": ");
 		
@@ -241,18 +241,18 @@ emailsecurityplus.CustomHeaders = function() {
     customDBHeaders = customDBHeaders.replace(/\s+/g, ' ');
 	
 	var customDBHeadersArray = new Array();
-	if( customDBHeaders != "" ) {
+	if ( customDBHeaders != "" ) {
 		customDBHeadersArray = customDBHeaders.split(" ");
 	}
 	
 	ctrl = false;
-	for(var i=0; i < customDBHeadersArray.length; i++) {
-		if( customDBHeadersArray[i] == xHeader ) {
+	for (var i=0; i < customDBHeadersArray.length; i++) {
+		if ( customDBHeadersArray[i] == xHeader ) {
 			ctrl = true;
 		}
 	}
 	
-	if( !ctrl ) {
+	if ( !ctrl ) {
 		customDBHeadersArray.push( xHeader );
 		var newCustomDBHeaders = customDBHeadersArray.join(" ");
 		

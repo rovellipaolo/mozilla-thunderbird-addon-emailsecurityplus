@@ -1,8 +1,8 @@
-<!ENTITY statusbar.label "ES+">
+<!ENTITY statusbar.label "Email Security Plus">
 <!ENTITY treecol.label "Spam Rate">
 <!ENTITY treecol.tooltip "Click to sort by Spam Rate">
-<!ENTITY scan.button.label "Scan...">
-<!ENTITY scan.button.tooltip "Scan...">
+<!ENTITY scan.button.label "Scan">
+<!ENTITY scan.button.tooltip "Scan">
 <!ENTITY scan.item.label "Scan Message">
 <!ENTITY scan.item.tooltip "Scan Message">
 <!ENTITY source.button.label "Source">
@@ -13,3 +13,7 @@
 <!ENTITY blacklist.email.item.tooltip "Add the senders's email address to the Blacklist">
 <!ENTITY blacklist.domain.item.label "Block the sender's domain">
 <!ENTITY blacklist.domain.item.tooltip "Add the senders's domain to the Blacklist">
+<!ENTITY whitelist.email.item.label "Trust the sender's email address">
+<!ENTITY whitelist.email.item.tooltip "Add the senders's email address to the Whitelist">
+<!ENTITY whitelist.domain.item.label "Trust the sender's domain">
+<!ENTITY whitelist.domain.item.tooltip "Add the senders's domain to the Whitelist">

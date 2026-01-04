@@ -5,84 +5,233 @@
 <!DOCTYPE prefwindow SYSTEM "chrome://emailsecurityplus/locale/options.dtd">
 
 <!--
-@update 2012/06/18 19:36
+@update 2013/06/11 19:36
 @author Paolo Rovelli
 -->
 <prefwindow id="emailsecurityplus-Preferences" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&window.title;">
 	<script type="application/x-javascript" src="chrome://emailsecurityplus/content/options.js" />
 	
-	<prefpane id="emailsecurityplus-AntiSpam" label="&antispam.title;" image="chrome://emailsecurityplus/skin/shield.png" title="&antispam.title;">
+	<prefpane id="emailsecurityplus-GeneralSettings" label="&settings.general.title;" image="chrome://emailsecurityplus/skin/settings.png" title="&settings.general.title;">
 		<preferences>
-			<preference id="scan" name="extensions.emailsecurityplus.scan" type="bool" />
-			<preference id="scan.friendslist" name="extensions.emailsecurityplus.scan.friendslist" type="bool" />
-			<preference id="scan.delete" name="extensions.emailsecurityplus.scan.delete" type="bool" />
-			<preference id="scan.aggressiveness" name="extensions.emailsecurityplus.scan.aggressiveness" type="int" />
-			<preference id="languages.english" name="extensions.emailsecurityplus.languages.english" type="bool" />
-			<preference id="languages.italian" name="extensions.emailsecurityplus.languages.italian" type="bool" />
+			<preference id="antispam.active" name="extensions.emailsecurityplus.antispam.active" type="bool" />
+			<preference id="antihoax.active" name="extensions.emailsecurityplus.antihoax.active" type="bool" />
+			<preference id="blacklist.active" name="extensions.emailsecurityplus.blacklist.active" type="bool" />
+			<preference id="whitelist.active" name="extensions.emailsecurityplus.whitelist.active" type="bool" />
+			<preference id="header.received" name="extensions.emailsecurityplus.header.received" type="bool" />
+			<preference id="header.xspamstatus" name="extensions.emailsecurityplus.header.xspamstatus" type="bool" />
 		</preferences>
 		
-		<groupbox flex="1" id="scan">
-			<caption label="&scan.caption;" />
-			<checkbox class="indBT0" preference="scan" label="&scan.label;" accesskey="&scan.accesskey;" onclick="emailsecurityplus.Options.checkDependences();" />
-			<checkbox class="deleteSpamCheckbox" preference="scan.delete" label="&scan.delete.label;" accesskey="&scan.delete.accesskey;" />
-			<checkbox id="emailsecurityplus-ScanFriendsList" class="indBT0" preference="scan.friendslist" label="&scan.friendslist.label;" accesskey="&scan.friendslist.accesskey;" />
-			<label class="legend indLT18">&scan.friendslist.legend;</label>
-			<hbox style="margin-top: 10px;">
-				<label>&scan.aggressiveness.label;</label>
-				<radiogroup id="aggressiveness" preference="scan.aggressiveness">
-					<hbox>
-						<radio class="aggressivenessRadioButton" label="&scan.aggressiveness.high.label;" accesskey="&scan.aggressiveness.high.accesskey;" value="15" />
-						<radio class="aggressivenessRadioButton" label="&scan.aggressiveness.normal.label;" accesskey="&scan.aggressiveness.normal.accesskey;" value="25" selected="true" />
-						<radio class="aggressivenessRadioButton" label="&scan.aggressiveness.low.label;" accesskey="&scan.aggressiveness.low.accesskey;" value="50" />
-					</hbox>
-				</radiogroup>
-			</hbox>
-			<label class="legend">&scan.aggressiveness.legend;</label>
+		<groupbox flex="1" id="generalcontrol">
+			<caption label="&settings.general.caption;" />
+
+			<checkbox class="indBT0" preference="antispam.active" label="&antispam.active.label;" accesskey="&antispam.active.accesskey;" onclick="emailsecurityplus.Options.checkAntiSpamDependences();" />
+			<label class="legend indLT18 indBT5">&antispam.active.legend;</label>
+
+			<checkbox class="indBT0" preference="antihoax.active" label="&antihoax.active.label;" accesskey="&antihoax.active.accesskey;" onclick="emailsecurityplus.Options.checkAntiHoaxDependences();" />
+			<label class="legend indLT18 indBT5">&antihoax.active.legend;</label>
+
+			<checkbox class="indBT0" preference="blacklist.active" label="&blacklist.active.label;" accesskey="&blacklist.active.accesskey;" onclick="emailsecurityplus.Options.checkBlacklistDependences();" />
+			<label class="legend indLT18 indBT5">&blacklist.active.legend;</label>
+
+			<checkbox class="indBT0" preference="whitelist.active" label="&whitelist.active.label;" accesskey="&whitelist.active.accesskey;" onclick="emailsecurityplus.Options.checkWhitelistDependences();" />
+			<label class="legend indLT18 indBT10">&whitelist.active.legend;</label>
 		</groupbox>
 		
-		<groupbox flex="1" id="languages">
-			<caption label="&languages.caption;" />
-			<vbox>
-				<label>&languages.label;</label>
-				<hbox>
-					<checkbox class="indRG5" preference="languages.english" label="&languages.english.label;**" />
-					<checkbox class="indRG5" preference="languages.italian" label="&languages.italian.label;" />
-				</hbox>
-				<label class="legendMulti">&languages.legend;</label>
-				<label class="legendMulti">**Beta</label>
-			</vbox>
+		<groupbox flex="1" id="securityinfo">
+			<caption label="&securityinfo.caption;" />
+			<checkbox class="indBT0" preference="header.xspamstatus" label="&securityinfo.xspamstatus.label;" accesskey="&securityinfo.xspamstatus.accesskey;" />
+			<checkbox class="indBT10" preference="header.received" label="&securityinfo.received.label;" accesskey="&securityinfo.received.accesskey;" />
+		</groupbox>
+	</prefpane>
+	
+	<prefpane id="emailsecurityplus-AntiSpam" label="&antispam.title;" image="chrome://emailsecurityplus/skin/antispam.png" title="&antispam.title;">
+		<preferences>
+			<preference id="antispam.active" name="extensions.emailsecurityplus.antispam.active" type="bool" />
+			<preference id="antispam.delete" name="extensions.emailsecurityplus.antispam.delete" type="bool" />
+			<preference id="antispam.threshold" name="extensions.emailsecurityplus.antispam.threshold" type="int" />
+			<preference id="antispam.rules.noto" name="extensions.emailsecurityplus.antispam.rules.noto" type="int" />
+			<preference id="antispam.rules.multipleto.add" name="extensions.emailsecurityplus.antispam.rules.multipleto.add" type="int" />
+			<preference id="antispam.rules.multipleto.every" name="extensions.emailsecurityplus.antispam.rules.multipleto.every" type="int" />
+			<preference id="antispam.words.high.value" name="extensions.emailsecurityplus.antispam.words.high.value" type="int" />
+			<preference id="antispam.words.low.value" name="extensions.emailsecurityplus.antispam.words.low.value" type="int" />
+			<preference id="antispam.words.high" name="extensions.emailsecurityplus.antispam.words.high" type="string" />
+			<preference id="antispam.words.low" name="extensions.emailsecurityplus.antispam.words.low" type="string" />
+		</preferences>
+		
+		<groupbox flex="1" id="AntiSpam">
+			<caption label="&antispam.caption;" />
+
+			<checkbox class="indBT0" preference="antispam.active" label="&antispam.active.label;" accesskey="&antispam.active.accesskey;" onclick="emailsecurityplus.Options.checkAntiSpamDependences();" />
+			<label class="legend indLT18 indBT5">&antispam.active.legend;</label>
+
+			<checkbox class="antispamActiveDependancies indBT15" preference="antispam.delete" label="&antispam.delete.label;" accesskey="&antispam.delete.accesskey;" />
+
+			<hbox>
+				<label control="antispamThresholdTextBox" class="indTP5">&antispam.threshold.label;</label>
+				<textbox id="antispamThresholdTextBox" class="antispamActiveDependancies" type="number" increment="5" maxlength="3" max="100" min="1" size="3" preference="antispam.threshold" />
+			</hbox>
+			<label class="legend">&antispam.threshold.legend;</label>
+		</groupbox>
+		
+		<groupbox flex="1" id="rules">
+			<caption label="&antispam.rules.caption;" />
+
+			<hbox>
+				<label control="antispamNoToTextBox" class="indTP5">&antispam.rules.noto.label;</label>
+				<label control="antispamNoToTextBox" class="indTP5 indLT0 indRG0 grey">+</label>
+				<textbox id="antispamNoToTextBox" class="antispamActiveDependancies indLT0" type="number" increment="1" maxlength="3" max="100" min="0" size="3" preference="antispam.rules.noto" />
+			</hbox>
+
+			<hbox>
+				<label control="antispamMultipleToAddTextBox" class="indTP5">&antispam.rules.multipleto.label;</label>
+				<label control="antispamMultipleToAddTextBox" class="indTP5 indLT0 indRG0 grey">+</label>
+				<textbox id="antispamMultipleToAddTextBox" class="antispamActiveDependancies" type="number" increment="1" maxlength="3" max="100" min="0" size="3" preference="antispam.rules.multipleto.add" />
+				<label control="antispamMultipleToEveryTextBox" class="indTP5">&antispam.rules.multipleto.label2;</label>
+				<textbox id="antispamMultipleToEveryTextBox" class="antispamActiveDependancies" type="number" increment="1" maxlength="3" max="100" min="1" size="3" preference="antispam.rules.multipleto.every" />
+				<label control="antispamMultipleToEveryTextBox" class="indRG5 indTP5 grey">&antispam.rules.multipleto.label3;</label>
+			</hbox>
+		</groupbox>
+		
+		<groupbox flex="1" id="words">
+			<caption label="&antispam.words.caption;" />
+
+			<label class="legend">&antispam.words.label;</label>
+			<label class="legend indBT10">&antispam.words.label2;</label>
+			
+			<hbox>
+				<vbox>
+					<hbox>
+						<label control="antispamHighValueTextBox" class="indTP5">&antispam.words.high.label;</label>
+						<label control="antispamNoToTextBox" class="indTP5 indLT0 indRG0 grey">+</label>
+						<textbox id="antispamHighValueTextBox" class="antispamActiveDependancies" type="number" increment="1" maxlength="3" max="100" min="1" size="3" preference="antispam.words.high.value" />
+					</hbox>
+					<textbox class="antispamActiveDependancies" preference="antispam.words.high" rows="15" multiline="true" />
+				</vbox>
+				<vbox>
+					<hbox>
+						<label control="antispamLowValueTextBox" class="indTP5">&antispam.words.low.label;</label>
+						<label control="antispamNoToTextBox" class="indTP5 indLT0 indRG0 grey">+</label>
+						<textbox id="antispamLowValueTextBox" class="antispamActiveDependancies" type="number" increment="1" maxlength="3" max="100" min="1" size="3" preference="antispam.words.low.value" />
+					</hbox>
+					<textbox class="antispamActiveDependancies" preference="antispam.words.low" rows="15" multiline="true" />
+				</vbox>
+			</hbox>
+			<label class="legend indBT10">&antispam.words.legend;</label>
+		</groupbox>
+	</prefpane>
+	
+	<prefpane id="emailsecurityplus-AntiHoax" label="&antihoax.title;" image="chrome://emailsecurityplus/skin/antihoax.png" title="&antihoax.title;">
+		<preferences>
+			<preference id="antihoax.active" name="extensions.emailsecurityplus.antihoax.active" type="bool" />
+			<preference id="antihoax.delete" name="extensions.emailsecurityplus.antihoax.delete" type="bool" />
+			<preference id="antihoax.threshold" name="extensions.emailsecurityplus.antihoax.threshold" type="int" />
+			<preference id="antihoax.rules.noto" name="extensions.emailsecurityplus.antihoax.rules.noto" type="int" />
+			<preference id="antihoax.rules.multipleto.add" name="extensions.emailsecurityplus.antihoax.rules.multipleto.add" type="int" />
+			<preference id="antihoax.rules.multipleto.every" name="extensions.emailsecurityplus.antihoax.rules.multipleto.every" type="int" />
+			<preference id="antihoax.words.high.value" name="extensions.emailsecurityplus.antihoax.words.high.value" type="int" />
+			<preference id="antihoax.words.low.value" name="extensions.emailsecurityplus.antihoax.words.low.value" type="int" />
+			<preference id="antihoax.words.high" name="extensions.emailsecurityplus.antihoax.words.high" type="string" />
+			<preference id="antihoax.words.low" name="extensions.emailsecurityplus.antihoax.words.low" type="string" />
+		</preferences>
+
+		<groupbox flex="1" id="AntiHoax">
+			<caption label="&antihoax.caption;" />
+
+			<checkbox class="indBT0" preference="antihoax.active" label="&antihoax.active.label;" accesskey="&antihoax.active.accesskey;" onclick="emailsecurityplus.Options.checkAntiHoaxDependences();" />
+			<label class="legend indLT18 indBT5">&antihoax.active.legend;</label>
+			
+			<checkbox class="antihoaxActiveDependancies indBT15" preference="antihoax.delete" label="&antihoax.delete.label;" accesskey="&antihoax.delete.accesskey;" />
+
+			<hbox>
+				<label control="antihoaxThresholdTextBox" class="indTP5">&antihoax.threshold.label;</label>
+				<textbox id="antihoaxThresholdTextBox" class="antihoaxActiveDependancies" type="number" increment="5" maxlength="3" max="100" min="1" size="3" preference="antihoax.threshold" />
+			</hbox>
+			<label class="legend">&antihoax.threshold.legend;</label>
+		</groupbox>
+		
+		<groupbox flex="1" id="rules">
+			<caption label="&antihoax.rules.caption;" />
+
+			<hbox>
+				<label control="antihoaxNoToTextBox" class="indTP5">&antihoax.rules.noto.label;</label>
+				<label control="antihoaxNoToTextBox" class="indTP5 indLT0 indRG0 grey">+</label>
+				<textbox id="antihoaxNoToTextBox" class="antihoaxActiveDependancies indLT0" type="number" increment="1" maxlength="3" max="100" min="0" size="3" preference="antihoax.rules.noto" />
+			</hbox>
+
+			<hbox>
+				<label control="antihoaxMultipleToAddTextBox" class="indTP5">&antihoax.rules.multipleto.label;</label>
+				<label control="antihoaxMultipleToAddTextBox" class="indTP5 indLT0 indRG0 grey">+</label>
+				<textbox id="antihoaxMultipleToAddTextBox" class="antihoaxActiveDependancies" type="number" increment="1" maxlength="3" max="100" min="0" size="3" preference="antihoax.rules.multipleto.add" />
+				<label control="antihoaxMultipleToEveryTextBox" class="indTP5">&antihoax.rules.multipleto.label2;</label>
+				<textbox id="antihoaxMultipleToEveryTextBox" class="antihoaxActiveDependancies" type="number" increment="1" maxlength="3" max="100" min="1" size="3" preference="antihoax.rules.multipleto.every" />
+				<label control="antihoaxMultipleToEveryTextBox" class="indRG5 indTP5 grey">&antihoax.rules.multipleto.label3;</label>
+			</hbox>
+		</groupbox>
+		
+		<groupbox flex="1" id="words">
+			<caption label="&antihoax.words.caption;" />
+
+			<label class="legend">&antihoax.words.label;</label>
+			<label class="legend indBT10">&antihoax.words.label2;</label>
+
+			<hbox>
+				<vbox>
+					<hbox>
+						<label control="antihoaxHighValueTextBox" class="indTP5">&antihoax.words.high.label;</label>
+						<label control="antispamNoToTextBox" class="indTP5 indLT0 indRG0 grey">+</label>
+						<textbox id="antihoaxHighValueTextBox" class="antihoaxActiveDependancies" type="number" increment="1" maxlength="3" max="100" min="1" size="3" preference="antihoax.words.high.value"/>
+					</hbox>
+					<textbox class="antihoaxActiveDependancies" preference="antihoax.words.high" rows="15" multiline="true" />
+				</vbox>
+				<vbox>
+					<hbox>
+						<label control="antihoaxLowValueTextBox" class="indTP5">&antihoax.words.low.label;</label>
+						<label control="antispamNoToTextBox" class="indTP5 indLT0 indRG0 grey">+</label>
+						<textbox id="antihoaxLowValueTextBox" class="antihoaxActiveDependancies" type="number" increment="1" maxlength="3" max="100" min="1" size="3" preference="antihoax.words.low.value"/>
+					</hbox>
+					<textbox class="antihoaxActiveDependancies" preference="antihoax.words.low" rows="15" multiline="true" />
+				</vbox>
+			</hbox>
+			<label class="legend indBT10">&antihoax.words.legend;</label>
 		</groupbox>
 	</prefpane>
 	
 	<prefpane id="emailsecurityplus-Blacklist" label="&blacklist.title;" image="chrome://emailsecurityplus/skin/blacklist.png" title="&blacklist.title;">
 		<preferences>
-			<preference id="whitelist.active" name="extensions.emailsecurityplus.whitelist.active" type="bool" />
-			<preference id="blacklist" name="extensions.emailsecurityplus.blacklist" type="string" />
 			<preference id="blacklist.active" name="extensions.emailsecurityplus.blacklist.active" type="bool" />
+			<preference id="blacklist.delete" name="extensions.emailsecurityplus.blacklist.delete" type="bool" />
+			<preference id="blacklist" name="extensions.emailsecurityplus.blacklist" type="string" />
 		</preferences>
 		
 		<groupbox flex="1" id="blacklist">
 			<caption label="&blacklist.caption;" />
-			<checkbox class="indBT0" preference="whitelist.active" label="&whitelist.active.label;" accesskey="&whitelist.active.accesskey;" />
-			<label class="legend indLT18">&whitelist.active.legend;</label>
-			<checkbox class="indBT0" preference="blacklist.active" label="&blacklist.active.label;" accesskey="&blacklist.active.accesskey;" />
-			<label class="legend indLT18">&blacklist.active.legend;</label>
+
+			<checkbox class="indBT0" preference="blacklist.active" label="&blacklist.active.label;" accesskey="&blacklist.active.accesskey;" onclick="emailsecurityplus.Options.checkBlacklistDependences();" />
+			<label class="legend indLT18 indBT5">&blacklist.active.legend;</label>
+
+			<checkbox class="blacklistActiveDependancies indBT10" preference="blacklist.delete" label="&blacklist.delete.label;" accesskey="&blacklist.delete.accesskey;" />
+
 			<label control="blacklistTextBox">&blacklist.label;</label>
-			<textbox id="blacklistTextBox" preference="blacklist" rows="8" multiline="true" />
-			<label class="legend">&blacklist.legend;</label>
+			<textbox id="blacklistTextBox" class="blacklistActiveDependancies" preference="blacklist" rows="15" multiline="true" />
+			<label class="legend indBT10">&blacklist.legend;</label>
 		</groupbox>
 	</prefpane>
 	
-	<prefpane id="emailsecurityplus-SecurityInfo" label="&securityinfo.title;" image="chrome://emailsecurityplus/skin/wax.png" title="&securityinfo.title;">
+	<prefpane id="emailsecurityplus-Whitelist" label="&whitelist.title;" image="chrome://emailsecurityplus/skin/whitelist.png" title="&whitelist.title;">
 		<preferences>
-			<preference id="header.received" name="extensions.emailsecurityplus.header.received" type="bool" />
-			<preference id="header.xspamstatus" name="extensions.emailsecurityplus.header.xspamstatus" type="bool" />
+			<preference id="whitelist.active" name="extensions.emailsecurityplus.whitelist.active" type="bool" />
+			<preference id="whitelist" name="extensions.emailsecurityplus.whitelist" type="string" />
 		</preferences>
 		
-		<groupbox flex="1" id="securityinfo">
-			<caption label="&securityinfo.caption;" />
-			<checkbox class="indBT0" preference="header.xspamstatus" label="&securityinfo.xspamstatus.label;" accesskey="&securityinfo.xspamstatus.accesskey;" />
-			<checkbox class="indBT0" preference="header.received" label="&securityinfo.received.label;" accesskey="&securityinfo.received.accesskey;" />
+		<groupbox flex="1" id="whitelist-options">
+			<caption label="&whitelist.caption;" />
+
+			<checkbox class="indBT0" preference="whitelist.active" label="&whitelist.active.label;" accesskey="&whitelist.active.accesskey;" onclick="emailsecurityplus.Options.checkWhitelistDependences();" />
+			<label class="legend indLT18 indBT10">&whitelist.active.legend;</label>
+
+			<label control="whitelistTextBox">&whitelist.label;</label>
+			<textbox id="whitelistTextBox" class="whitelistActiveDependancies" preference="whitelist" rows="15" multiline="true" />
+			<label class="legend indBT10">&whitelist.legend;</label>
 		</groupbox>
 	</prefpane>
 	
@@ -90,8 +239,10 @@
 		<groupbox flex="1" id="faq">
 			<caption label="&faq.caption;" />
 			<vbox>
+				<label class="indBT25">&faq.url; <label class="text-link" value="&emailsecurity.url;" onclick="emailsecurityplus.Options.loadWebsite(event);" /></label>
 				<label class="bold indBT0">&faq.question1;</label>
-				<label class="italic indTP0">&faq.answer1-1; <label class="text-link" value="&emailsecurity.email;" onclick="emailsecurityplus.Options.loadWebsite(event);" /></label>
+				<label class="italic indTP0 indBT0">&faq.answer1; <label class="text-link" value="&emailsecurity.email;" onclick="emailsecurityplus.Options.loadWebsite(event);" /></label>
+			<label class="legend indBT10">&faq.legend;</label>
 			</vbox>
 		</groupbox>
 		
@@ -100,8 +251,8 @@
 		<groupbox flex="1" id="help">
 			<caption label="&help.caption;" />
 			<vbox>
-				<label class="text-link" value="&emailsecurity.email;" onclick="emailsecurityplus.Options.loadWebsite(event);" />
-				<label class="text-link" value="&emailsecurity.url;" onclick="emailsecurityplus.Options.loadWebsite(event);" />
+				<label class="bold">&help.email; <label class="text-link" value="&emailsecurity.email;" onclick="emailsecurityplus.Options.loadWebsite(event);" /></label>
+				<label class="bold indBT10">&help.website; <label class="text-link" value="&emailsecurity.url;" onclick="emailsecurityplus.Options.loadWebsite(event);" /></label>
 			</vbox>
 		</groupbox>
 	</prefpane>

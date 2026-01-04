@@ -12,7 +12,7 @@ var EXPORTED_SYMBOLS = ["emailsecurityplus"];
 /** 
  * Defines the Email Security Plus NameSpace.
  */
-if( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
+if ( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
 
 
 /**
@@ -23,59 +23,10 @@ if( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
 emailsecurityplus.Preferences = {
 	mozPrefBranch: Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.emailsecurityplus."),  // nsIPrefBranch
 	
-	/**
-	 * spamKeywords[spam:0/hoax:1][riga][key:0/value:1][colonna]
-	 */
-	spamKeywords: null,
-	
 	
 	
 	//Methods:
-	
-	/**
-	 * Initialization of the words of Spam (spamWords).
-	 */
-	init: function() {
-		/* --- BEGIN Spam matrix initialization: --- */
-		var url = "chrome://emailsecurityplus/content/spam";  // "chrome://emailsecurityplus@paolorovelli.net/content/spam"  // the URL of the file to be read.
-		let xhr = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Components.interfaces.nsIXMLHttpRequest);
-		xhr.open("GET", url, false);  // performs the operation synchronously.
-		xhr.send(null);
-		/**
-		 * Spam matrix: spamKeywords[spam:0/hoax:1][riga][key:0/value:1][colonna]
-		 */
-		this.spamKeywords = JSON.parse(xhr.responseText).spamKeywords;
-		
-		//Adds the current year to the spam words:
-		var date = new Date();
-		var curYearSpam = [[date.getFullYear().toString()], [2]];
-		this.spamKeywords[0].push( curYearSpam );  // ANONYMOUS sender
-		var curYearHoax = [[date.getFullYear().toString()], [1]];
-		this.spamKeywords[1].push( curYearHoax );  // KNOWN sender
-		/* --- END Spam matrix initialization. --- */
-	},
-	
-	
-	/** 
-	 * Gets if the automatic scan preference is active or not.
-	 * 
-	 * @return  true if the automatic scan preference is active, false otherwise.
-	 */  
-	isScanActive: function() {
-		return this.mozPrefBranch.getBoolPref("scan");
-	},
-	
-	
-	/** 
-	 * Gets the Spam minimum value.
-	 * 
-	 * @return  the Spam minimum value.
-	 */
-	getSpamMinValue: function() {
-		return this.mozPrefBranch.getIntPref("scan.aggressiveness");
-	},
-	
-	
+
 	/** 
 	 * Gets the found Spam counter.
 	 * 
@@ -97,32 +48,22 @@ emailsecurityplus.Preferences = {
 	
 	
 	/** 
-	 * Gets if the Friends List preference is active or not.
+	 * Gets if the automatic AntiSpam scan preference is active or not.
 	 * 
-	 * @return  true if the Friends List preference is active, false otherwise.
+	 * @return  true if the automatic AntiSpam scan preference is active, false otherwise.
 	 */  
-	isFriendsListActive: function() {
-		return this.mozPrefBranch.getBoolPref("scan.friendslist");
+	isAntiSpamActive: function() {
+		return this.mozPrefBranch.getBoolPref("antispam.active");
 	},
 	
 	
 	/** 
-	 * Gets if the delete Spam preference is active or not.
+	 * Gets if the automatic AntiHoax scan preference is active or not.
 	 * 
-	 * @return  true if the delete Spam preference is active, false otherwise.
+	 * @return  true if the automatic AntiHoax scan preference is active, false otherwise.
 	 */  
-	isDeleteSpamActive: function() {
-		return this.mozPrefBranch.getBoolPref("scan.delete");
-	},
-	
-	
-	/** 
-	 * Gets if the whitelist preference is active or not.
-	 * 
-	 * @return  true if the whitelist preference is active, false otherwise.
-	 */  
-	isWhitelistActive: function() {
-		return this.mozPrefBranch.getBoolPref("whitelist.active");
+	isAntiHoaxActive: function() {
+		return this.mozPrefBranch.getBoolPref("antihoax.active");
 	},
 	
 	
@@ -137,24 +78,183 @@ emailsecurityplus.Preferences = {
 	
 	
 	/** 
-	 * Gets if the italian language preference is active or not.
+	 * Gets if the whitelist preference is active or not.
 	 * 
-	 * @return  true if the italian language preference is active, false otherwise.
-	 */
-	isItalianLangActive: function() {
-		return this.mozPrefBranch.getBoolPref("languages.italian");
+	 * @return  true if the whitelist preference is active, false otherwise.
+	 */  
+	isWhitelistActive: function() {
+		return this.mozPrefBranch.getBoolPref("whitelist.active");
 	},
 	
 	
 	/** 
-	 * Gets if the english language preference is active or not.
+	 * Gets if the delete Spam preference is active or not.
 	 * 
-	 * @return  true if the english language preference is active, false otherwise.
-	 */
-	isEnglishLangActive: function() {
-		return this.mozPrefBranch.getBoolPref("languages.english");
+	 * @return  true if the delete Spam preference is active, false otherwise.
+	 */  
+	isDeleteSpamActive: function() {
+		return this.mozPrefBranch.getBoolPref("antispam.delete");
 	},
 	
+	
+	/** 
+	 * Gets if the delete Hoax preference is active or not.
+	 * 
+	 * @return  true if the delete Hoax preference is active, false otherwise.
+	 */  
+	isDeleteHoaxActive: function() {
+		return this.mozPrefBranch.getBoolPref("antihoax.delete");
+	},
+	
+	
+	/** 
+	 * Gets if the delete Blacklist preference is active or not.
+	 * 
+	 * @return  true if automatically delete blocked senders, false otherwise.
+	 */  
+	isDeleteBlacklistActive: function() {
+		return this.mozPrefBranch.getBoolPref("blacklist.delete");
+	},
+
+	
+	/** 
+	 * Gets the Spam minimum value.
+	 * 
+	 * @return  the Spam score threshold.
+	 */
+	getSpamMinValue: function() {
+		return this.mozPrefBranch.getIntPref("antispam.threshold");
+	},
+	
+	
+	/** 
+	 * Gets the Hoax minimum value.
+	 * 
+	 * @return  the Hoax score threshold.
+	 */
+	getHoaxMinValue: function() {
+		return this.mozPrefBranch.getIntPref("antihoax.threshold");
+	},
+	
+	
+	/** 
+	 * Gets the AntiSpam "no-to" (no recipients) rule value.
+	 * 
+	 * @return  the AntiSpam "no-to" rule value.
+	 */
+	getAntiSpamNoToRuleValue: function() {
+		return this.mozPrefBranch.getIntPref("antispam.rules.noto");
+	},
+	
+	
+	/** 
+	 * Gets the AntiHoax "no-to" (no recipients) rule value.
+	 * 
+	 * @return  the AntiHoax "no-to" rule value.
+	 */
+	getAntiHoaxNoToRuleValue: function() {
+		return this.mozPrefBranch.getIntPref("antihoax.rules.noto");
+	},
+	
+	
+	/** 
+	 * Gets the AntiSpam "multiple-to" (multiple recipients) rule values.
+	 * 
+	 * @return  the AntiSpam "multiple-to" rule values (add, every).
+	 */
+	getAntiSpamMultipleToRuleValues: function() {
+		var spamRuleValues = new Array(2);
+		spamRuleValues[0] = this.mozPrefBranch.getIntPref("antispam.rules.multipleto.add");
+		spamRuleValues[1] = this.mozPrefBranch.getIntPref("antispam.rules.multipleto.every");
+
+		return spamRuleValues;
+	},
+	
+	
+	/** 
+	 * Gets the AntiHoax "multiple-to" (multiple recipients) rule values.
+	 * 
+	 * @return  the AntiHoax "multiple-to" rule values (add, every).
+	 */
+	getAntiHoaxMultipleToRuleValues: function() {
+		var hoaxRuleValues = new Array(2);
+		hoaxRuleValues[0] = this.mozPrefBranch.getIntPref("antihoax.rules.multipleto.add");
+		hoaxRuleValues[1] = this.mozPrefBranch.getIntPref("antihoax.rules.multipleto.every");
+
+		return hoaxRuleValues;
+	},
+	
+	
+	/** 
+	 * Gets the words that highly identify Spam emails.
+	 * 
+	 * @return  the Spam words.
+	 */
+	getSpamHighWords: function() {
+		var spamValue = new Array(1);
+		spamValue[0] = this.mozPrefBranch.getIntPref("antispam.words.high.value");
+		spamWords = this.mozPrefBranch.getCharPref("antispam.words.high").toLowerCase().split("\n");
+		
+		if( spamWords.length == 0 || (spamWords.length == 1 && spamWords[0] == "") ) {
+			return spamValue;
+		}
+		
+		return spamValue.concat( spamWords );
+	},
+	
+	
+	/** 
+	 * Gets the words that lowly identify Spam emails.
+	 * 
+	 * @return  the Spam words.
+	 */
+	getSpamLowWords: function() {
+		var spamValue = new Array(1);
+		spamValue[0] = this.mozPrefBranch.getIntPref("antispam.words.low.value");
+		spamWords = this.mozPrefBranch.getCharPref("antispam.words.low").toLowerCase().split("\n");
+		
+		if( spamWords.length == 0 || (spamWords.length == 1 && spamWords[0] == "") ) {
+			return spamValue;
+		}
+
+		return spamValue.concat( spamWords );
+	},
+	
+	
+	/** 
+	 * Gets the words that highly identify Hoax emails.
+	 * 
+	 * @return  the Hoax words.
+	 */
+	getHoaxHighWords: function() {
+		var hoaxValue = new Array(1);
+		hoaxValue[0] = this.mozPrefBranch.getIntPref("antihoax.words.high.value");
+		hoaxWords = this.mozPrefBranch.getCharPref("antihoax.words.high").toLowerCase().split("\n");
+		
+		if( hoaxWords.length == 0 || (hoaxWords.length == 1 && hoaxWords[0] == "") ) {
+			return hoaxValue;
+		}
+		
+		return hoaxValue.concat( hoaxWords );
+	},
+	
+	
+	/** 
+	 * Gets the words that lowly identify Hoax emails.
+	 * 
+	 * @return  the Hoax words.
+	 */
+	getHoaxLowWords: function() {
+		var hoaxValue = new Array(1);
+		hoaxValue[0] = this.mozPrefBranch.getIntPref("antihoax.words.low.value");
+		hoaxWords = this.mozPrefBranch.getCharPref("antihoax.words.low").toLowerCase().split("\n");
+		
+		if( hoaxWords.length == 0 || (hoaxWords.length == 1 && hoaxWords[0] == "") ) {
+			return hoaxValue;
+		}
+		
+		return hoaxValue.concat( hoaxWords );
+	},
 	
 	/** 
 	 * Gets if the X-Spam-Status header preference is active or not.
@@ -187,6 +287,16 @@ emailsecurityplus.Preferences = {
 	
 	
 	/** 
+	 * Gets the whitelist.
+	 * 
+	 * @return  the whitelist.
+	 */
+	getWhitelist: function() {
+		return this.mozPrefBranch.getCharPref("whitelist").split("\n");
+	},
+	
+	
+	/** 
 	 * Add the number of new Spam found to the Spam counter.
 	 * 
 	 * @param numToAdd the number of new Spam found.
@@ -214,7 +324,7 @@ emailsecurityplus.Preferences = {
 	addToBlacklist: function(itemToAdd) {
 		let blacklist = this.mozPrefBranch.getCharPref("blacklist");
 		
-		if( blacklist == "" ) {
+		if ( blacklist == "" ) {
 			blacklist = itemToAdd;
 		}
 		else {  // blacklist.length != 1 || blacklist[0] != ""
@@ -222,12 +332,24 @@ emailsecurityplus.Preferences = {
 		}
 		
 		this.mozPrefBranch.setCharPref("blacklist", blacklist.replace(/[^\S\r\n]/g, "").replace(/[,;]/g, ""));
+	},
+	
+	
+	/** 
+	 * Add an email address or domain to the whitelist preference string.
+	 * 
+	 * @param itemToAdd  the email address or domain to be added to the whitelist preference array.
+	 */  
+	addToWhitelist: function(itemToAdd) {
+		let whitelist = this.mozPrefBranch.getCharPref("whitelist");
+		
+		if ( whitelist == "" ) {
+			whitelist = itemToAdd;
+		}
+		else {  // blacklist.length != 1 || blacklist[0] != ""
+			whitelist += "\n" + itemToAdd;
+		}
+		
+		this.mozPrefBranch.setCharPref("whitelist", whitelist.replace(/[^\S\r\n]/g, "").replace(/[,;]/g, ""));
 	}
 };
-
-
-
-/**
- * Constructor.
- */
-(function() { this.init(); }).apply(emailsecurityplus.Preferences);

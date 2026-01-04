@@ -1,16 +1,18 @@
 <!ENTITY window.title "Email Security Plus">
 <!ENTITY scan.title "Scanner">
 <!ENTITY scan.status "Statut:">
-<!ENTITY scan.status.scanning "E-mails de scan">
+<!ENTITY scan.status.scanning "Scan des e-mails">
 <!ENTITY scan.time.start "Début:">
 <!ENTITY scan.time.end "Fin:">
-<!ENTITY progress.caption "Progression du scan">
-<!ENTITY securityinfo.caption "Security info:">
+<!ENTITY progress.caption "Progression du Scan">
+<!ENTITY securityinfo.caption "Informations de Sécurité">
 <!ENTITY securityinfo.sender "Expéditeur:">
 <!ENTITY securityinfo.spamrate "Taux de Spam:">
-<!ENTITY securityinfo.received "Received:">
+<!ENTITY securityinfo.received "Destinataire:">
+<!ENTITY securityinfo.received.from "de">
+<!ENTITY securityinfo.received.by "par">
 <!ENTITY securityinfo.xspamstatus "X-Spam-Status:">
-<!ENTITY results.caption "Résumé du scan">
+<!ENTITY results.caption "Résumé du Scan">
 <!ENTITY results.folders "Dossiers scannés:">
 <!ENTITY results.emails "E-mails scannés:">
 <!ENTITY results.spam "Spam trouvé:">

@@ -4,13 +4,15 @@
 <!ENTITY scan.status.scanning "Сканирование электронной почты">
 <!ENTITY scan.time.start "Время начала:">
 <!ENTITY scan.time.end "Время окончания:">
-<!ENTITY progress.caption "Проверка хода">
-<!ENTITY securityinfo.caption "Security info:">
-<!ENTITY securityinfo.sender "отправителя:">
+<!ENTITY progress.caption "Проверка Xода">
+<!ENTITY securityinfo.caption "Security Information">
+<!ENTITY securityinfo.sender "Sender:">
 <!ENTITY securityinfo.spamrate "Spam Rate:">
 <!ENTITY securityinfo.received "Received:">
+<!ENTITY securityinfo.received.from "from">
+<!ENTITY securityinfo.received.by "by">
 <!ENTITY securityinfo.xspamstatus "X-Spam-Status:">
-<!ENTITY results.caption "Сканирование резюме">
+<!ENTITY results.caption "Сканирование Pезюме">
 <!ENTITY results.folders "Отсканированные папки:">
 <!ENTITY results.emails "Отсканированные е-мейл:">
 <!ENTITY results.spam "Спам найдено:">

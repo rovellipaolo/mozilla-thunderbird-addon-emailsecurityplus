@@ -2,15 +2,11 @@ content   emailsecurityplus                 chrome/content/
 resource  emailsecurityplus                 chrome/modules/
 skin      emailsecurityplus   classic/1.0   chrome/skin/
 
-locale    emailsecurityplus   en-US         chrome/locale/en-US/
-locale    emailsecurityplus   bg-BG         chrome/locale/bg-BG/
-locale    emailsecurityplus   da-DK         chrome/locale/da-DK/
+locale    emailsecurityplus   en-GB         chrome/locale/en-GB/
 locale    emailsecurityplus   es-ES         chrome/locale/es-ES/
 locale    emailsecurityplus   fr-FR         chrome/locale/fr-FR/
 locale    emailsecurityplus   it-IT         chrome/locale/it-IT/
 locale    emailsecurityplus   ru-RU         chrome/locale/ru-RU/
-locale    emailsecurityplus   sv-SE         chrome/locale/sv-SE/
-locale    emailsecurityplus   uk-UA         chrome/locale/uk-UA/
 
 style chrome://global/content/overlay.xul chrome://emailsecurityplus/skin/overlay.css
 style chrome://global/content/customizeToolbar.xul chrome://emailsecurityplus/skin/overlay.css

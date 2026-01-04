@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/css" href="chrome://emailsecurityplus/skin/msgHdrViewOverlay.css"?>
 
+<!DOCTYPE prefwindow SYSTEM "chrome://emailsecurityplus/locale/msgHdrViewOverlay.dtd">
+
 <!--
 @update 2012/06/18 15:04
 @author Paolo Rovelli
@@ -10,14 +12,14 @@
 	
 	<rows id="expandedHeader2Rows">
 		<row id="emailsecurityplus-expandedReceivedHeader">
-			<label id="emailsecurityplus-expandedReceivedHeaderLabel" class="headerName" value="Received" />
+			<label id="emailsecurityplus-expandedReceivedHeaderLabel" class="headerName" value="&securityinfo.received;" />
 			<hbox>
-				<label id="emailsecurityplus-ReceivedFromLabel" class="indLT3" value="" />
+				<label id="emailsecurityplus-ReceivedFromLabel" class="indLT3" value="&securityinfo.received.from;" />
 				<label id="emailsecurityplus-ReceivedFrom" class="indLT0" value="" />
 				<label id="emailsecurityplus-ReceivedIPFromL1" class="indLT0 indRG0" value="" />
 				<label id="emailsecurityplus-ReceivedIPFrom" class="indLT0 indRG0 bold" value="" />
 				<label id="emailsecurityplus-ReceivedIPFromL2" class="indLT0" value="" />
-				<label id="emailsecurityplus-ReceivedByLabel" class="indLT0" value="" />
+				<label id="emailsecurityplus-ReceivedByLabel" class="indLT0" value="&securityinfo.received.by;" />
 				<label id="emailsecurityplus-ReceivedBy" class="indLT0" value="" />
 				<label id="emailsecurityplus-ReceivedIPByL1" class="indLT0 indRG0" value="" />
 				<label id="emailsecurityplus-ReceivedIPBy" class="indLT0 indRG0 bold" value="" />
@@ -25,8 +27,8 @@
 			</hbox>
 		</row>
 		<row id="emailsecurityplus-expandedXSpamStatusHeader">
-			<label id="emailsecurityplus-expandedXSpamStatusHeaderLabel" class="headerName" value="X-Spam-Status" />
-			<mail-headerfield id="emailsecurityplus-XSpamStatus" headerValue="" />
+			<label id="emailsecurityplus-expandedXSpamStatusHeaderLabel" class="headerName" value="&securityinfo.xspamstatus;" />
+			<mail-headerfield id="emailsecurityplus-XSpamStatus" class="indLT3" headerValue="" />
 		</row>
 	</rows>
 </overlay>

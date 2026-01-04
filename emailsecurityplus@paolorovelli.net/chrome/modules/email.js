@@ -12,7 +12,7 @@ var EXPORTED_SYMBOLS = ["emailsecurityplus"];
 /** 
  * Defines the Email Security Plus NameSpace.
  */
-if( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
+if ( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
 
 
 //Import code modules:
@@ -80,11 +80,11 @@ emailsecurityplus.Email.prototype = {
 	get getEmailAddress() {
 		let mime2DecodedAuthor = this.header.mime2DecodedAuthor;  // the MIME2 decoded author of the message
 		
-		if( mime2DecodedAuthor != null ) {
+		if ( mime2DecodedAuthor != null ) {
 			var posStart = mime2DecodedAuthor.search(/</i);
 			var posEnd = mime2DecodedAuthor.search(/>/i);
 			
-			if( (posStart > -1) && (posEnd > posStart) ) {
+			if ( (posStart > -1) && (posEnd > posStart) ) {
 				return mime2DecodedAuthor.slice(posStart+1, posEnd);
 			}  // (posStart > -1) && (posEnd > posStart)
 		}  // mime2DecodedAuthor != null
@@ -126,14 +126,14 @@ emailsecurityplus.Email.prototype = {
 	get getXSpamScore() {
 		var spamStatus = this.header.getStringProperty("x-spam-status");
 		
-		if( spamStatus != null && spamStatus != "" ) {
+		if ( spamStatus != null && spamStatus != "" ) {
 			var scorePos = spamStatus.indexOf("score=");
 			
-			if( scorePos < 0 ) {
+			if ( scorePos < 0 ) {
 				scorePos = spamStatus.indexOf(" hits=");
 			}
 			
-			if( scorePos >= 0 ) {
+			if ( scorePos >= 0 ) {
 				return spamStatus.slice(scorePos + 6).slice(0,  spamStatus.indexOf(" "));
 			}
 		}
@@ -150,10 +150,10 @@ emailsecurityplus.Email.prototype = {
 	get getXSpamRequired() {
 		var spamStatus = this.header.getStringProperty("x-spam-status");
 		
-		if( spamStatus != null && spamStatus != "" ) {
+		if ( spamStatus != null && spamStatus != "" ) {
 			var requiredPos = spamStatus.indexOf("required=");
 			
-			if( requiredPos >= 0 ) {
+			if ( requiredPos >= 0 ) {
 				return spamStatus.slice(requiredPos + 9).slice(0,  spamStatus.indexOf(" "));
 			}
 		}
@@ -171,11 +171,11 @@ emailsecurityplus.Email.prototype = {
 		xSpamScore = this.getXSpamScore;
 		xSpamRequired = this.getXSpamRequired;
 		
-		if( xSpamScore < 0 ) {
+		if ( xSpamScore < 0 ) {
 			xSpamScore = 0;
 		}
 		
-		if( xSpamScore != "---" && xSpamRequired != "---" ) {
+		if ( xSpamScore != "---" && xSpamRequired != "---" ) {
 			return Math.round( (xSpamScore * 100) / xSpamRequired ) + "%";  // round a number to the nearest integer
 		}
 		
@@ -198,29 +198,29 @@ emailsecurityplus.Email.prototype = {
 		
 		try {
 			messageService.streamMessage(this.uri, messageStream, null, null, false, null);
-		} catch (ex) {
+		} catch (e) {
 			return null;
 		}
 		
 		var content = "";
 		
-		while( inputStream.available() ) {
+		while ( inputStream.available() ) {
 			content = content + inputStream.read(512);
 			
 			var p = content.indexOf("\r\n\r\n");
-			if( p > 0 ) {
+			if ( p > 0 ) {
 				content = content.substring(0, p);
 				break;
 			}
 			
 			p = content.indexOf("\r\r");
-			if( p > 0 ) {
+			if ( p > 0 ) {
 				content = content.substring(0, p);
 				break;
 			}
 			
 			p = content.indexOf("\n\n");
-			if( p > 0 ) {
+			if ( p > 0 ) {
 				content = content.substring(0, p);
 				break;
 			}
@@ -245,23 +245,23 @@ emailsecurityplus.Email.prototype = {
 		
 		var receivedHeader = this.getReceivedHeader;
 		
-		if( receivedHeader != null ) {
+		if ( receivedHeader != null ) {
 			var receivedHeaderArray = receivedHeader.split('\n');
 			
-			if( receivedHeaderArray.length > 0 ) {
+			if ( receivedHeaderArray.length > 0 ) {
 				var ctrlBy = false;
 				var ctrlFrom = false;
 				
-				for(var i = receivedHeaderArray.length - 1; i > 0; i--) {
+				for (var i = receivedHeaderArray.length - 1; i > 0; i--) {
 					var posBy;
 					
 					//Debug messages:
 					//dump("[" + i + " receivedHeaderArray: " + receivedHeaderArray[i] + "\n");
 					
-					if( !ctrlBy ) {
+					if ( !ctrlBy ) {
 						//Looks for 'by' statement in the Received line:
 						posBy = receivedHeaderArray[i].indexOf('by ');
-						if( posBy >= 0 ) {  // "Received: from ... by ns384418.ovh.net"
+						if ( posBy >= 0 ) {  // "Received: from ... by ns384418.ovh.net"
 							ctrlBy = true;
 							
 							received[2] = receivedHeaderArray[i].slice(posBy + 3);
@@ -275,7 +275,7 @@ emailsecurityplus.Email.prototype = {
 							var byString = receivedHeaderArray[i].slice(posBy + 3, receivedHeaderArray[i].length);
 							received[3] = byString.match(regexpIPAddress);  // "Received: from ... by ... (8.6.023.02)"
 							
-							if( received[3] != null ) {
+							if ( received[3] != null ) {
 								received[3] = received[3][0];
 								
 								//Debug messages:
@@ -285,14 +285,14 @@ emailsecurityplus.Email.prototype = {
 					}  // !ctrlBy
 					
 					
-					if( !ctrlFrom ) {
+					if ( !ctrlFrom ) {
 						//Looks for 'from' statement in the Received line:
 						var posFrom = receivedHeaderArray[i].indexOf('	from ');
-						if( posFrom >= 0 ) {  // "Received: from "
+						if ( posFrom >= 0 ) {  // "Received: from "
 							ctrlFrom = true;
 							
 							received[0] = receivedHeaderArray[i].slice(posFrom + 6);
-							if( received[0][0] == "[" ) {  // "Received: from [10.10.0.253]"
+							if ( received[0][0] == "[" ) {  // "Received: from [10.10.0.253]"
 								received[0] = received[0].slice(1, received[0].indexOf(']'));
 							}
 							else {  // "Received: from ns384418.ovh.net" or "Received: from nobody" or "Received: from unknown (HELO ns1.softnews.ro)"
@@ -310,15 +310,15 @@ emailsecurityplus.Email.prototype = {
 							//Debug messages:
 							//dump("> Received IP: " + receivedIP + "\n");
 							
-							if( receivedIP != null ) {
-								for(var j=0; j < receivedIP.length; j++) {
-									if( receivedIP[j] != received[0] ) {  // "Received: from [10.10.0.253] (193.226.140.133) by ..."
+							if ( receivedIP != null ) {
+								for (var j=0; j < receivedIP.length; j++) {
+									if ( receivedIP[j] != received[0] ) {  // "Received: from [10.10.0.253] (193.226.140.133) by ..."
 										received[1] = receivedIP[j];
 										
 										//Debug messages:
 										//dump("> Received IP (from): " + received[1] + "\n");
 										
-										if( receivedIP.length > j + 1 ) {  // "Received: from ... by ... (8.6.023.02)"
+										if ( receivedIP.length > j + 1 ) {  // "Received: from ... by ... (8.6.023.02)"
 											received[3] = receivedIP[j+1];
 											
 											//Debug messages:
@@ -333,7 +333,7 @@ emailsecurityplus.Email.prototype = {
 							
 							//Looks for 'by' statement in the Received line:
 							var posBy2 = receivedHeaderArray[i].indexOf('by ');
-							if( posBy2 >= 0 && posBy2 != posBy ) {  // "Received: from ... by ns384418.ovh.net"
+							if ( posBy2 >= 0 && posBy2 != posBy ) {  // "Received: from ... by ns384418.ovh.net"
 								ctrlBy = true;
 								
 								received[2] = receivedHeaderArray[i].slice(posBy2 + 3);
@@ -345,7 +345,7 @@ emailsecurityplus.Email.prototype = {
 						}  // posFrom >= 0
 					}  // !ctrlFrom
 					
-					if( ctrlBy && ctrlFrom ) {
+					if ( ctrlBy && ctrlFrom ) {
 						break;
 					}
 				}
@@ -365,11 +365,11 @@ emailsecurityplus.Email.prototype = {
 		let mozAbManager = Components.classes["@mozilla.org/abmanager;1"].getService(Components.interfaces.nsIAbManager);
 		let mozAllAddressBooks = mozAbManager.directories;
 		
-		while( mozAllAddressBooks.hasMoreElements() ) {
+		while ( mozAllAddressBooks.hasMoreElements() ) {
 			let addressBook = mozAllAddressBooks.getNext().QueryInterface(Components.interfaces.nsIAbDirectory);
 			
-			if( addressBook instanceof Components.interfaces.nsIAbDirectory ) {  // nsIAbItem or nsIAbCollection
-				if( addressBook.cardForEmailAddress( this.author ) != null ) {
+			if ( addressBook instanceof Components.interfaces.nsIAbDirectory ) {  // nsIAbItem or nsIAbCollection
+				if ( addressBook.cardForEmailAddress( this.author ) != null ) {
 					return true;  // the email address IS present inside the Address Book!
 				}
 			}
@@ -380,115 +380,103 @@ emailsecurityplus.Email.prototype = {
 	
 	
 	/** 
-	 * Gets if an email is Spam or not.
-	 * 
-	 * @return  true if an email is flagged like Spam, false otherwise.
-	 */
-	get isSpam() {
-		return ( this.spamScore >= emailsecurityplus.Preferences.getSpamMinValue() );
-	},
-	
-	
-	/** 
 	 * Gets the Spam score of the email.
 	 * 
 	 * @return  true if an email is flagged like Spam, false otherwise.
 	 */
 	get checkSpam() {
-		var spamSwitch = 0;  // unknown email address
-		var spamGap = 25;  // the lenght of the sub-array for searching complex Spam keyword
+		var spamThreshold;  // the Spam score threshold
+		var spamNoToRuleValue;  // the AntiSpam "no-to" rule value
+		var spamMultipleToRuleValues;  // the AntiSpam "multiple-to" rule values: [0: add, 1: every]
+		var spamWords = new Array(2);  // Spam words: high and low
+
+		
+		/* --- BEGIN Sender analysis (known or unknown): --- */		
+		if ( this.isEmailAddressInAddressBooks ) {  // the author email address IS present inside Address Books!
+			//HOAX:
+			spamThreshold = emailsecurityplus.Preferences.getHoaxMinValue();
+
+			spamNoToRuleValue = emailsecurityplus.Preferences.getAntiHoaxNoToRuleValue();
+			spamMultipleToRuleValues = emailsecurityplus.Preferences.getAntiHoaxMultipleToRuleValues();
+
+			spamWords[0] = emailsecurityplus.Preferences.getHoaxHighWords();
+			spamWords[1] = emailsecurityplus.Preferences.getHoaxLowWords();
+		}
+		else {  // !this.isEmailAddressInAddressBooks()  // the author email address is NOT present inside Address Books!
+			//SPAM:
+			spamThreshold = emailsecurityplus.Preferences.getSpamMinValue();
+
+			spamNoToRuleValue = emailsecurityplus.Preferences.getAntiSpamNoToRuleValue();
+			spamMultipleToRuleValues = emailsecurityplus.Preferences.getAntiSpamMultipleToRuleValues();
+
+			spamWords[0] = emailsecurityplus.Preferences.getSpamHighWords();
+			spamWords[1] = emailsecurityplus.Preferences.getSpamLowWords();
+		}
+		/* --- ENG Sender analysis (known or unknown). --- */
+
+
+		//Debug messages:
+		//dump("> If no recipient is included add: " + spamNoToRuleValue + "\n");
+		//dump("> If there are multiple recipients add: " + spamMultipleToRuleValues[0] + " every " + spamMultipleToRuleValues[1] + " (recipients)\n");
+
 		
 		/* --- BEGIN Recipients reading: --- */
-		if( this.recipients == "" || this.recipients == "undisclosed-recipients:;" ) {
-			this.spamScore += 5;
+		if ( this.recipients == "" || this.recipients == "undisclosed-recipients:;" ) {
+			this.spamScore += spamNoToRuleValue;
+		}
+
+		var numberOfRecipients = this.cc.match(/@/g);
+		if ( numberOfRecipients != null ) {
+			this.spamScore += Math.floor(numberOfRecipients.length / spamMultipleToRuleValues[1]) * spamMultipleToRuleValues[0];  // spamMultipleToRuleValues[0] for each spamMultipleToRuleValues[1] recipients in CC...
 		}
 		/* --- END Recipients reading. --- */
+
 		
-		if( this.isEmailAddressInAddressBooks ) {  // the author email address IS present inside Address Books!
-			spamSwitch = 1;
-			spamGap = 75;
-			
-			var numberOfRecipients = this.cc.match(/@/g);
-			if( numberOfRecipients != null ) {
-				this.spamScore += Math.floor(numberOfRecipients.length / 10);  // +1 for each 10 recipients in CC...
-			}
-		}  // this.isEmailAddressInAddressBooks()
-		
-		let words = (this.subject + " " + this.body).toLowerCase();
+		let emailWords = (this.subject + " " + this.body).toLowerCase();
+
 		
 		/* --- BEGIN Detection of spam words: --- */
 		/*
 		 * Checks if the words of the email (words Array) are equals to the Spam words (spamKeywords).
-		 * It adds (to spamScore) the corresponding value of each Spam word found (as specified in the spamKeywords matrix)
-		 * and it stops when this score reaches the minimum value that marks an email as Spam (emailsecurityplus.Preferences.getSpamMinValue()).
-		*/
-		for(let i=0; i < emailsecurityplus.Preferences.spamKeywords[spamSwitch].length; i++) {
-			let keyPos = words.indexOf( emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][0][0] );
-			
-			if( keyPos >= 0 ) {  // there is (at least) one occurrence of the first Spam keyword in the sub-array (e.g. "offerta")
-				this.spamScore += emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][1][0];
-				
-				//Debug messages:
-				//dump("> Scan: " + emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][0][0] + " (" + emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][1][0] + ")\n");
-				
-				if( this.isSpam ) {  // this is Spam!!!
-					return true;
-				}
-				
-				if( emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][0].length > 1 ) {
-					let string = words.substr(keyPos+(emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][0][0].length)+1, spamGap);
+		 * It adds (to spamScore) the corresponding value of each Spam word found and it stops when this score reaches the score threashold (emailsecurityplus.Preferences.getSpamMinValue()).
+		 */
+
+		for(let s=0; s < 2; s++) {  // Spam words: high and low
+			//Debug messages:
+			//dump("> Spam words lengh: " + spamWords[s].length + "\n");
+			//dump("> Spam words value: " + spamWords[s][0] + "\n");
+			//dump("> Spam words: " + spamWords[s] + "\n");
+
+			for (let i=1; i < spamWords[s].length; i++) {
+				let keyPos = emailWords.indexOf( spamWords[s][i] );
+
+				if ( keyPos >= 0 ) {  // there is (at least) one occurrence of the Spam word...
+					this.spamScore += spamWords[s][0];
 					
-					for(let j=1; j < emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][0].length; j++) {
-						if( string.indexOf( emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][0][j] ) == 0  ) {  // there is an occurrence of the complex Spam keyword in the sub-array (e.g. "disponibile solo" => "offerta disponibile solo")
-							this.spamScore += emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][1][j];
-							
-							//Debug messages:
-							//dump("> Scan: " + emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][0][j] + " (" + emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][1][j] + ")\n");
-							
-							if( this.isSpam ) {  // this is Spam!!!
-								return true;
-							}
-							
-							break;
-						}
+					//Debug messages:
+					dump("> Scan: " + spamWords[s][i] + " (" + spamWords[s][0] + ")\n");
+					
+					if ( this.spamScore >= spamThreshold ) {  // this is Spam!!!
+						return true;
 					}
 				}
-			}
-			
-			lastKeyPos = words.lastIndexOf( emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][0][0] );
-			
-			if( lastKeyPos != keyPos ) {  // there are a second occurrence of the first Spam keyword in the sub-array (e.g. "offerta")
-				this.spamScore += emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][1][0];
 				
-				//Debug messages:
-				//dump("> Scan2: " + emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][0][0] + " (" + emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][1][0] + ")\n");
+				lastKeyPos = emailWords.lastIndexOf( spamWords[s][i] );
 				
-				if( this.isSpam ) {  // this is Spam!!!
-					return true;
-				}
-				
-				
-				if( emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][0].length > 1 ) {
-					string = words.substr(lastKeyPos+(emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][0][0].length)+1, spamGap);
+				if ( lastKeyPos != keyPos ) {  // there are a second occurrence of the first Spam keyword in the sub-array (e.g. "offerta")
+					this.spamScore += spamWords[s][0];
 					
-					for(let j=1; j < emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][0].length; j++) {
-						if( string.indexOf( emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][0][j] ) == 0 ) {  // there is an second occurrence of the complex Spam keyword in the sub-array (e.g. "disponibile solo" => "offerta disponibile solo")
-							this.spamScore += emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][1][j];
-							
-							//Debug messages:
-							//dump("> Scan2: " + emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][0][j] + " (" + emailsecurityplus.Preferences.spamKeywords[spamSwitch][i][1][j] + ")\n");
-							
-							if( this.isSpam ) {  // this is Spam!!!
-								return true;
-							}
-							
-							break;
-						}
+					//Debug messages:
+					dump("> Scan: " + spamWords[s][i] + " (" + spamWords[s][0] + ")\n");
+					
+					if ( this.spamScore >= spamThreshold ) {  // this is Spam!!!
+						return true;
 					}
 				}
 			}
 		}
 		/* --- END Detection of spam words. --- */
+
 		
 		//Debug messages:
 		//dump("> Scan email: " + this.id + " (" + this.spamScore + ")\n");

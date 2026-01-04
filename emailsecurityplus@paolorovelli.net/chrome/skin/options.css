@@ -8,7 +8,8 @@
 
 caption {
 	margin: 5px 0;
-	font-size: 110%;
+	font-size: 120%;
+	font-weight: bold;
 }
 
 .center {
@@ -19,9 +20,36 @@ caption {
 	margin-top: 0px;
 	padding-top: 0px;
 }
+.indTP5 {
+	padding-top: 5px;
+}
 .indBT0 {
 	margin-bottom: 0px;
 	padding-bottom: 0px;
+}
+.indBT5 {
+	margin-bottom: 5px;
+	padding-bottom: 0px;
+}
+.indBT10 {
+	margin-bottom: 10px;
+	padding-bottom: 0px;
+}
+.indBT15 {
+	margin-bottom: 15px;
+	padding-bottom: 0px;
+}
+.indBT25 {
+	margin-bottom: 25px;
+	padding-bottom: 0px;
+}
+.indLT0 {
+	margin-left: 0px;
+	padding-left: 0px;
+}
+.indRG0 {
+	margin-right: 0px;
+	padding-right: 0px;
 }
 .indLT5 {
 	padding-left: 5px;
@@ -32,7 +60,7 @@ caption {
 .indLT10 {
 	margin-left: 10px;
 }
-.indLT10 {
+.indRG10 {
 	padding-right: 10px;
 }
 .indLT18 {
@@ -59,6 +87,10 @@ caption {
 	color: #000000;
 }
 
+.grey {
+	color: #A2A2A2;
+}
+
 .darkgrey {
 	color: #4F4F4F;
 }
@@ -75,14 +107,13 @@ caption {
 
 /* Preferences */
 
-#emailsecurityplus-Preferences .paneButtonIcon {margin-left: 35px; margin-right: 35px; width: 32px;}
+#emailsecurityplus-Preferences .paneButtonIcon {
+	margin-left: 35px;
+	margin-right: 35px;
+	width: 32px;
+}
 
 #emailsecurityplus-Preferences .legend {
-	margin-bottom: 10px;
-	color: #A2A2A2;
-	font-size: 80%;
-}
-#emailsecurityplus-Preferences .legendMulti {
 	color: #A2A2A2;
 	font-size: 80%;
 }

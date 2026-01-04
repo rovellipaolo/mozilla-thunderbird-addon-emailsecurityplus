@@ -29,8 +29,10 @@
 	<!-- Mail/Thread Pane Context Menu -->
 	<popup id="mailContext">
 		<menuitem id="emailsecurityplus-ScanItem" label="&scan.item.label;" tooltiptext="&scan.item.tooltip;" image="chrome://emailsecurityplus/skin/scanButton_small.png" oncommand="emailsecurityplus.Buttons.scan();" insertbefore="mailContext-openNewWindow" />
-		<menuitem id="emailsecurityplus-AddEmailToBlacklist" label="&blacklist.email.item.label;" tooltiptext="&blacklist.email.item.tooltip;" image="chrome://emailsecurityplus/skin/blacklist_small.png" oncommand="emailsecurityplus.Buttons.addToBlacklist();" insertafter="mailContext-mark" />
-		<menuitem id="emailsecurityplus-AddDomainToBlacklist" label="&blacklist.domain.item.label;" tooltiptext="&blacklist.domain.item.tooltip;" image="chrome://emailsecurityplus/skin/blacklist_small.png" oncommand="emailsecurityplus.Buttons.addToBlacklist(true);" insertafter="emailsecurityplus-AddEmailToBlacklist" />
+		<menuitem id="emailsecurityplus-AddEmailToBlacklist" label="&blacklist.email.item.label;" tooltiptext="&blacklist.email.item.tooltip;" image="chrome://emailsecurityplus/skin/emailsecurityplus_small.png" oncommand="emailsecurityplus.Buttons.addToBlacklist();" insertafter="mailContext-mark" />
+		<menuitem id="emailsecurityplus-AddDomainToBlacklist" label="&blacklist.domain.item.label;" tooltiptext="&blacklist.domain.item.tooltip;" image="chrome://emailsecurityplus/skin/emailsecurityplus_small.png" oncommand="emailsecurityplus.Buttons.addToBlacklist(true);" insertafter="emailsecurityplus-AddEmailToBlacklist" />
+		<menuitem id="emailsecurityplus-AddEmailToWhitelist" label="&whitelist.email.item.label;" tooltiptext="&whitelist.email.item.tooltip;" image="chrome://emailsecurityplus/skin/emailsecurityplus_small.png" oncommand="emailsecurityplus.Buttons.addToWhitelist();" insertafter="emailsecurityplus-AddDomainToBlacklist" />
+		<menuitem id="emailsecurityplus-AddDomainToWhitelist" label="&whitelist.domain.item.label;" tooltiptext="&whitelist.domain.item.tooltip;" image="chrome://emailsecurityplus/skin/emailsecurityplus_small.png" oncommand="emailsecurityplus.Buttons.addToWhitelist(true);" insertafter="emailsecurityplus-AddEmailToWhitelist" />
 	</popup>
 	
 	<!-- Folder Pane Context Menu -->

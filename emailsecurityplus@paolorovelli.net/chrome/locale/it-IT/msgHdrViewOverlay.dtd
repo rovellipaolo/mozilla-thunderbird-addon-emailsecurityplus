@@ -1,0 +1,4 @@
+<!ENTITY securityinfo.received "Ricevuto:">
+<!ENTITY securityinfo.received.from "da">
+<!ENTITY securityinfo.received.by "attraverso">
+<!ENTITY securityinfo.xspamstatus "X-Spam-Status:">

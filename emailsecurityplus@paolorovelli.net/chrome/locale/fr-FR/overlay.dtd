@@ -1,4 +1,4 @@
-<!ENTITY statusbar.label "ES+">
+<!ENTITY statusbar.label "Email Security Plus">
 <!ENTITY treecol.label "Taux de Spam">
 <!ENTITY treecol.tooltip "Cliquez pour trier par Taux de Spam">
 <!ENTITY scan.button.label "Scanner...">
@@ -13,3 +13,7 @@
 <!ENTITY blacklist.email.item.tooltip "Ajouter l'adresse e-mail de l'expéditeur à la Liste Noire">
 <!ENTITY blacklist.domain.item.label "Bloquer le domaine de l'expéditeur">
 <!ENTITY blacklist.domain.item.tooltip "Ajouter le domaine de l'expéditeur à la Liste Noire">
+<!ENTITY whitelist.email.item.label "Faire confiance à l’adresse email de l’expéditeur">
+<!ENTITY whitelist.email.item.tooltip "Ajouter l'adresse e-mail de l'expéditeur à la Liste Blanche">
+<!ENTITY whitelist.domain.item.label "Faire confiance au domaine de l’expéditeur">
+<!ENTITY whitelist.domain.item.tooltip "Ajouter le domaine de l'expéditeur à la Liste Blanche">

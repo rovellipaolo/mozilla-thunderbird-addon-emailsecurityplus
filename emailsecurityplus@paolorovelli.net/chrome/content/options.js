@@ -9,7 +9,7 @@
 /** 
  * Defines the Email Security Plus NameSpace.
  */
-if( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
+if ( typeof emailsecurityplus == "undefined" ) { var emailsecurityplus = {}; }
 
 
 //Import code modules:
@@ -40,7 +40,7 @@ emailsecurityplus.Options = {
 	 * @param url  an URL (without "http://" or "mailto:").
 	 */
 	openURL: function(url) {
-		if( url.substring(0,4) == "www." ) {
+		if ( url.substring(0,4) == "www." ) {
 			url = "http://" + url;
 		}
 		else {  // url.substring(0,4) != "www."
@@ -52,7 +52,7 @@ emailsecurityplus.Options = {
 		
 		let uri = ios.newURI(url, null, null);
 		
-		if( !protocolSvc.isExposedProtocol(uri.scheme) ) {
+		if ( !protocolSvc.isExposedProtocol(uri.scheme) ) {
 			protocolSvc.loadUrl(uri);
 		}
 		else {  // protocolSvc.isExposedProtocol(uri.scheme)
@@ -72,16 +72,91 @@ emailsecurityplus.Options = {
 
 
 	/**
-	 * Checks dependences.
+	 * Checks generic dependences.
+	 * 
+	 * @param check  true or false.
+	 * @param dependences  the class of the dependences.
 	 */
-	checkDependences: function() {
-		if( emailsecurityplus.Preferences.isScanActive() ) {  // swap: true -> false
-			//Disabling elements that depend from scan preference:
-			window.document.getElementById('emailsecurityplus-ScanFriendsList').setAttribute("disabled", "true");	
+	checkDependences: function(check, dependences) {
+		if ( check ) {  // swap: true -> false
+			//Disabling the elements that depend:
+			//window.document.getElementById(dependences).setAttribute("disabled", "true");
+			var elements = window.document.getElementsByClassName(dependences);
+
+			for (var i=0; i < elements.length; i++) { 
+				elements[i].setAttribute("disabled", "true");
+			}
 		}
-		else {  // !emailsecurityplus.Preferences.isScanActive()  // swap: false -> true
+		else {  // !check  // swap: false -> true
 			//Enabling back elements by removing the "disabled" attribute:
-			window.document.getElementById('emailsecurityplus-ScanFriendsList').removeAttribute("disabled");
+			//window.document.getElementById(dependences).removeAttribute("disabled");
+			var elements = window.document.getElementsByClassName(dependences);
+
+			for (var i=0; i < elements.length; i++) { 
+				elements[i].removeAttribute("disabled");
+			}
+		}
+	},
+
+
+	/**
+	 * Checks AntiSpam dependences.
+	 */
+	checkAntiSpamDependences: function() {
+		if ( emailsecurityplus.Preferences.isAntiSpamActive() ) {
+			//Disabling the elements that depend from the AntiSpam:
+			this.checkDependences(true, 'antispamActiveDependancies');
+		}
+		else {  // !emailsecurityplus.Preferences.isAntiSpamActive()
+			//Enabling back elements by removing the "disabled" attribute:
+			this.checkDependences(false, 'antispamActiveDependancies');
+		}
+	},
+
+
+	/**
+	 * Checks AntiHoax dependences.
+	 */
+	checkAntiHoaxDependences: function() {
+		if ( emailsecurityplus.Preferences.isAntiHoaxActive() ) {
+			//Disabling the elements that depend from the AntiHoax:
+			this.checkDependences(true, 'antihoaxActiveDependancies');
+		}
+
+		else {  // !emailsecurityplus.Preferences.isAntiSpamActive()
+			//Enabling back elements by removing the "disabled" attribute:
+			this.checkDependences(false, 'antihoaxActiveDependancies');
+		}
+	},
+
+
+	/**
+	 * Checks Blacklist dependences.
+	 */
+	checkBlacklistDependences: function() {
+		if ( emailsecurityplus.Preferences.isBlacklistActive() ) {
+			//Disabling the elements that depend from the blacklist:
+			this.checkDependences(true, 'blacklistActiveDependancies');
+		}
+		else {  // !emailsecurityplus.Preferences.isBlacklistActive()
+			//Enabling back elements by removing the "disabled" attribute:
+			this.checkDependences(false, 'blacklistActiveDependancies');
+		}
+	},
+
+
+	/**
+	 * Checks Whitelist dependences.
+	 */
+	checkWhitelistDependences: function() {
+		
+		if ( emailsecurityplus.Preferences.isWhitelistActive() ) {
+			//Disabling the elements that depend from the whitelist:
+			this.checkDependences(true, 'whitelistActiveDependancies');
+		}
+		else {  // !emailsecurityplus.Preferences.isWhitelistActive()
+			//Enabling back elements by removing the "disabled" attribute:
+			this.checkDependences(false, 'whitelistActiveDependancies');
 		}
 	},
 	
@@ -90,9 +165,24 @@ emailsecurityplus.Options = {
 	 * Loads dependences.
 	 */
 	loadDependences: function() {
-		if( !emailsecurityplus.Preferences.isScanActive() ) {  // does NOT automatically scan incoming emails
-			//Disabling elements that depend from scan preference:
-			window.document.getElementById('emailsecurityplus-ScanFriendsList').setAttribute("disabled", "true");
+		if ( !emailsecurityplus.Preferences.isAntiSpamActive() ) {
+			//Disabling the elements that depend from the AntiSpam:
+			this.checkDependences(true, 'antispamActiveDependancies');
+		}
+
+		if ( !emailsecurityplus.Preferences.isAntiHoaxActive() ) {
+			//Disabling the elements that depend from the AntiHoax:
+			this.checkDependences(true, 'antihoaxActiveDependancies');
+		}
+
+		if ( !emailsecurityplus.Preferences.isBlacklistActive() ) {
+			//Disabling the elements that depend from the blacklist:
+			this.checkDependences(true, 'blacklistActiveDependancies');
+		}
+
+		if ( !emailsecurityplus.Preferences.isWhitelistActive() ) {
+			//Disabling the elements that depend from the whitelist:
+			this.checkDependences(true, 'whitelistActiveDependancies');
 		}
 	}
 };

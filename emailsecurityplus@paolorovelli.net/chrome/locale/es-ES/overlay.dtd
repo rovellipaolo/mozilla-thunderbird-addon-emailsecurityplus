@@ -1,15 +1,20 @@
-<!ENTITY statusbar.label "ES+">
+<!ENTITY statusbar.label "Email Security Plus">
 <!ENTITY treecol.label "Tasa de Spam">
 <!ENTITY treecol.tooltip "Haga clic para ordenar por Tasa de Spam">
-<!ENTITY scan.button.label "Escanear...">
-<!ENTITY scan.button.tooltip "Escanear...">
-<!ENTITY scan.item.label "Escanea Mensaje">
-<!ENTITY scan.item.tooltip "Escanea Mensaje">
+<!ENTITY scan.button.label "Escanear">
+<!ENTITY scan.button.tooltip "Escanear">
+<!ENTITY scan.item.label "Escanear Mensaje">
+<!ENTITY scan.item.tooltip "Escanear Mensaje">
 <!ENTITY source.button.label "Fuente">
 <!ENTITY source.button.tooltip "Ver la Fuente del Mensaje">
 <!ENTITY options.item.label "Email Security Plus">
 <!ENTITY options.item.tooltip "Email Security Plus">
-<!ENTITY blacklist.email.item.label "Bloquea la dirección email del remitente">
-<!ENTITY blacklist.email.item.tooltip "Agrega la dirección email del remitente a la Blacklist">
+<!ENTITY blacklist.email.item.label "Bloquea la dirección e-mail del remitente">
+<!ENTITY blacklist.email.item.tooltip "Agregar la dirección e-mail del remitente a la Blacklist">
 <!ENTITY blacklist.domain.item.label "Bloquea el dominio del remitente">
-<!ENTITY blacklist.domain.item.tooltip "Agrega el dominio de los remitentes a la Blacklist">
+<!ENTITY blacklist.domain.item.tooltip "Agregar el dominio de los remitentes a la Blacklist">
+<!ENTITY whitelist.email.item.label "Confiar en la dirección de e-mail del remitente">
+<!ENTITY whitelist.email.item.tooltip "Agregar la dirección e-mail del remitente a la Whitelist">
+<!ENTITY whitelist.domain.item.label "Confiar en el dominio del remitente">
+<!ENTITY whitelist.domain.item.tooltip "Agregar el dominio de los remitentes a la Whitelist">
+

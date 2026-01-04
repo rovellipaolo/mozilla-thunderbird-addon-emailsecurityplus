@@ -12,7 +12,7 @@ var EXPORTED_SYMBOLS = ["emailsecurityplus"];
 /** 
  * Defines the Email Security Plus NameSpace.
  */
-if( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
+if ( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
 
 
 //Import code modules:
@@ -33,11 +33,11 @@ emailsecurityplus.Overlay = {
 	 * @return  the formatted Spam counter label [SpamFoundPercentage (spamTotalCounter/emailTotalCounter)].
 	 */
 	statusbarOverlay: function(emailCounter, spamCounter) {
-		if( emailCounter > 0 ) {
+		if ( emailCounter > 0 ) {
 			emailsecurityplus.Preferences.addToEmailCounter(emailCounter);
 		}
 		
-		if( spamCounter > 0 ) {
+		if ( spamCounter > 0 ) {
 			emailsecurityplus.Preferences.addToSpamCounter(spamCounter);
 		}
 		

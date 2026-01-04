@@ -1,11 +1,11 @@
-<!ENTITY window.title "Email Security Plus Предпочтения">
+<!ENTITY window.title "Email Security Plus Preferences">
 <!ENTITY emailsecurity.email "emailsecurity@paolorovelli.net">
 <!ENTITY emailsecurity.url "www.paolorovelli.net/software/emailsecurityplus">
 <!ENTITY settings.general.title "General">
 <!ENTITY settings.general.caption "General">
 <!ENTITY antispam.title "AntiSpam">
 <!ENTITY antispam.caption "Spam Emails">
-<!ENTITY antispam.active.label "AntiSpam activated (рекомендуется, требуется перезапуск)">
+<!ENTITY antispam.active.label "AntiSpam activated (recommended, requires restart)">
 <!ENTITY antispam.active.accesskey "S">
 <!ENTITY antispam.active.legend "*Automatically scan incoming emails from unknown senders.">
 <!ENTITY antispam.delete.label "Automatically delete incoming emails marked as Spam">
@@ -22,10 +22,10 @@
 <!ENTITY antispam.words.label2 "When one or more words are found, the relative value is added to the email (Spam) score.">
 <!ENTITY antispam.words.high.label "Value of the following Spam words:">
 <!ENTITY antispam.words.low.label "Value of the following Spam words:">
-<!ENTITY antispam.words.legend "*IMPORTANT: put only one word (e.g. 'Spam') or a sentece (e.g. 'This is a Spam message') for each row.">
+<!ENTITY antispam.words.legend "*IMPORTANT: put only one word (e.g. 'Spam') or a sentence (e.g. 'This is a Spam message') for each row.">
 <!ENTITY antihoax.title "AntiHoax">
 <!ENTITY antihoax.caption "Hoax Emails">
-<!ENTITY antihoax.active.label "AntiHoax activated (рекомендуется, требуется перезапуск)">
+<!ENTITY antihoax.active.label "AntiHoax activated (recommended, requires restart)">
 <!ENTITY antihoax.active.accesskey "H">
 <!ENTITY antihoax.active.legend "*Automatically scan incoming emails from known senders (those who are in the Address Book).">
 <!ENTITY antihoax.delete.label "Automatically delete incoming emails marked as Hoax">
@@ -33,7 +33,7 @@
 <!ENTITY antihoax.threshold.label "Hoax score threshold:">
 <!ENTITY antihoax.threshold.legend "*The Hoax score threshold is the minimum score at which an email is marked as Hoax.">
 <!ENTITY antihoax.rules.caption "Hoax Rules">
-<!ENTITY antihoax.rules.noto.label "If no recipient is included add:">
+<!ENTITY antihoax.rules.noto.label "If no recipient is included add: ">
 <!ENTITY antihoax.rules.multipleto.label "If there are multiple recipients add:">
 <!ENTITY antihoax.rules.multipleto.label2 "every">
 <!ENTITY antihoax.rules.multipleto.label3 "(recipients)">
@@ -43,22 +43,22 @@
 <!ENTITY antihoax.words.high.label "Value of the following Hoax words:">
 <!ENTITY antihoax.words.low.label "Value of the following Hoax words:">
 <!ENTITY antihoax.words.legend "*IMPORTANT: put only one word (e.g. 'Hoax') or a sentece (e.g. 'This is a Hoax message') for each row.">
-<!ENTITY blacklist.title "Черном списке">
-<!ENTITY blacklist.caption "заблокированных отправителей">
-<!ENTITY blacklist.active.label "Blacklist activated (требуется перезапуск)">
+<!ENTITY blacklist.title "Blacklist">
+<!ENTITY blacklist.caption "Blocked Senders">
+<!ENTITY blacklist.active.label "Blacklist activated (requires restart)">
 <!ENTITY blacklist.active.accesskey "B">
 <!ENTITY blacklist.active.legend "*All the incoming emails from blocked senders are automatically marked as junk.">
 <!ENTITY blacklist.delete.label "Automatically delete incoming emails from blocked senders">
 <!ENTITY blacklist.delete.accesskey "d">
-<!ENTITY blacklist.label "Заблокированные адреса электронной почты:">
-<!ENTITY blacklist.legend "*ВАЖНО: поставить только один адрес электронной почты (e.g. user@domain.ru) или домен (e.g. @domain.ru) для каждой строки.">
+<!ENTITY blacklist.label "Blocked email addresses:">
+<!ENTITY blacklist.legend "*IMPORTANT: put only one email address (e.g. user@domain.us) or domain (e.g. @domain.us) for each row.">
 <!ENTITY whitelist.title "Whitelist">
 <!ENTITY whitelist.caption "Trusted Senders">
 <!ENTITY whitelist.active.label "Whitelist activated (requires restart)">
 <!ENTITY whitelist.active.legend "*All the incoming emails from trusted senders are NOT scanned.">
 <!ENTITY whitelist.active.accesskey "W">
 <!ENTITY whitelist.label "Trusted email addresses:">
-<!ENTITY whitelist.legend "*ВАЖНО: поставить только один адрес электронной почты (e.g. user@domain.ru) или домен (e.g. @domain.ru) для каждой строки.">
+<!ENTITY whitelist.legend "*IMPORTANT: put only one email address (e.g. user@domain.us) or domain (e.g. @domain.us) for each row.">
 <!ENTITY securityinfo.title "Security Information">
 <!ENTITY securityinfo.caption "Security Information">
 <!ENTITY securityinfo.xspamstatus.label "Show the X-Spam-Status header in the extended header view">
@@ -66,11 +66,11 @@
 <!ENTITY securityinfo.received.label "Show the Received header in the extended header view">
 <!ENTITY securityinfo.received.accesskey "R">
 <!ENTITY help.title "Help">
-<!ENTITY help.caption "Помогите">
+<!ENTITY help.caption "Help">
 <!ENTITY help.email "Email:">
 <!ENTITY help.website "Website:">
 <!ENTITY faq.caption "FAQ">
 <!ENTITY faq.url "Please, visit the web page:">
-<!ENTITY faq.question1 "Есть ли ошибки перевода?">
-<!ENTITY faq.answer1 "Пожалуйста, сообщите о них:">
+<!ENTITY faq.question1 "Are there translation errors?">
+<!ENTITY faq.answer1 "Please, report them to:">
 <!ENTITY faq.legend "*Help to improve Email Security Plus is also in your own interest.">

@@ -9,7 +9,7 @@
 /** 
  * Defines the Email Security Plus NameSpace.
  */
-if( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
+if ( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
 
 
 //Import code modules:
@@ -29,12 +29,10 @@ emailsecurityplus.MsgHdrViewOverlay = {
 	 */
 	resetExpandedHeader2Rows: function() {
 		//Clean the labels of the expandedHeader2Rows:
-		document.getElementById("emailsecurityplus-ReceivedFromLabel").setAttribute("value", "");
 		document.getElementById("emailsecurityplus-ReceivedFrom").setAttribute("value", "");
 		document.getElementById("emailsecurityplus-ReceivedIPFromL1").setAttribute("value", "");
 		document.getElementById("emailsecurityplus-ReceivedIPFrom").setAttribute("value", "");
 		document.getElementById("emailsecurityplus-ReceivedIPFromL2").setAttribute("value", "");
-		document.getElementById("emailsecurityplus-ReceivedByLabel").setAttribute("value", "");
 		document.getElementById("emailsecurityplus-ReceivedBy").setAttribute("value", "");
 		document.getElementById("emailsecurityplus-ReceivedIPByL1").setAttribute("value", "");
 		document.getElementById("emailsecurityplus-ReceivedIPBy").setAttribute("value", "");
@@ -55,7 +53,7 @@ emailsecurityplus.MsgHdrViewOverlay = {
 		
 		
 		//X-Spam-Status header:
-		if( emailsecurityplus.Preferences.isXSpamStatusHeaderActive() ) {
+		if ( emailsecurityplus.Preferences.isXSpamStatusHeaderActive() ) {
 			document.getElementById("emailsecurityplus-expandedXSpamStatusHeader").collapsed = false;
 			
 			var headerElement = document.getElementById("emailsecurityplus-XSpamStatus");
@@ -77,7 +75,7 @@ emailsecurityplus.MsgHdrViewOverlay = {
 		
 		
 		//Received header:
-		if( emailsecurityplus.Preferences.isReceivedHeaderActive() ) {
+		if ( emailsecurityplus.Preferences.isReceivedHeaderActive() ) {
 			document.getElementById("emailsecurityplus-expandedReceivedHeader").collapsed = false;
 			
 			var receivedHeader = email.getReceivedHeader;
@@ -91,24 +89,22 @@ emailsecurityplus.MsgHdrViewOverlay = {
 			 */
 			var received = email.getReceivedInfo;
 			
-			if( received[0] != null ) {
-				document.getElementById("emailsecurityplus-ReceivedFromLabel").setAttribute("value", "from");
+			if ( received[0] != null ) {
 				document.getElementById("emailsecurityplus-ReceivedFrom").setAttribute("value", received[0]);
 			}
 			
-			if( received[1] != null ) {
+			if ( received[1] != null ) {
 				document.getElementById("emailsecurityplus-ReceivedIPFromL1").setAttribute("value", "(");
 				document.getElementById("emailsecurityplus-ReceivedIPFromL2").setAttribute("value", ")");
 				
 				document.getElementById("emailsecurityplus-ReceivedIPFrom").setAttribute("value", received[1]);
 			}
 			
-			if( received[2] != null ) {
-				document.getElementById("emailsecurityplus-ReceivedByLabel").setAttribute("value", "by");
+			if ( received[2] != null ) {
 				document.getElementById("emailsecurityplus-ReceivedBy").setAttribute("value", received[2]);
 			}
 			
-			if( received[3] != null ) {
+			if ( received[3] != null ) {
 				document.getElementById("emailsecurityplus-ReceivedIPByL1").setAttribute("value", "(");
 				document.getElementById("emailsecurityplus-ReceivedIPByL2").setAttribute("value", ")");
 				
