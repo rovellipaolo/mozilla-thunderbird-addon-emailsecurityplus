@@ -6,25 +6,21 @@
  */
 
 
-
 var EXPORTED_SYMBOLS = ["emailsecurityplus"];
 
 
 /** 
- * Defines the Email Security Plus NameSpace.
+ * Defines the Email Security Plus namespace.
  */
 if ( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
 
 
-//Import code modules:
 Components.utils.import("resource://emailsecurityplus/preferences.js");
 Components.utils.import("resource://emailsecurityplus/email.js");
 
 
 /** 
  * Defines the Email Security Plus scan class.
- * 
- * @author Paolo Rovelli
  */
 emailsecurityplus.Scan = {
 	emailCounter: 0,
@@ -32,17 +28,6 @@ emailsecurityplus.Scan = {
 	folderCounter: 0,
 	progressCounter: 0,
 	
-	
-	
-	//Methods:
-		
-	/** 
-	 * Scans all the emails in the selected folders.
-	 * 
-	 * @param folders  the folders to be scanned.
-	 * @param gui  true if there is a GUI in which display the scan progress, false otherwise.
-	 * @return  the array (nsIMutableArray) of the email of Spam if at least one is Spam, false otherwise.
-	 */
 	scanFolders: function(folders, gui) {
 		var isSpamFound = false;
 		var spamList = Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
@@ -71,20 +56,12 @@ emailsecurityplus.Scan = {
 			return null;
 	},
 	
-	
-	/** 
-	 * Scans the displayed/selected emails.
-	 * 
-	 * @param emailURIs  the URIs of the emails to be scanned.
-	 * @param gui  true if there is a GUI in which display the scan progress, false otherwise.
-	 * @return  true if at least one email is Spam, false otherwise.
-	 */
 	scanEmails: function(emailURIs, gui) {
 		var isSpamFound = false;
 		
 		for each (let emailURI in emailURIs) {
 			let messenger = Components.classes["@mozilla.org/messenger;1"].createInstance(Components.interfaces.nsIMessenger);
-			let emailHeader = messenger.messageServiceFromURI(emailURI).messageURIToMsgHdr(emailURI);  // email header from the email URI
+			let emailHeader = messenger.messageServiceFromURI(emailURI).messageURIToMsgHdr(emailURI);
 			this.progressCounter += 100 / emailURIs.length;
 			
 			var email = new emailsecurityplus.Email(emailURI, emailHeader);
@@ -96,21 +73,12 @@ emailsecurityplus.Scan = {
 		
 		return isSpamFound;
 	},
-
-
-
-	/** 
-	 * Scan an email.
-	 * 
-	 * @param email  the email to be scanned (Email class).
-	 * @param gui  true if there is a GUI in which display the scan progress, false otherwise.
-	 * @return  true if the email is Spam, false otherwise.
-	 */
+	
 	scanEmail: function(email, gui) {
 		this.emailCounter++;
 		
-		//Update the scan window:
-		if ( gui == true && emailsecurityplus.ScanWindow != null ) {  // there is a GUI in which display the scan progress...
+		// Update the scan window:
+		if ( gui == true && emailsecurityplus.ScanWindow != null ) {
 			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanTimeEndLabel").setAttribute("style", "visibility: hidden;");
 			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ProgressBox").setAttribute("value", this.progressCounter);
 			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanEmail").setAttribute("value", email.folder.name + ":" + email.id);
@@ -124,10 +92,10 @@ emailsecurityplus.Scan = {
 				if ( emailsecurityplus.Scan.isInBlacklist(email.author) || emailsecurityplus.Scan.isInBlacklist(email.authorDomain) ) {  // the sender's email address or its domain is inside the Blacklist
 					emailSenderInfo += " (blacklisted)";
 				}
-			}  // email.author != null
+			}
 			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-EmailSender").setAttribute("value", emailSenderInfo);
 			
-			//Adds Spam information from the "Received" message's header:
+			// Adds Spam information from the "Received" message's header:
 			/**
 			 * emailReceivedInfo[0]: from
 			 * emailReceivedInfo[1]: by
@@ -144,15 +112,13 @@ emailsecurityplus.Scan = {
 			 */
 			var received = email.getReceivedInfo;
 
-			//Received From:
 			if ( received[0] != null ) {
 				emailReceivedInfo[0] = received[0];
 			}
 			if ( received[1] != null ) {
 				emailReceivedInfo[0] += " (" + received[1] + ")";
 			}
-
-			//Received By:
+			
 			if ( received[2] != null ) {
 				emailReceivedInfo[1] = received[2];
 			}
@@ -163,7 +129,7 @@ emailsecurityplus.Scan = {
 			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ReceivedHeaderFrom").setAttribute("value", emailReceivedInfo[0]);
 			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ReceivedHeaderBy").setAttribute("value", emailReceivedInfo[1]);
 			
-			//Adds Spam information from the "X-Spam-Status" message's header:
+			// Adds Spam information from the "X-Spam-Status" message's header:
 			var xSpamScore = email.getXSpamScore;
 			var xSpamRequired = email.getXSpamRequired
 			if ( xSpamScore != "---" && xSpamRequired != "---" ) {
@@ -176,19 +142,17 @@ emailsecurityplus.Scan = {
 		
 		if ( email.checkSpam ) {
 			this.spamCounter++;
-			
-			//Flag the email as Spam (junk):
 			this.markEmailAs(email, Components.interfaces.nsIJunkMailPlugin.JUNK, "100", "user");
 			
-			//Update the scan window:
-			if ( gui == true && emailsecurityplus.ScanWindow != null ) {  // there is a GUI in which display the scan progress...
+			// Update the scan window:
+			if ( gui == true && emailsecurityplus.ScanWindow != null ) {
 				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanSpamCounter").setAttribute("value", this.spamCounter);
 				
 				var spamScoreLabel = (email.spamScore * 100 / emailsecurityplus.Preferences.getSpamMinValue()).toPrecision(3);
 				if ( spamScoreLabel >= 100 ) {
 					spamScoreLabel = "> 100%";
 				}
-				else {  // spamScore < 100
+				else {
 					spamScoreLabel = "~ " + spamScoreLabel + "%";
 				}
 				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-SpamRate").setAttribute("value", spamScoreLabel);
@@ -196,17 +160,16 @@ emailsecurityplus.Scan = {
 			
 			return true;
 		}
-		else {  // !email.checkSpam
-			//Flag the email as NOT Spam (junk):
+		else {
 			this.markEmailAs(email, Components.interfaces.nsIJunkMailPlugin.GOOD, "0", "user");
 			
-			//Update the scan window:
-			if ( gui == true && emailsecurityplus.ScanWindow != null ) {  // there is a GUI in which display the scan progress...
+			// Update the scan window:
+			if ( gui == true && emailsecurityplus.ScanWindow != null ) {
 				var spamScoreLabel = (email.spamScore * 100 / emailsecurityplus.Preferences.getSpamMinValue()).toPrecision(3);
-				if( spamScoreLabel >= 100 ) {
+				if ( spamScoreLabel >= 100 ) {
 					spamScoreLabel = "> 100%";
 				}
-				else {  // spamScore < 100
+				else {
 					spamScoreLabel = "~ " + spamScoreLabel + "%";
 				}
 				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-SpamRate").setAttribute("value", spamScoreLabel);
@@ -215,17 +178,7 @@ emailsecurityplus.Scan = {
 			return false;
 		}
 	},
-
-
-
-	/** 
-	 * Marks an email as Junk or Not Junk.
-	 * 
-	 * @param email  the email to be marked (Email class).
-	 * @param classification  the new message classification (0:UNCLASSIFIED, 1:GOOD, 2:JUNK).
-	 * @param junkscore  the new message junk score ("0":GOOD, "100":JUNK).
-	 * @param junkscoreorigin  the new message junk score ("user", "filter", ...).
-	 */
+	
 	markEmailAs: function(email, classification, junkscore, junkscoreorigin) {
 		let gJunkService = Components.classes["@mozilla.org/messenger/filter-plugin;1?name=bayesianfilter"].getService(Components.interfaces.nsIJunkMailPlugin);
 		let oldJunkscore = email.header.getStringProperty("junkscore");
@@ -244,7 +197,7 @@ emailsecurityplus.Scan = {
 			}
 		}
 		
-		//Set the message classification and origin:
+		// Set the message classification and origin:
 		let db = email.folder.msgDatabase;
 		db.setStringPropertyByHdr(email.header, "junkscore", junkscore);
 		db.setStringPropertyByHdr(email.header, "junkscoreorigin", junkscoreorigin);
@@ -254,37 +207,23 @@ emailsecurityplus.Scan = {
 		}
 	},
 	
-	
-	/** 
-	 * Defines if an email address or an email domain is into the Blacklist or not.
-	 * 
-	 * @param author  the email address or domain of the author of the message.
-	 * @return  true if the email address or its domain is present inside the Blacklist, false otherwise.
-	 */
 	isInBlacklist: function(author) {
 		for (i=0; i < emailsecurityplus.Preferences.getBlacklist().length; i++) {
 			if ( author == emailsecurityplus.Preferences.getBlacklist()[i] ) {
-				return true;  // the email domain IS present inside the Blacklist!
+				return true;
 			}
 		}
 		
-		return false;  // the email address and its domain are NOT present inside the Blacklist!
+		return false;
 	},
 	
-	
-	/** 
-	 * Defines if an email address or an email domain is into the Whitelist or not.
-	 * 
-	 * @param author  the email address or domain of the author of the message.
-	 * @return  true if the email address or its domain is present inside the Whitelist, false otherwise.
-	 */
 	isInWhitelist: function(author) {
 		for (i=0; i < emailsecurityplus.Preferences.getWhitelist().length; i++) {
 			if ( author == emailsecurityplus.Preferences.getWhitelist()[i] ) {
-				return true;  // the email domain IS present inside the Whitelist!
+				return true;
 			}
 		}
 		
-		return false;  // the email address and its domain are NOT present inside the Whitelist!
+		return false;
 	}
 };

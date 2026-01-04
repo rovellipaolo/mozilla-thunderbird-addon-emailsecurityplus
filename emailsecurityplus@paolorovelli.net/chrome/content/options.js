@@ -7,55 +7,40 @@
 
 
 /** 
- * Defines the Email Security Plus NameSpace.
+ * Defines the Email Security Plus namespace.
  */
 if ( typeof emailsecurityplus == "undefined" ) { var emailsecurityplus = {}; }
 
 
-//Import code modules:
 Components.utils.import("resource://emailsecurityplus/preferences.js");
 
 
 /**
  * Defines the Email Security Plus options class.
- * 
- * @author Paolo Rovelli
  */
 emailsecurityplus.Options = {	
-	/**
-	 * Opens an URL.
-	 * 
-	 * @param e  an event.
-	 */
 	loadWebsite: function(e) {
-		if( e.button == 0 ) {
+		if ( e.button == 0 ) {
 			this.openURL(e.target.value);
 		}
 	},
 	
-	
-	/**
-	 * Opens an URL.
-	 * 
-	 * @param url  an URL (without "http://" or "mailto:").
-	 */
 	openURL: function(url) {
 		if ( url.substring(0,4) == "www." ) {
 			url = "http://" + url;
 		}
-		else {  // url.substring(0,4) != "www."
+		else {
 			url = "mailto:" + url;
 		}
 		
 		let ios = Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService);
 		let protocolSvc = Components.classes['@mozilla.org/uriloader/external-protocol-service;1'].getService(Components.interfaces.nsIExternalProtocolService);
-		
 		let uri = ios.newURI(url, null, null);
 		
 		if ( !protocolSvc.isExposedProtocol(uri.scheme) ) {
 			protocolSvc.loadUrl(uri);
 		}
-		else {  // protocolSvc.isExposedProtocol(uri.scheme)
+		else {
 			let loadgroup = Components.classes['@mozilla.org/network/load-group;1'].createInstance(Components.interfaces.nsILoadGroup);
 			let appstartup = Components.classes['@mozilla.org/toolkit/app-startup;1'].getService(Components.interfaces.nsIAppStartup);
 			
@@ -69,119 +54,74 @@ emailsecurityplus.Options = {
 			uriLoader.openURI(channel, true, uriListener);
 		}
 	},
-
-
-	/**
-	 * Checks generic dependences.
-	 * 
-	 * @param check  true or false.
-	 * @param dependences  the class of the dependences.
-	 */
+	
 	checkDependences: function(check, dependences) {
-		if ( check ) {  // swap: true -> false
-			//Disabling the elements that depend:
+		if ( check ) {
 			//window.document.getElementById(dependences).setAttribute("disabled", "true");
 			var elements = window.document.getElementsByClassName(dependences);
-
 			for (var i=0; i < elements.length; i++) { 
 				elements[i].setAttribute("disabled", "true");
 			}
 		}
-		else {  // !check  // swap: false -> true
-			//Enabling back elements by removing the "disabled" attribute:
+		else {
 			//window.document.getElementById(dependences).removeAttribute("disabled");
 			var elements = window.document.getElementsByClassName(dependences);
-
 			for (var i=0; i < elements.length; i++) { 
 				elements[i].removeAttribute("disabled");
 			}
 		}
 	},
-
-
-	/**
-	 * Checks AntiSpam dependences.
-	 */
+	
 	checkAntiSpamDependences: function() {
 		if ( emailsecurityplus.Preferences.isAntiSpamActive() ) {
-			//Disabling the elements that depend from the AntiSpam:
 			this.checkDependences(true, 'antispamActiveDependancies');
 		}
-		else {  // !emailsecurityplus.Preferences.isAntiSpamActive()
-			//Enabling back elements by removing the "disabled" attribute:
+		else {
 			this.checkDependences(false, 'antispamActiveDependancies');
 		}
 	},
-
-
-	/**
-	 * Checks AntiHoax dependences.
-	 */
+	
 	checkAntiHoaxDependences: function() {
 		if ( emailsecurityplus.Preferences.isAntiHoaxActive() ) {
-			//Disabling the elements that depend from the AntiHoax:
 			this.checkDependences(true, 'antihoaxActiveDependancies');
 		}
-
-		else {  // !emailsecurityplus.Preferences.isAntiSpamActive()
-			//Enabling back elements by removing the "disabled" attribute:
+		else {
 			this.checkDependences(false, 'antihoaxActiveDependancies');
 		}
 	},
-
-
-	/**
-	 * Checks Blacklist dependences.
-	 */
+	
 	checkBlacklistDependences: function() {
 		if ( emailsecurityplus.Preferences.isBlacklistActive() ) {
-			//Disabling the elements that depend from the blacklist:
 			this.checkDependences(true, 'blacklistActiveDependancies');
 		}
-		else {  // !emailsecurityplus.Preferences.isBlacklistActive()
-			//Enabling back elements by removing the "disabled" attribute:
+		else {
 			this.checkDependences(false, 'blacklistActiveDependancies');
 		}
 	},
-
-
-	/**
-	 * Checks Whitelist dependences.
-	 */
+	
 	checkWhitelistDependences: function() {
-		
 		if ( emailsecurityplus.Preferences.isWhitelistActive() ) {
-			//Disabling the elements that depend from the whitelist:
 			this.checkDependences(true, 'whitelistActiveDependancies');
 		}
-		else {  // !emailsecurityplus.Preferences.isWhitelistActive()
-			//Enabling back elements by removing the "disabled" attribute:
+		else {
 			this.checkDependences(false, 'whitelistActiveDependancies');
 		}
 	},
 	
-	
-	/**
-	 * Loads dependences.
-	 */
 	loadDependences: function() {
 		if ( !emailsecurityplus.Preferences.isAntiSpamActive() ) {
-			//Disabling the elements that depend from the AntiSpam:
 			this.checkDependences(true, 'antispamActiveDependancies');
 		}
 
 		if ( !emailsecurityplus.Preferences.isAntiHoaxActive() ) {
-			//Disabling the elements that depend from the AntiHoax:
 			this.checkDependences(true, 'antihoaxActiveDependancies');
 		}
 
 		if ( !emailsecurityplus.Preferences.isBlacklistActive() ) {
-			//Disabling the elements that depend from the blacklist:
 			this.checkDependences(true, 'blacklistActiveDependancies');
 		}
 
 		if ( !emailsecurityplus.Preferences.isWhitelistActive() ) {
-			//Disabling the elements that depend from the whitelist:
 			this.checkDependences(true, 'whitelistActiveDependancies');
 		}
 	}

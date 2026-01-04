@@ -5,7 +5,6 @@
  */
 
 
-
 caption {
 	margin: 5px 0;
 	font-size: 120%;
@@ -68,7 +67,6 @@ caption {
 }
 
 
-
 /* Font style */
 
 .bold {
@@ -78,7 +76,6 @@ caption {
 .italic {
 	font-style: italic;
 }
-
 
 
 /* Font color */
@@ -102,7 +99,6 @@ caption {
 .scarlet {
 	color: #800000;
 }
-
 
 
 /* Preferences */

@@ -5,33 +5,22 @@
  */
 
 
-
 var EXPORTED_SYMBOLS = ["emailsecurityplus"];
 
 
 /** 
- * Defines the Email Security Plus NameSpace.
+ * Defines the Email Security Plus namespace.
  */
 if ( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
 
 
-//Import code modules:
 Components.utils.import("resource://emailsecurityplus/preferences.js");
 
 
 /** 
  * Defines the Email Security Plus overlay class.
- * 
- * @author Paolo Rovelli
  */
 emailsecurityplus.Overlay = {
-	/**
-	 * Overlay the statusbar.
-	 * 
-	 * @param emailCounter  the number of email scanned.
-	 * @param spamCounter  the number of Spam found.
-	 * @return  the formatted Spam counter label [SpamFoundPercentage (spamTotalCounter/emailTotalCounter)].
-	 */
 	statusbarOverlay: function(emailCounter, spamCounter) {
 		if ( emailCounter > 0 ) {
 			emailsecurityplus.Preferences.addToEmailCounter(emailCounter);
@@ -43,23 +32,14 @@ emailsecurityplus.Overlay = {
 		
 		var emailTotCounter = emailsecurityplus.Preferences.getEmailCounter();
 		var spamTotCounter = emailsecurityplus.Preferences.getSpamCounter();
-		var spamPercentage = (spamTotCounter * 100 / emailTotCounter).toPrecision(3);  // Math.round( (spamTotCounter * 100) / emailTotCounter );  // round a number to the nearest integer
+		var spamPercentage = (spamTotCounter * 100 / emailTotCounter).toPrecision(3);  // Math.round( (spamTotCounter * 100) / emailTotCounter );
 		var spamCounterLabel = "Spam: ~" + spamPercentage + "% (" + spamTotCounter + "/" + emailTotCounter + ")";
 		
-		//Overlay the statusbar label:
 		//document.getElementById("emailsecurityplus-SpamCounterStat").setAttribute('label', spamCounterLabel);
 		
 		return spamCounterLabel;
 	},
 	
-	
-	/**
-	 * Adds an event in the Activity Manager.
-	 * 
-	 * @param eventClass  the icon class of the new event in the Activity Manager.
-	 * @param eventTitle  the title of the new event in the Activity Manager.
-	 * @param eventDescription  the description of the new event in the Activity Manager.
-	 */
 	addActivityManagerEvent: function(eventClass, eventTitle, eventDescription) {
 		let mozActivityManager = Components.classes["@mozilla.org/activity-manager;1"].getService(Components.interfaces.nsIActivityManager);
 		let mozEvent = Components.classes["@mozilla.org/activity-event;1"].createInstance(Components.interfaces.nsIActivityEvent);

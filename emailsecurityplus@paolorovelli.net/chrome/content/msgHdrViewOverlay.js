@@ -5,30 +5,22 @@
  */
 
 
-
 /** 
- * Defines the Email Security Plus NameSpace.
+ * Defines the Email Security Plus namespace.
  */
-if ( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
+if ( typeof emailsecurityplus == "undefined" ) { var emailsecurityplus = {}; }
 
 
-//Import code modules:
 Components.utils.import("resource://emailsecurityplus/preferences.js");
 Components.utils.import("resource://emailsecurityplus/email.js");
 
 
-/* --- BEGIN Watch for New Mail: --- */
 /**
  * Defines the Email Security Plus new email listener class.
- * 
- * @author Paolo Rovelli
  */
 emailsecurityplus.MsgHdrViewOverlay = {
-	/**
-	 * Resets the expanded header.
-	 */
 	resetExpandedHeader2Rows: function() {
-		//Clean the labels of the expandedHeader2Rows:
+		// Clean the labels of the expandedHeader2Rows:
 		document.getElementById("emailsecurityplus-ReceivedFrom").setAttribute("value", "");
 		document.getElementById("emailsecurityplus-ReceivedIPFromL1").setAttribute("value", "");
 		document.getElementById("emailsecurityplus-ReceivedIPFrom").setAttribute("value", "");
@@ -39,47 +31,39 @@ emailsecurityplus.MsgHdrViewOverlay = {
 		document.getElementById("emailsecurityplus-ReceivedIPByL2").setAttribute("value", "");
 	},
 	
-	
-	/**
-	 * Display the expanded header.
-	 */
 	displayExpandedHeader: function() {
 		emailsecurityplus.MsgHdrViewOverlay.resetExpandedHeader2Rows();
 		
 		let emailHeader = gDBView.msgFolder.GetMessageHeader(gDBView.getKeyAt(gDBView.currentlyDisplayedMessage));
 		let emailURI = emailHeader.folder.getUriForMsg(emailHeader);
-		
 		var email = new emailsecurityplus.Email(emailURI, emailHeader);
 		
-		
-		//X-Spam-Status header:
+		// X-Spam-Status header:
 		if ( emailsecurityplus.Preferences.isXSpamStatusHeaderActive() ) {
 			document.getElementById("emailsecurityplus-expandedXSpamStatusHeader").collapsed = false;
 			
 			var headerElement = document.getElementById("emailsecurityplus-XSpamStatus");
 			var xSpamScore = email.getXSpamScore;
 			var xSpamRequired= email.getXSpamRequired;
-			if( xSpamScore != "---" && xSpamRequired != "---" ) {
+			if ( xSpamScore != "---" && xSpamRequired != "---" ) {
 				headerElement.headerValue = "score: " + xSpamScore + " / " + xSpamRequired;
 				//headerElement.valid = true;
 			}
-			else {  // xSpamScore = "---" || xSpamRequired == "---"
+			else {
 				headerElement.headerValue = "";
 				//headerElement.valid = true;
 				document.getElementById("emailsecurityplus-expandedXSpamStatusHeader").collapsed = true;
 			}
 		}
-		else {  // !emailsecurityplus.Preferences.isXSpamStatusHeaderActive()
+		else {
 			document.getElementById("emailsecurityplus-expandedXSpamStatusHeader").collapsed = true;
 		}
 		
-		
-		//Received header:
+		// Received header:
 		if ( emailsecurityplus.Preferences.isReceivedHeaderActive() ) {
 			document.getElementById("emailsecurityplus-expandedReceivedHeader").collapsed = false;
 			
 			var receivedHeader = email.getReceivedHeader;
-			
 			
 			/**
 			 * received[0]: from
@@ -111,15 +95,11 @@ emailsecurityplus.MsgHdrViewOverlay = {
 				document.getElementById("emailsecurityplus-ReceivedIPBy").setAttribute("value", received[3]);
 			}
 		}
-		else {  // !emailsecurityplus.Preferences.isReceivedHeaderActive()
+		else {
 			document.getElementById("emailsecurityplus-expandedReceivedHeader").collapsed = true;
 		}
 	},
 	
-	
-	/**
-	 * Loads the expanded header listener.
-	 */
 	load: function() {
 		var listener = {};
 		listener.onStartHeaders = function() {};

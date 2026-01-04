@@ -5,14 +5,12 @@
  */
 
 
-
 /** 
- * Defines the Email Security Plus NameSpace.
+ * Defines the Email Security Plus namespace.
  */
-if ( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
+if ( typeof emailsecurityplus == "undefined" ) { var emailsecurityplus = {}; }
 
 
-//Import code modules:
 Components.utils.import("resource://emailsecurityplus/preferences.js");
 Components.utils.import("resource://emailsecurityplus/scan.js");
 Components.utils.import("resource://emailsecurityplus/overlay.js");
@@ -23,35 +21,20 @@ Components.utils.import("resource://emailsecurityplus/overlay.js");
  */
 emailsecurityplus.ScanWindow = null;
 
-
 /** 
  * Defines the Email Security Plus buttons class.
- * 
- * @author Paolo Rovelli
  */
 emailsecurityplus.Buttons = function() {
-	emailsecurityplus.Scan.emailCounter = 0;  // the number of email that are scanned in the current scan
-	emailsecurityplus.Scan.spamCounter = 0;  // the number of Spam email that are found in the current scan
-	emailsecurityplus.Scan.folderCounter = 0;  // the number of folders that are scanned in the current scan
+	emailsecurityplus.Scan.emailCounter = 0;     // the number of email that are scanned in the current scan
+	emailsecurityplus.Scan.spamCounter = 0;      // the number of Spam email that are found in the current scan
+	emailsecurityplus.Scan.folderCounter = 0;    // the number of folders that are scanned in the current scan
 	emailsecurityplus.Scan.progressCounter = 0;  // the scanning percentage of the current scan
 	
-	
-	
-	/** 
-	 * Define the methods of the buttons.
-	 * 
-	 * @author Paolo Rovelli
-	 */
 	var pub = {
-		/** 
-		 * Prints the scan result.
-		 * 
-		 * @param singleEmail  true if it is scanned a single email, false otherwise.
-		 */
 		scanResults: function(singleEmail) {
 			var date = new Date();
 			
-			//Update the scan window:
+			// Update the scan window:
 			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanStatus").setAttribute("value", "---");
 			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanTimeEnd").setAttribute("value", date.toLocaleString());
 			emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanTimeEndLabel").setAttribute("style", "visibility: visible;");
@@ -62,7 +45,6 @@ emailsecurityplus.Buttons = function() {
 			
 			if ( !singleEmail ) {
 				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanEmail").setAttribute("value", "");
-				
 				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-EmailSender").setAttribute("value", "---");
 				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-SpamRate").setAttribute("value", "---");
 				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ReceivedHeaderFrom").setAttribute("value", "---");
@@ -70,15 +52,11 @@ emailsecurityplus.Buttons = function() {
 				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-XSpamStatus").setAttribute("value", "---");
 				//emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-SecurityInfo").collapsed = true;
 			}
-			else {  // singleEmail
+			else {
 				emailsecurityplus.ScanWindow.document.getElementById("emailsecurityplus-ScanSummary").collapsed = true;
 			}
 		},
 		
-		
-		/** 
-		 * Defines the action of the scan toolbar button.
-		 */
 		scan: function() {
 			var singleEmail = false;
 			
@@ -91,36 +69,34 @@ emailsecurityplus.Buttons = function() {
 			//emailsecurityplus.ScanWindow.onclose = this.closeScanWindow;
 			emailsecurityplus.ScanWindow.onunload = this.closeScanWindow;
 			
-			//Selected folders in the "folders tree":
 			var selectedFolders = gFolderTreeView.getSelectedFolders();
-			//Header of the displayed/selected emails:
 			//var selectedEmails = gMessageDisplay.displayedMessage;
-			//URI of the displayed/selected emails:
 			var selectedEmailURIs = gFolderDisplay.selectedMessageUris;
-			
-			if ( selectedEmailURIs == null ) {  // No one email is selected...
+
+			if ( selectedEmailURIs == null ) {
 				//var spamList = Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
 				var spamList = emailsecurityplus.Scan.scanFolders(selectedFolders, true);
 				emailsecurityplus.Scan.folderCounter = selectedFolders.length;
 				
 				/*
-				//Delete Spam/Hoax messages:
+				// Move messages flagged as Spam in the Trash folder:
 				if ( (emailsecurityplus.Preferences.isDeleteSpamActive() || emailsecurityplus.Preferences.isDeleteHoaxActive()) && spamList != null ) {
 					let trashFolder = selectedFolders[0].rootFolder.getFolderWithFlags(Components.interfaces.nsMsgFolderFlags.Trash);
-					Components.classes["@mozilla.org/messenger/messagecopyservice;1"].getService(Components.interfaces.nsIMsgCopyService).CopyMessages(selectedFolders[0], spamList, trashFolder, true, null, msgWindow, true);  // Move emails flagged as Spam in the Trash folder
+					Components.classes["@mozilla.org/messenger/messagecopyservice;1"].getService(Components.interfaces.nsIMsgCopyService).CopyMessages(selectedFolders[0], spamList, trashFolder, true, null, msgWindow, true);
 				}
 				*/
 				
 				//spamList.clear();
 				spamList = null;
 			}
-			else {  // selectedEmailURIs != null  // At least one email is selected...
+			else {
 				var isSpamFound = emailsecurityplus.Scan.scanEmails(selectedEmailURIs, true);
 				
 				/*
-				//Delete Spam/Hoax messages:
+				// Move messages flagged as Spam in the Trash folder:
 				if ( (emailsecurityplus.Preferences.isDeleteSpamActive() || emailsecurityplus.Preferences.isDeleteHoaxActive()) && isSpamFound ) {
-					deleteJunkInFolder();  // Move junk emails in the Trash folder
+					// Move messages flagged as Spam in the Trash folder:
+					deleteJunkInFolder();
 				}
 				*/
 				
@@ -129,21 +105,17 @@ emailsecurityplus.Buttons = function() {
 				}
 			}
 			
-			//Overlay the Statusbar label:
+			// Overlay the Statusbar label:
 			spamCounterLabel = emailsecurityplus.Overlay.statusbarOverlay(emailsecurityplus.Scan.emailCounter, emailsecurityplus.Scan.spamCounter);
 			document.getElementById("emailsecurityplus-SpamCounterStat").setAttribute('label', spamCounterLabel);
 			
-			//Update the scan window:
+			// Update the scan window:
 			this.scanResults(singleEmail);
 			
-			//Add the event in the Activity Manager:
+			// Add the event in the Activity Manager:
 			emailsecurityplus.Overlay.addActivityManagerEvent("indexMail", "Email Security Plus scan completed", "Spam: " + emailsecurityplus.Scan.spamCounter + "/" + emailsecurityplus.Scan.emailCounter);
 		},
 		
-		
-		/** 
-		 * Defines the action when the scan window is closed.
-		 */
 		closeScanWindow: function() {
 			if ( emailsecurityplus.ScanWindow != null ) {
 				if ( emailsecurityplus.ScanWindow.closed ) {
@@ -153,92 +125,64 @@ emailsecurityplus.Buttons = function() {
 			}
 		},
 		
-		
-		/** 
-		 * Prints the source of the selected email.
-		 */
 		source: function() {
-			// URI of the displayed/selected emails:
 			var selectedEmailURIs = gFolderDisplay.selectedMessageUris;
-			
-			if ( selectedEmailURIs != null ) {  // At least one email is selected...
-				//View message source:
+
+			if ( selectedEmailURIs != null ) {
 				goDoCommand("cmd_viewPageSource");
-			}  // selectedEmailURIs != null
+			}
 		},
 		
-		
-		/** 
-		 * Adds the senders's email address or domain to the Blacklist.
-		 * 
-		 * @param dom  true if it is an email domain, otherwise it is an email address.
-		 */
 		addToBlacklist: function(dom) {
 			if ( typeof dom == 'undefined' ) {
 				dom = false;
 			}
 			
 			let messenger = Components.classes["@mozilla.org/messenger;1"].createInstance(Components.interfaces.nsIMessenger);
-			
-			//URI of the displayed/selected emails:
 			var selectedEmailURIs = gFolderDisplay.selectedMessageUris;
-			
+
 			for each (let emailURI in selectedEmailURIs) {
-				let emailHeader = messenger.messageServiceFromURI(emailURI).messageURIToMsgHdr(emailURI);  // email header from the email URI
+				let emailHeader = messenger.messageServiceFromURI(emailURI).messageURIToMsgHdr(emailURI);
 				var email = new emailsecurityplus.Email(emailURI, emailHeader);
 				
 				if ( dom ) {
-					if( !emailsecurityplus.Scan.isInBlacklist(email.authorDomain) ) {  // the sender's email domain is inside the Blacklist
+					if ( !emailsecurityplus.Scan.isInBlacklist(email.authorDomain) ) {
 						emailsecurityplus.Preferences.addToBlacklist( email.authorDomain );
 					}
 				}
-				else {  // dom != true
-					if ( !emailsecurityplus.Scan.isInBlacklist(email.author) ) {  // the sender's email address is inside the Blacklist
+				else {
+					if ( !emailsecurityplus.Scan.isInBlacklist(email.author) ) {
 						emailsecurityplus.Preferences.addToBlacklist( email.author );
 					}
 				}
 			}
 		},
 		
-		
-		/** 
-		 * Adds the senders's email address or domain to the White.
-		 * 
-		 * @param dom  true if it is an email domain, otherwise it is an email address.
-		 */
 		addToWhitelist: function(dom) {
 			if ( typeof dom == 'undefined' ) {
 				dom = false;
 			}
 			
 			let messenger = Components.classes["@mozilla.org/messenger;1"].createInstance(Components.interfaces.nsIMessenger);
-			
-			//URI of the displayed/selected emails:
 			var selectedEmailURIs = gFolderDisplay.selectedMessageUris;
 			
 			for each (let emailURI in selectedEmailURIs) {
-				let emailHeader = messenger.messageServiceFromURI(emailURI).messageURIToMsgHdr(emailURI);  // email header from the email URI
+				let emailHeader = messenger.messageServiceFromURI(emailURI).messageURIToMsgHdr(emailURI);
 				var email = new emailsecurityplus.Email(emailURI, emailHeader);
 				
 				if ( dom ) {
-					if( !emailsecurityplus.Scan.isInWhitelist(email.authorDomain) ) {  // the sender's email domain is inside the Blacklist
+					if ( !emailsecurityplus.Scan.isInWhitelist(email.authorDomain) ) {
 						emailsecurityplus.Preferences.addToWhitelist( email.authorDomain );
 					}
 				}
-				else {  // dom != true
-					if ( !emailsecurityplus.Scan.isInWhitelist(email.author) ) {  // the sender's email address is inside the Blacklist
+				else {
+					if ( !emailsecurityplus.Scan.isInWhitelist(email.author) ) {
 						emailsecurityplus.Preferences.addToWhitelist( email.author );
 					}
 				}
 			}
 		},
 		
-		
-		/**
-		 * Opens a new dialog.
-		 * 
-		 * @param url  the URL of the dialog.
-		 */
 		openWindow: function(url) {
 			var alreadyOpen = false;
 			let windowMediatorEnumerator = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator).getEnumerator(null);
@@ -246,18 +190,17 @@ emailsecurityplus.Buttons = function() {
 			while ( windowMediatorEnumerator.hasMoreElements() ) {
 				var openedWindow = windowMediatorEnumerator.getNext();
 				try {
-					if( openedWindow.location == url ) {
+					if ( openedWindow.location == url ) {
 						alreadyOpen = true;
 					}
 				} catch (e) {}
 			}
 			
-			//Check if the dialog is already open:
 			if ( !alreadyOpen ) {
 				window.openDialog(url,'','');
 			}
 		}
-	}  // pub
+	}
 	
 	return pub;
 }();
