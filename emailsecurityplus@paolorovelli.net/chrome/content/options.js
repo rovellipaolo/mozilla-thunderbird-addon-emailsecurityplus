@@ -1,30 +1,52 @@
 /**
  * @file options.js
- * @update 2012/03/22 18:02
+ * @update 2012/05/29 15:48
  * @author Paolo Rovelli
- * @version 1.0
  */
 
 
 
-let mozPreferences = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.emailsecurityplus.");    // nsIPrefBranch
+/** 
+ * Defines the Email Security Plus NameSpace.
+ */
+if( typeof emailsecurityplus == "undefined" ) {	var emailsecurityplus = {}; }
 
-function espCheckDependences() {  
-	if( mozPreferences.getBoolPref("scan") ) {  // swap: true -> false
-		//Disabling elements that depend from scan preference:
-		window.document.getElementById('espScanFriendsList').setAttribute("disabled", "true");	
-	}
-	else {  // !mozPreferences.getBoolPref("scan")  // swap: false -> true
-		//Enabling back elements by removing the "disabled" attribute:
-		window.document.getElementById('espScanFriendsList').removeAttribute("disabled");
-	}
-}
 
-function loadDependences() {  
-	if( !mozPreferences.getBoolPref("scan") ) {  // does NOT automatically scan incoming emails
-		//Disabling elements that depend from scan preference:
-		window.document.getElementById('espScanFriendsList').setAttribute("disabled", "true");
-	}
-}
+//Import code modules:
+Components.utils.import("resource://emailsecurityplus/preferences.js");  // , emailsecurityplus
 
-window.onload = loadDependences;
+
+/**
+ * Defines the Email Security Plus options class.
+ * 
+ * @author Paolo Rovelli
+ */
+emailsecurityplus.Options = {
+	/**
+	 * Checks dependences.
+	 */
+	checkDependences: function() {
+		if( emailsecurityplus.Preferences.isScanActive() ) {  // swap: true -> false
+			//Disabling elements that depend from scan preference:
+			window.document.getElementById('emailsecurityplus-ScanFriendsList').setAttribute("disabled", "true");	
+		}
+		else {  // !emailsecurityplus.Preferences.isScanActive()  // swap: false -> true
+			//Enabling back elements by removing the "disabled" attribute:
+			window.document.getElementById('emailsecurityplus-ScanFriendsList').removeAttribute("disabled");
+		}
+	},
+	
+	
+	/**
+	 * Loads dependences.
+	 */
+	loadDependences: function() {
+		if( !emailsecurityplus.Preferences.isScanActive() ) {  // does NOT automatically scan incoming emails
+			//Disabling elements that depend from scan preference:
+			window.document.getElementById('emailsecurityplus-ScanFriendsList').setAttribute("disabled", "true");
+		}
+	}
+};
+
+
+window.onload = emailsecurityplus.Options.loadDependences;

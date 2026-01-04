@@ -21,26 +21,16 @@
 <!ENTITY languages.caption "Languages">
 <!ENTITY languages.label "Choose the languages of the Spam words:">
 <!ENTITY languages.english.label "English">
-<!ENTITY languages.bulgarian.label "български">
-<!ENTITY languages.chinese.label "中文">
-<!ENTITY languages.german.label "Deutsch">
-<!ENTITY languages.spanish.label "Español">
-<!ENTITY languages.french.label "Français">
-<!ENTITY languages.hindi.label "हिंदी">
-<!ENTITY languages.icelandic.label "Íslenska">
 <!ENTITY languages.italian.label "Italiano">
-<!ENTITY languages.japanese.label "日本語">
-<!ENTITY languages.portuguese.label "Português">
-<!ENTITY languages.russian.label "Pусский">
 <!ENTITY languages.legend "*Choose only the languages ​​in which you usually receive emails.">
 <!ENTITY blacklist.title "Blacklist">
 <!ENTITY blacklist.caption "Blocked Senders">
-<!ENTITY blacklist.active.label "I do NOT want to receive emails from senders that are in the Blacklist">
+<!ENTITY blacklist.active.label "I do NOT want to receive emails from senders that are in the Blacklist (requires restart)">
 <!ENTITY blacklist.active.accesskey "B">
 <!ENTITY blacklist.active.legend "*All the incoming emails from blocked senders are automatically moved into the Trash folder.">
 <!ENTITY blacklist.label "Blocked email addresses:">
 <!ENTITY blacklist.legend "*IMPORTANT: put only one email address (e.g. user@domain.us) or domain (e.g. @domain.us) for each row.">
-<!ENTITY whitelist.active.label "I want to receive only emails from senders that are in my Address Book">
+<!ENTITY whitelist.active.label "I want to receive only emails from senders that are in my Address Book (requires restart)">
 <!ENTITY whitelist.active.accesskey "A">
 <!ENTITY whitelist.active.legend "*All the other incoming emails are automatically moved into the Trash folder.">
 <!ENTITY help.title "Help">

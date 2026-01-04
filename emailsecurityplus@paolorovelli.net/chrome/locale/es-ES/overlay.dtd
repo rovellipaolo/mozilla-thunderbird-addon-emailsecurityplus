@@ -1,4 +1,6 @@
 <!ENTITY statusbar.label "ES+">
+<!ENTITY treecol.label "Tasa de Spam">
+<!ENTITY treecol.tooltip "Haga clic para ordenar por Tasa de Spam">
 <!ENTITY scan.button.label "Escanear...">
 <!ENTITY scan.button.tooltip "Escanear...">
 <!ENTITY scan.item.label "Escanea Mensaje">

@@ -21,26 +21,16 @@
 <!ENTITY languages.caption "Idiomas">
 <!ENTITY languages.label "Elige los idiomas de las palabras de Spam:">
 <!ENTITY languages.english.label "English">
-<!ENTITY languages.bulgarian.label "български">
-<!ENTITY languages.chinese.label "中文">
-<!ENTITY languages.german.label "Deutsch">
-<!ENTITY languages.spanish.label "Español">
-<!ENTITY languages.french.label "Français">
-<!ENTITY languages.hindi.label "हिंदी">
-<!ENTITY languages.icelandic.label "Íslenska">
 <!ENTITY languages.italian.label "Italiano">
-<!ENTITY languages.japanese.label "日本語">
-<!ENTITY languages.portuguese.label "Português">
-<!ENTITY languages.russian.label "Pусский">
 <!ENTITY languages.legend "*Elige sólo los idiomas en los que sueles recibir mensajes de correo electrónico.">
 <!ENTITY blacklist.title "Blacklist">
 <!ENTITY blacklist.caption "Remitentes Bloqueados">
-<!ENTITY blacklist.active.label "NO quiero recibir correos electrónicos de remitentes que están en la Blacklist">
+<!ENTITY blacklist.active.label "NO quiero recibir correos electrónicos de remitentes que están en la Blacklist (es necesario reiniciar)">
 <!ENTITY blacklist.active.accesskey "B">
 <!ENTITY blacklist.active.legend "*Todas las email entrantes de remitentes bloqueados se colocan automáticamente en la carpeta Papelera.">
 <!ENTITY blacklist.label "Direcciones email bloqueadas:">
 <!ENTITY blacklist.legend "*IMPORTANTE: pon sólo una dirección de correo electrónico (e.g. usuario@dominio.es) o dominio (e.g. @dominio.es) por línea.">
-<!ENTITY whitelist.active.label "Deseo recibir emails sólo de los remitentes que están en mi Libreta de direcciones">
+<!ENTITY whitelist.active.label "Deseo recibir emails sólo de los remitentes que están en mi Libreta de direcciones (es necesario reiniciar)">
 <!ENTITY whitelist.active.accesskey "L">
 <!ENTITY whitelist.active.legend "*Todas las otras email entrantes son movidas automáticamente a la carpeta Papelera.">
 <!ENTITY help.title "Ayuda">

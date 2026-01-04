@@ -9,3 +9,10 @@
 <!ENTITY results.folders "Отсканированные папки:">
 <!ENTITY results.emails "Отсканированные е-мейл:">
 <!ENTITY results.spam "Спам найдено:">
+<!ENTITY securityinfo.caption "Security info:">
+<!ENTITY securityinfo.sender "отправителя:">
+<!ENTITY securityinfo.blacklisted "Blacklisted:">
+<!ENTITY securityinfo.spamrate "Spam Rate:">
+<!ENTITY xspamstatus.caption "X-Spam-Status:">
+<!ENTITY xspamstatus.score "Score:">
+<!ENTITY xspamstatus.rate "Rate:">

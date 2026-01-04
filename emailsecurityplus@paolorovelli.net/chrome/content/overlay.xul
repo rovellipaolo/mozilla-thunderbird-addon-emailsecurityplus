@@ -4,44 +4,51 @@
 <!DOCTYPE prefwindow SYSTEM "chrome://emailsecurityplus/locale/overlay.dtd">
 
 <!--
-@update 2011/09/04 20:04
+@update 2012/05/23 20:04
 @author Paolo Rovelli
 -->
-<overlay id="espOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-	<script type="application/x-javascript" src="chrome://emailsecurityplus/content/esp.js" />
-	<script type="application/x-javascript" src="chrome://emailsecurityplus/content/email.js" />
-	<script type="application/x-javascript" src="chrome://emailsecurityplus/content/scan.js" />
+<overlay id="emailsecurityplus-Overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/x-javascript" src="chrome://emailsecurityplus/content/buttons.js" />
 	<script type="application/x-javascript" src="chrome://emailsecurityplus/content/listeners.js" />
-	<script type="application/x-javascript" src="chrome://emailsecurityplus/content/overlay.js" />
+	<script type="application/x-javascript" src="chrome://emailsecurityplus/content/threads.js" />
 	
 	<!-- Top/Menu Toolbar -->
 	<menupopup id="messageMenuPopup">
-		<menuitem id="emailSecurityPlus-ScanCommand" label="&scan.button.label;" tooltiptext="&scan.button.tooltip;" image="chrome://emailsecurityplus/skin/scanButton_small.png" oncommand="scanButton.scan();" insertbefore="openMessageWindowMenuitem" />
+		<menuitem id="emailsecurityplus-ScanCommand" label="&scan.button.label;" tooltiptext="&scan.button.tooltip;" image="chrome://emailsecurityplus/skin/scanButton_small.png" oncommand="emailsecurityplus.Buttons.scan();" insertbefore="openMessageWindowMenuitem" />
 	</menupopup>
 	<menupopup id="taskPopup">
-		<menuitem id="emailSecurityPlus-OptionsCommand" label="&options.item.label;" tooltiptext="&options.item.tooltip;" image="chrome://emailsecurityplus/skin/emailSecurityPlus_small.png" oncommand="openWindow('chrome://emailsecurityplus/content/options.xul');" insertbefore="filtersCmd" />
+		<menuitem id="emailsecurityplus-OptionsCommand" label="&options.item.label;" tooltiptext="&options.item.tooltip;" image="chrome://emailsecurityplus/skin/emailsecurityplus_small.png" oncommand="emailsecurityplus.Buttons.openWindow('chrome://emailsecurityplus/content/options.xul');" insertbefore="filtersCmd" />
 	</menupopup>
 	
 	<!-- Toolbar Button -->
 	<toolbarpalette id="MailToolbarPalette">
-		<toolbarbutton id="emailSecurityPlus-ScanButton" label="&scan.button.label;" tooltiptext="&scan.button.tooltip;" oncommand="scanButton.scan();" class="toolbarbutton-1 chromeclass-toolbar-additional" />
-		<toolbarbutton id="emailSecurityPlus-SourceButton" label="&source.button.label;" tooltiptext="&source.button.tooltip;" oncommand="scanButton.source();" class="toolbarbutton-1 chromeclass-toolbar-additional" />
+		<toolbarbutton id="emailsecurityplus-ScanButton" label="&scan.button.label;" tooltiptext="&scan.button.tooltip;" oncommand="emailsecurityplus.Buttons.scan();" class="toolbarbutton-1 chromeclass-toolbar-additional" />
+		<toolbarbutton id="emailsecurityplus-SourceButton" label="&source.button.label;" tooltiptext="&source.button.tooltip;" oncommand="emailsecurityplus.Buttons.source();" class="toolbarbutton-1 chromeclass-toolbar-additional" />
 	</toolbarpalette>
 	
 	<!-- Mail/Thread Pane Context Menu -->
 	<popup id="mailContext">
-		<menuitem id="emailSecurityPlus-ScanItem" label="&scan.item.label;" tooltiptext="&scan.item.tooltip;" image="chrome://emailsecurityplus/skin/scanButton_small.png" oncommand="scanButton.scan();" insertbefore="mailContext-openNewWindow" />
-		<menuitem id="emailSecurityPlus-AddEmailToBlacklist" label="&blacklist.email.item.label;" tooltiptext="&blacklist.email.item.tooltip;" image="chrome://emailsecurityplus/skin/blacklist_small.png" oncommand="addToBlacklist();" insertafter="mailContext-mark" />
-		<menuitem id="emailSecurityPlus-AddDomainToBlacklist" label="&blacklist.domain.item.label;" tooltiptext="&blacklist.domain.item.tooltip;" image="chrome://emailsecurityplus/skin/blacklist_small.png" oncommand="addToBlacklist(true);" insertafter="emailSecurityPlus-AddEmailToBlacklist" />
+		<menuitem id="emailsecurityplus-ScanItem" label="&scan.item.label;" tooltiptext="&scan.item.tooltip;" image="chrome://emailsecurityplus/skin/scanButton_small.png" oncommand="emailsecurityplus.Buttons.scan();" insertbefore="mailContext-openNewWindow" />
+		<menuitem id="emailsecurityplus-AddEmailToBlacklist" label="&blacklist.email.item.label;" tooltiptext="&blacklist.email.item.tooltip;" image="chrome://emailsecurityplus/skin/blacklist_small.png" oncommand="emailsecurityplus.Scan.addToBlacklist();" insertafter="mailContext-mark" />
+		<menuitem id="emailsecurityplus-AddDomainToBlacklist" label="&blacklist.domain.item.label;" tooltiptext="&blacklist.domain.item.tooltip;" image="chrome://emailsecurityplus/skin/blacklist_small.png" oncommand="emailsecurityplus.Scan.addToBlacklist(true);" insertafter="emailsecurityplus-AddEmailToBlacklist" />
 	</popup>
 	
 	<!-- Folder Pane Context Menu -->
 	<popup id="folderPaneContext">
-		<menuitem id="emailSecurityPlus-ScanItem" label="&scan.button.label;" tooltiptext="&scan.button.tooltip;" image="chrome://emailsecurityplus/skin/scanButton_small.png" oncommand="scanButton.scan();" insertbefore="folderPaneContext-openNewWindow" />
+		<menuitem id="emailsecurityplus-ScanItem" label="&scan.button.label;" tooltiptext="&scan.button.tooltip;" image="chrome://emailsecurityplus/skin/scanButton_small.png" oncommand="emailsecurityplus.Buttons.scan();" insertbefore="folderPaneContext-openNewWindow" />
 	</popup>
 	
 	<!-- Statusbar -->
 	<statusbar id="status-bar">
-		<statusbarpanel id="emailSecurityPlus-Statusbar" label="&statusbar.label;" />
+		<statusbarpanel id="emailsecurityplus-SpamCounterStat" class="statusbarpanel-iconic-text" crop="left" label="&statusbar.label;" image="chrome://emailsecurityplus/skin/emailsecurityplus_small.png" />
 	</statusbar>
+	
+	<!-- Thread Tree -->
+	<tree id="threadTree">
+		<treecols id="threadCols">
+			<splitter class="tree-splitter" />
+			<treecol id="emailsecurityplus-SpamLevelCol" class="treecol-image" label="&treecol.label;" tooltiptext="&treecol.tooltip;" fixed="true" flex="2" hidden="false" insertafter="junkStatusCol" />
+			<splitter class="tree-splitter" />
+		</treecols>
+	</tree>
 </overlay>

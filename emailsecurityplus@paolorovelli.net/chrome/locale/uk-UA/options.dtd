@@ -21,26 +21,16 @@
 <!ENTITY languages.caption "мови">
 <!ENTITY languages.label "Виберіть мову Спам слова:">
 <!ENTITY languages.english.label "English">
-<!ENTITY languages.bulgarian.label "български">
-<!ENTITY languages.chinese.label "中文">
-<!ENTITY languages.german.label "Deutsch">
-<!ENTITY languages.spanish.label "Español">
-<!ENTITY languages.french.label "Français">
-<!ENTITY languages.hindi.label "हिंदी">
-<!ENTITY languages.icelandic.label "Íslenska">
 <!ENTITY languages.italian.label "Italiano">
-<!ENTITY languages.japanese.label "日本語">
-<!ENTITY languages.portuguese.label "Português">
-<!ENTITY languages.russian.label "Pусский">
 <!ENTITY languages.legend "*Виберіть тільки ті мови, в яких ви зазвичай отримуєте повідомлення.">
 <!ENTITY blacklist.title "Blacklist">
 <!ENTITY blacklist.caption "заблокованих відправників">
-<!ENTITY blacklist.active.label "Я НЕ хочу отримувати електронні листи від відправників, які знаходяться в Чорному списку">
+<!ENTITY blacklist.active.label "Я НЕ хочу отримувати електронні листи від відправників, які знаходяться в Чорному списку (потрібно перезапуск)">
 <!ENTITY blacklist.active.accesskey "Ч">
 <!ENTITY blacklist.active.legend "*Усі вхідні повідомлення від заблокованих відправників автоматично переміщаються в папку Корзина.">
 <!ENTITY blacklist.label "Заблоковані адреси електронної пошти:">
 <!ENTITY blacklist.legend "*ВАЖЛИВО: поставити тільки одну адресу електронної пошти (e.g. user@domain.ua) або домен (e.g. @domain.ua) для кожного рядка.">
-<!ENTITY whitelist.active.label "Я хочу отримувати лише повідомлення від відправників, які знаходяться в моїй адресній книзі">
+<!ENTITY whitelist.active.label "Я хочу отримувати лише повідомлення від відправників, які знаходяться в моїй адресній книзі (потрібно перезапуск)">
 <!ENTITY whitelist.active.accesskey "к">
 <!ENTITY whitelist.active.legend "*Всі інші вхідні повідомлення автоматично переміщуються в папку Корзина.">
 <!ENTITY help.title "Допоможіть">

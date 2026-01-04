@@ -21,26 +21,16 @@
 <!ENTITY languages.caption "Eзици">
 <!ENTITY languages.label "Изберете езиците на спам думи:">
 <!ENTITY languages.english.label "English">
-<!ENTITY languages.bulgarian.label "български">
-<!ENTITY languages.chinese.label "中文">
-<!ENTITY languages.german.label "Deutsch">
-<!ENTITY languages.spanish.label "Español">
-<!ENTITY languages.french.label "Français">
-<!ENTITY languages.hindi.label "हिंदी">
-<!ENTITY languages.icelandic.label "Íslenska">
 <!ENTITY languages.italian.label "Italiano">
-<!ENTITY languages.japanese.label "日本語">
-<!ENTITY languages.portuguese.label "Português">
-<!ENTITY languages.russian.label "Pусский">
 <!ENTITY languages.legend "*Изберете само езиците, на  които обикновено получавате имейли.">
 <!ENTITY blacklist.title "Blacklist">
 <!ENTITY blacklist.caption "Блокирани Податели">
-<!ENTITY blacklist.active.label "Аз не искам да получавам имейли от податели, които са в Черният списък">
+<!ENTITY blacklist.active.label "Аз не искам да получавам имейли от податели, които са в Черният списък (изисква рестартиране)">
 <!ENTITY blacklist.active.accesskey "Ч">
 <!ENTITY blacklist.active.legend "*Всички входящи имейли от блокираните податели автоматично се преместват в кошчето.">
 <!ENTITY blacklist.label "Блокирани имейл адреси:">
 <!ENTITY blacklist.legend "*ВАЖНО: сложи само един имейл адрес (e.g. user@domain.bg) или домейн (e.g. @domain.bg), за всеки ред.">
-<!ENTITY whitelist.active.label "Искам да получавам само имейли от подателите, които са в моята Aдресна книга">
+<!ENTITY whitelist.active.label "Искам да получавам само имейли от подателите, които са в моята Aдресна книга (изисква рестартиране)">
 <!ENTITY whitelist.active.accesskey "к">
 <!ENTITY whitelist.active.legend "*Всички останали входящи имейли автоматично се преместват в кошчето.">
 <!ENTITY help.title "Помощ">

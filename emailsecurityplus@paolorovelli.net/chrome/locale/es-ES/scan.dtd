@@ -9,3 +9,10 @@
 <!ENTITY results.folders "Carpetas examinadas:">
 <!ENTITY results.emails "Correos examinados:">
 <!ENTITY results.spam "Spam encontrado:">
+<!ENTITY securityinfo.caption "Security info:">
+<!ENTITY securityinfo.sender "Remitente:">
+<!ENTITY securityinfo.blacklisted "Blacklisted:">
+<!ENTITY securityinfo.spamrate "Tasa de Spam:">
+<!ENTITY xspamstatus.caption "X-Spam-Status:">
+<!ENTITY xspamstatus.score "Score:">
+<!ENTITY xspamstatus.rate "Rate:">

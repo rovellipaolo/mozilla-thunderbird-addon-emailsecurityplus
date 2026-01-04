@@ -1,4 +1,5 @@
 content   emailsecurityplus                 chrome/content/
+resource  emailsecurityplus                 chrome/modules/
 skin      emailsecurityplus   classic/1.0   chrome/skin/
 
 locale    emailsecurityplus   en-US         chrome/locale/en-US/
@@ -12,4 +13,5 @@ locale    emailsecurityplus   sv-SE         chrome/locale/sv-SE/
 locale    emailsecurityplus   uk-UA         chrome/locale/uk-UA/
 
 style chrome://global/content/overlay.xul chrome://emailsecurityplus/skin/overlay.css
+style chrome://global/content/customizeToolbar.xul chrome://emailsecurityplus/skin/overlay.css
 overlay chrome://messenger/content/messenger.xul chrome://emailsecurityplus/content/overlay.xul

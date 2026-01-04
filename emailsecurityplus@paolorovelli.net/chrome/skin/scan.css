@@ -1,0 +1,66 @@
+/**
+ * @file scan.css
+ * @update 2012/06/05 20:13
+ * @author Paolo Rovelli
+ */
+
+
+
+caption {
+	margin: 5px 0;
+	font-size: 110%;
+}
+
+.center {
+	text-align: center;
+}
+
+
+
+/* Font style */
+
+.bold {
+	font-weight: bold;
+}
+
+.italic {
+	font-style: italic;
+}
+
+
+
+/* Font color */
+
+.black {
+	color: #000000;
+}
+.darkgrey {
+	color: #4F4F4F;
+}
+.red {
+	color: red;
+}
+.scarlet {
+	color: #800000;
+}
+
+
+
+/* Scan window */
+
+#emailsecurityplus-ScanWindow #emailsecurityplus-ScanProgress {
+	width: 600px;
+}
+
+#emailsecurityplus-ScanWindow #emailsecurityplus-ScanSummary {
+	width: 300px;
+}
+
+#emailsecurityplus-ScanWindow #emailsecurityplus-SecurityInfo {
+	width: 150px;
+}
+
+#emailsecurityplus-ScanWindow #emailsecurityplus-XSpamStatus {
+	width: 150px;
+}
+

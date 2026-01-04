@@ -1,104 +1,46 @@
 /**
  * @file buttons.css
- * @update 2012/03/28 17:33
+ * @update 2012/06/05 20:13
  * @author Paolo Rovelli
  */
 
 
 
-caption {
-	margin: 5px 0;
-	font-size: 110%;
-}
-
-.center {
-	text-align: center;
-}
-
-.indTP0 {
-	margin-top: 0px;
-	padding-top: 0px;
-}
-.indBT0 {
-	margin-bottom: 0px;
-	padding-bottom: 0px;
-}
-.indLT5 {
-	padding-left: 5px;
-}
-.indRG5 {
-	padding-right: 5px;
-}
-.indLT10 {
-	margin-left: 10px;
-}
-.indLT10 {
-	padding-right: 10px;
-}
-.indLT18 {
-	padding-left: 18px;
-}
-
-.bold {
-	font-weight: bold;
-}
-.italic {
-	font-style: italic;
-}
-
-.black {
-	color: #000000;
-}
-.darkgrey {
-	color: #4F4F4F;
-}
-.red {
-	color: red;
-}
-
-#title {
-	font-weight: bold;
-	font-size: large;
-}
-
-
-
 /* Button */
 
-#emailSecurityPlus-ScanButton {
+#emailsecurityplus-ScanButton {
 	list-style-image: url("chrome://emailsecurityplus/skin/scanButton.png");
 }
-[iconsize="small"] #emailSecurityPlus-ScanButton {
+[iconsize="small"] #emailsecurityplus-ScanButton {
 	list-style-image: url("chrome://emailsecurityplus/skin/scanButton_small.png");
 }
 
-#emailSecurityPlus-SourceButton {
+#emailsecurityplus-SourceButton {
 	list-style-image: url("chrome://emailsecurityplus/skin/sourceButton.png");
 }
-[iconsize="small"] #emailSecurityPlus-SourceButton {
+[iconsize="small"] #emailsecurityplus-SourceButton {
 	list-style-image: url("chrome://emailsecurityplus/skin/sourceButton_small.png");
 }
 
 
 
-/* Preferences: */
+/* Statusbar */
 
-#emailSecurityPlus-Preferences .paneButtonIcon {margin-left: 35px; margin-right: 35px; width: 32px;}
-
-#emailSecurityPlus-Preferences .legend {
-	margin-bottom: 10px;
-	color: #A2A2A2;
-	font-size: 80%;
-}
-#emailSecurityPlus-Preferences .legendMulti {
-	color: #A2A2A2;
-	font-size: 80%;
+#emailsecurityplus-SpamCounterStat {
+	color: #800000;
 }
 
 
 
-/* Scan window */
+/* ThreadCol */
 
-#emailSecurityPlus-ScanWindow #espScanProgress {
-	width: 600px;
+#emailsecurityplus-SpamLevelCol, treechildren::-moz-tree-image(emailsecurityplus-SpamStatus) {
+	list-style-image: url("chrome://emailsecurityplus/skin/spamLevel.png") !important;
+}
+#emailsecurityplus-SpamLevelCol {
+	-moz-image-region: rect(0px 12px 12px 0px);
+	-moz-binding: url("chrome://global/content/bindings/tree.xml#treecol-image");
+	padding: 0px 5px;
+	width: 24px;
+	max-width: 24px;
 }

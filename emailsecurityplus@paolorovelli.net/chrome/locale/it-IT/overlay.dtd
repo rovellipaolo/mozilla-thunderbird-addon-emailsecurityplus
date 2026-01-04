@@ -1,4 +1,6 @@
 <!ENTITY statusbar.label "ES+">
+<!ENTITY treecol.label "Spam Rate">
+<!ENTITY treecol.tooltip "Ordina per Spam Rate">
 <!ENTITY scan.button.label "Scansiona...">
 <!ENTITY scan.button.tooltip "Scansiona...">
 <!ENTITY scan.item.label "Scansiona il messaggio">

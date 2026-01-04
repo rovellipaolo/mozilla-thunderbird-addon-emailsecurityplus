@@ -1,41 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
-<?xml-stylesheet type="text/css" href="chrome://emailsecurityplus/skin/overlay.css"?>
+<?xml-stylesheet type="text/css" href="chrome://emailsecurityplus/skin/options.css"?>
 
 <!DOCTYPE prefwindow SYSTEM "chrome://emailsecurityplus/locale/options.dtd">
 
 <!--
-@update 2012/03/20 00:12
+@update 2012/05/23 19:03
 @author Paolo Rovelli
 -->
-<prefwindow id="emailSecurityPlus-Preferences" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&window.title;">
+<prefwindow id="emailsecurityplus-Preferences" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&window.title;">
 	<script type="application/x-javascript" src="chrome://emailsecurityplus/content/options.js" />
-	<prefpane id="espAntiSpam" label="&antispam.title;" image="chrome://emailsecurityplus/skin/antiSpam.png" title="&antispam.title;">
+	
+	<prefpane id="emailsecurityplus-AntiSpam" label="&antispam.title;" image="chrome://emailsecurityplus/skin/antiSpam.png" title="&antispam.title;">
 		<preferences>
 			<preference id="scan" name="extensions.emailsecurityplus.scan" type="bool" />
 			<preference id="scan.friendslist" name="extensions.emailsecurityplus.scan.friendslist" type="bool" />
 			<preference id="scan.delete" name="extensions.emailsecurityplus.scan.delete" type="bool" />
 			<preference id="scan.aggressiveness" name="extensions.emailsecurityplus.scan.aggressiveness" type="int" />
 			<preference id="languages.english" name="extensions.emailsecurityplus.languages.english" type="bool" />
-			<preference id="languages.bulgarian" name="extensions.emailsecurityplus.languages.bulgarian" type="bool" />
-			<preference id="languages.chinese" name="extensions.emailsecurityplus.languages.chinese" type="bool" />
-			<preference id="languages.french" name="extensions.emailsecurityplus.languages.french" type="bool" />
-			<preference id="languages.german" name="extensions.emailsecurityplus.languages.german" type="bool" />
-			<preference id="languages.hindi" name="extensions.emailsecurityplus.languages.hindi" type="bool" />
-			<preference id="languages.icelandic" name="extensions.emailsecurityplus.languages.icelandic" type="bool" />
 			<preference id="languages.italian" name="extensions.emailsecurityplus.languages.italian" type="bool" />
-			<preference id="languages.japanese" name="extensions.emailsecurityplus.languages.japanese" type="bool" />
-			<preference id="languages.portuguese" name="extensions.emailsecurityplus.languages.portuguese" type="bool" />
-			<preference id="languages.russian" name="extensions.emailsecurityplus.languages.russian" type="bool" />
-			<preference id="languages.spanish" name="extensions.emailsecurityplus.languages.spanish" type="bool" />
 		</preferences>
 		
 		<groupbox flex="1" id="scan">
 			<caption label="&scan.caption;" />
-			<checkbox class="indBT0" preference="scan" label="&scan.label;" accesskey="&scan.accesskey;" onclick="espCheckDependences();" />
+			<checkbox class="indBT0" preference="scan" label="&scan.label;" accesskey="&scan.accesskey;" onclick="emailsecurityplus.Options.checkDependences();" />
 			<checkbox class="deleteSpamCheckbox" preference="scan.delete" label="&scan.delete.label;" accesskey="&scan.delete.accesskey;" />
-			<checkbox id="espScanFriendsList" class="indBT0" preference="scan.friendslist" label="&scan.friendslist.label;" accesskey="&scan.friendslist.accesskey;" />
-			<label class="legendMulti indLT18">&scan.friendslist.legend;</label>
+			<checkbox id="emailsecurityplus-ScanFriendsList" class="indBT0" preference="scan.friendslist" label="&scan.friendslist.label;" accesskey="&scan.friendslist.accesskey;" />
+			<label class="legend indLT18">&scan.friendslist.legend;</label>
 			<hbox style="margin-top: 10px;">
 				<label>&scan.aggressiveness.label;</label>
 				<radiogroup id="aggressiveness" preference="scan.aggressiveness">
@@ -54,37 +45,16 @@
 			<vbox>
 				<label>&languages.label;</label>
 				<hbox>
-					<vbox>
-						<checkbox class="indRG5" preference="languages.bulgarian" label="&languages.bulgarian.label;" disabled="true" />
-						<checkbox class="indRG5" preference="languages.hindi" label="&languages.hindi.label;" disabled="true" />
-					</vbox>
-					<vbox>
-						<checkbox class="indRG5" preference="languages.chinese" label="&languages.chinese.label;" disabled="true" />
-						<checkbox class="indRG5" preference="languages.icelandic" label="&languages.icelandic.label;" disabled="true" />
-					</vbox>
-					<vbox>
-						<checkbox class="indRG5" preference="languages.german" label="&languages.german.label;" disabled="true" />
-						<checkbox class="indRG5" preference="languages.italian" label="&languages.italian.label;" />
-					</vbox>
-					<vbox>
-						<checkbox class="indRG5" preference="languages.english" label="&languages.english.label;" disabled="true" />
-						<checkbox class="indRG5" preference="languages.japanese" label="&languages.japanese.label;" disabled="true" />
-					</vbox>
-					<vbox>
-						<checkbox class="indRG5" preference="languages.spanish" label="&languages.spanish.label;" disabled="true" />
-						<checkbox class="indRG5" preference="languages.portuguese" label="&languages.portuguese.label;" disabled="true" />
-					</vbox>
-					<vbox>
-						<checkbox class="indRG5" preference="languages.french" label="&languages.french.label;" disabled="true" />
-						<checkbox class="indRG5" preference="languages.russian" label="&languages.russian.label;" disabled="true" />
-					</vbox>
+					<checkbox class="indRG5" preference="languages.english" label="&languages.english.label;**" />
+					<checkbox class="indRG5" preference="languages.italian" label="&languages.italian.label;" />
 				</hbox>
-				<label class="legend">&languages.legend;</label>
+				<label class="legendMulti">&languages.legend;</label>
+				<label class="legendMulti">**Beta</label>
 			</vbox>
 		</groupbox>
 	</prefpane>
 	
-	<prefpane id="espBlacklist" label="&blacklist.title;" image="chrome://emailsecurityplus/skin/blacklist.png" title="&blacklist.title;">
+	<prefpane id="emailsecurityplus-Blacklist" label="&blacklist.title;" image="chrome://emailsecurityplus/skin/blacklist.png" title="&blacklist.title;">
 		<preferences>
 			<preference id="whitelist.active" name="extensions.emailsecurityplus.whitelist.active" type="bool" />
 			<preference id="blacklist" name="extensions.emailsecurityplus.blacklist" type="string" />
@@ -103,7 +73,7 @@
 		</groupbox>
 	</prefpane>
 	
-	<prefpane id="espHelp" label="&help.title;" image="chrome://emailsecurityplus/skin/help.png" title="&help.title;">
+	<prefpane id="emailsecurityplus-Help" label="&help.title;" image="chrome://emailsecurityplus/skin/help.png" title="&help.title;">
 		<groupbox flex="1" id="faq">
 			<caption label="&faq.caption;" />
 			<vbox>

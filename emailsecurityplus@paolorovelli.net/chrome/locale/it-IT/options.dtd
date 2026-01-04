@@ -21,26 +21,16 @@
 <!ENTITY languages.caption "Lingue">
 <!ENTITY languages.label "Scegliere le lingue delle parole di Spam:">
 <!ENTITY languages.english.label "English">
-<!ENTITY languages.bulgarian.label "български">
-<!ENTITY languages.chinese.label "中文">
-<!ENTITY languages.german.label "Deutsch">
-<!ENTITY languages.spanish.label "Español">
-<!ENTITY languages.french.label "Français">
-<!ENTITY languages.hindi.label "हिंदी">
-<!ENTITY languages.icelandic.label "Íslenska">
 <!ENTITY languages.italian.label "Italiano">
-<!ENTITY languages.japanese.label "日本語">
-<!ENTITY languages.portuguese.label "Português">
-<!ENTITY languages.russian.label "Pусский">
 <!ENTITY languages.legend "*Scegliere solamente le lingue in cui abitualmente si ricevono messaggi di posta elettronica.">
 <!ENTITY blacklist.title "Blacklist">
 <!ENTITY blacklist.caption "Mittenti Bloccati">
-<!ENTITY blacklist.active.label "NON desidero ricevere email provenienti da mittenti che sono nella Blacklist">
+<!ENTITY blacklist.active.label "NON desidero ricevere email provenienti da mittenti che sono nella Blacklist (richiede il riavvio)">
 <!ENTITY blacklist.active.accesskey "B">
 <!ENTITY blacklist.active.legend "*Tutte le email in arrivo provenienti da mittenti bloccati vengono automaticamente spostate nel Cestino.">
 <!ENTITY blacklist.label "Indirizzi email bloccati:">
 <!ENTITY blacklist.legend "*IMPORTANTE: inserire un solo indirizzo email (e.g. utente@dominio.it) o dominio (e.g. @dominio.it) per ogni riga.">
-<!ENTITY whitelist.active.label "Voglio ricevere solamente email provenienti da mittenti che sono nella mia Rubrica">
+<!ENTITY whitelist.active.label "Voglio ricevere solamente email provenienti da mittenti che sono nella mia Rubrica (richiede il riavvio)">
 <!ENTITY whitelist.active.accesskey "R">
 <!ENTITY whitelist.active.legend "*Tutte le altre email in arrivo vengono automaticamente spostate nel Cestino.">
 <!ENTITY help.title "Aiuto">

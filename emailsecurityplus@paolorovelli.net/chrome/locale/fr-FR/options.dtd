@@ -21,26 +21,16 @@
 <!ENTITY languages.caption "Langues">
 <!ENTITY languages.label "Choisissez les langues des mots de Spam:">
 <!ENTITY languages.english.label "English">
-<!ENTITY languages.bulgarian.label "български">
-<!ENTITY languages.chinese.label "中文">
-<!ENTITY languages.german.label "Deutsch">
-<!ENTITY languages.spanish.label "Español">
-<!ENTITY languages.french.label "Français">
-<!ENTITY languages.hindi.label "हिंदी">
-<!ENTITY languages.icelandic.label "Íslenska">
 <!ENTITY languages.italian.label "Italiano">
-<!ENTITY languages.japanese.label "日本語">
-<!ENTITY languages.portuguese.label "Português">
-<!ENTITY languages.russian.label "Pусский">
 <!ENTITY languages.legend "*Choisissez uniquement les langues dans lesquelles vous recevez habituellement des e-mails.">
 <!ENTITY blacklist.title "Liste Noire">
 <!ENTITY blacklist.caption "Expéditeurs Bloqués">
-<!ENTITY blacklist.active.label "Je ne veux pas recevoir de e-mails provenant d'expéditeurs qui sont dans la Liste Noire">
+<!ENTITY blacklist.active.label "Je ne veux pas recevoir de e-mails provenant d'expéditeurs qui sont dans la Liste Noire (nécessite un redémarrage)">
 <!ENTITY blacklist.active.accesskey "N">
 <!ENTITY blacklist.active.legend "*Tous les e-mails entrants provenant d'expéditeurs bloqués sont automatiquement déplacés vers le dossier Corbeille.">
 <!ENTITY blacklist.label "Adresses e-mail bloquées:">
 <!ENTITY blacklist.legend "*IMPORTANT: mettre une seule adresse e-mail (e.g. utilisateur@domaine.fr) ou domaine (e.g. @domaine.fr) par ligne.">
-<!ENTITY whitelist.active.label "Je veux recevoir seulement les e-mails provenant d'expéditeurs étant dans mon Carnet d'Adresses">
+<!ENTITY whitelist.active.label "Je veux recevoir seulement les e-mails provenant d'expéditeurs étant dans mon Carnet d'Adresses (nécessite un redémarrage)">
 <!ENTITY whitelist.active.accesskey "C">
 <!ENTITY whitelist.active.legend "*Tous les autres e-mails entrants sont automatiquement déplacés vers le dossier Corbeille.">
 <!ENTITY help.title "Aider">

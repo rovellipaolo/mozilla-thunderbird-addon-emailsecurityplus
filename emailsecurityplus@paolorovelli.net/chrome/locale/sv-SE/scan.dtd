@@ -9,3 +9,10 @@
 <!ENTITY results.folders "Skannade mappar:">
 <!ENTITY results.emails "Skannade meddelanden:">
 <!ENTITY results.spam "Spam hittad:">
+<!ENTITY securityinfo.caption "Security info:">
+<!ENTITY securityinfo.sender "Avsändarens:">
+<!ENTITY securityinfo.blacklisted "Blacklisted:">
+<!ENTITY securityinfo.spamrate "Spam Rate:">
+<!ENTITY xspamstatus.caption "X-Spam-Status:">
+<!ENTITY xspamstatus.score "Score:">
+<!ENTITY xspamstatus.rate "Rate:">
